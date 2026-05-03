@@ -1,2 +1,2 @@
-# https-fantasticargument.github.io-rom-petrol
+# fantasticargument.github.io-rom-petrol
 Інтерактивний каталог пально‑мастильних матеріалів.
