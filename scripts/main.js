@@ -46,6 +46,7 @@ function renderCards(items) {
     .join("");
 }
 
+
 // === 3. Обробка кліку по карточці ===
 
 function setupCardClick(items) {
