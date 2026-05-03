@@ -2,26 +2,42 @@
 
 async function loadData() {
   const url =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRSylcG0QyCeCk0BuL0PILEMPoHs9HFYYD1ZevVYWgkHMdN4Y6TDVz2HkIFDYeCLm2zwTkDuWZC6uIk/pub?output=csv";
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRSylcG0QyCeCk0BuL0PILEMPoHs9HFYYD1ZevVYWgkHMdN4Y6TDVz2HkIFDYeCLm2zwTkDuWZC6uIk/pub?output=csv";
 
   const response = await fetch(url);
-  const text = await response.text();
+  let text = await response.text();
 
-  const rows = text.split("\n").map((r) => r.split(","));
+  // Очищення CSV
+  text = text
+    .replace(/"/g, "")        // прибираємо лапки
+    .replace(/\r/g, "")       // прибираємо \r
+    .trim();                  // прибираємо зайві пробіли
 
-  const items = rows.slice(1).map((row, index) => ({
-    id: index,
-    available: row[1]?.trim(), // Наявність
-    category: row[2]?.trim(), // Категорія
-    title: row[3]?.trim(), // Найменування
-    description: row[4]?.trim(), // Короткий опис
-    image: row[5]?.trim(), // Картинка
-    code: row[6]?.trim(), // Код
-  }));
+  const rows = text
+    .split("\n")
+    .map((r) => r.split(","))
+    .filter((r) => r.length > 3); // пропускаємо порожні рядки
+
+  const items = rows.slice(1).map((row, index) => {
+    // Захист від зсуву колонок
+    const safe = (i) => (row[i] ? row[i].trim() : "");
+
+    return {
+      id: index,
+      available: safe(1),
+      category: safe(2),
+      title: safe(3),
+      description: safe(4),
+      image: safe(5),
+      code: safe(6),
+    };
+  });
 
   renderCards(items);
   setupCardClick(items);
 }
+
+const safe = (i) => (row[i] ? row[i].trim() : "");
 
 loadData();
 
@@ -45,7 +61,6 @@ function renderCards(items) {
     )
     .join("");
 }
-
 
 // === 3. Обробка кліку по карточці ===
 
