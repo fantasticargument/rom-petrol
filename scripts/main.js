@@ -2,7 +2,7 @@
 
 async function loadData() {
   const url =
-    "https://docs.google.com/spreadsheets/d/1d03diyND3eYcbEbUrUK3DhDIclsvQRzZDscNgm_rLW8/pub?output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRSylcG0QyCeCk0BuL0PILEMPoHs9HFYYD1ZevVYWgkHMdN4Y6TDVz2HkIFDYeCLm2zwTkDuWZC6uIk/pub?output=csv";
 
   const response = await fetch(url);
   const text = await response.text();
