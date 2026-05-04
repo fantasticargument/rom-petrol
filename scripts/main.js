@@ -1,6 +1,6 @@
 async function loadData() {
   const apiKey = AIRTABLE_API_KEY; 
-  const baseId = "appFoHVWBdp8dy6GY";
+  const baseId = "appFoHVWBdp8dy6GYj";
   const tableName = "Table 1";
 
   const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
