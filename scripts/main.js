@@ -66,3 +66,7 @@ function openModal(item) {
   document.querySelector(".overlay").classList.remove("hidden");
 }
 loadData();
+
+function closeModal() {
+  document.querySelector('.overlay').classList.add('hidden');
+}
