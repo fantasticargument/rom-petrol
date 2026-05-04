@@ -1,16 +1,7 @@
 async function loadData() {
-  const apiKey = AIRTABLE_API_KEY; 
-  const baseId = "appFoHVWBdp8dy6GY";
-  const tableName = "Table 1";
+  const url = "https://billowing-dust-b910.romic-argument.workers.dev/";
 
-  const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
-
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-    },
-  });
-
+  const response = await fetch(url);
   const data = await response.json();
 
   const items = data.records.map((record, index) => ({
@@ -19,13 +10,14 @@ async function loadData() {
     category: record.fields.Category || "",
     available: record.fields.Available || "",
     description: record.fields.Description || "",
-    images: record.fields.Images || [], // масив картинок
+    images: record.fields.Images || [],
     code: record.fields.Code || "",
   }));
 
   renderCards(items);
   setupCardClick(items);
 }
+
 
 
 // РЕНДЕР КАРТОЧОК
