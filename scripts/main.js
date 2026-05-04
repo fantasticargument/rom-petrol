@@ -76,3 +76,7 @@ document.querySelector('.close').addEventListener('click', closeModal);
 document.querySelector('.overlay').addEventListener('click', (e) => {
   if (e.target.classList.contains('overlay')) closeModal();
 });
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
