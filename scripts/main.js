@@ -70,3 +70,5 @@ loadData();
 function closeModal() {
   document.querySelector('.overlay').classList.add('hidden');
 }
+
+document.querySelector('.close').addEventListener('click', closeModal);
