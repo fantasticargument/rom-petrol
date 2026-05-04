@@ -73,3 +73,4 @@ function openModal(item) {
 
   document.querySelector(".overlay").classList.remove("hidden");
 }
+loadData();
