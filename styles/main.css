@@ -184,3 +184,32 @@ header {
     padding: 10px 15px; /* дуже маленькі екрани */
   }
 }
+
+#scrollTopBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #222;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: none; /* прихована за замовчуванням */
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+#scrollTopBtn.show {
+  display: flex;
+  opacity: 1;
+}
+
+#scrollTopBtn:hover {
+  background: #444;
+}
