@@ -25,19 +25,24 @@ function renderCards(items) {
   const container = document.querySelector(".cards");
 
   container.innerHTML = items
-    .map(
-      (item) => `
+  .map(
+    (item) => `
     <div class="card" data-id="${item.id}">
       <img src="${item.images[0]?.url || 'placeholder.png'}" alt="${item.title}">
-      <h3>${item.title}</h3>
-      <p class="category">${item.category}</p>
+
+      <div class="card-body">
+        <h3>${item.title}</h3>
+        <p class="category">${item.category}</p>
+      </div>
+
       <span class="availability ${
         item.available.includes("Є") ? "yes" : "no"
       }">${item.available}</span>
     </div>
   `
-    )
-    .join("");
+  )
+  .join("");
+
 }
 
 
