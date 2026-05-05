@@ -24,15 +24,10 @@ header {
   padding: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: transform .2s, box-shadow .2s;
-  height: 360px; 
+  height: 360px; /* робимо картку вищою */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 }
 
 .card img {
