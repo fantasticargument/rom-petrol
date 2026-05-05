@@ -31,8 +31,8 @@ function renderCards(items) {
       <img src="${item.images[0]?.url || 'placeholder.png'}" alt="${item.title}">
 
       <div class="card-body">
-        <h3>${item.title}</h3>
         <p class="category">${item.category}</p>
+        <h3>${item.title}</h3>
       </div>
 
       <span class="availability ${
