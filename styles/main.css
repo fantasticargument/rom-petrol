@@ -24,7 +24,7 @@ header {
   padding: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: transform .2s, box-shadow .2s;
-  height: 360px; /* робимо картку вищою */
+  height: 440px; /* нова збільшена висота */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
