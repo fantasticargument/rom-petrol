@@ -33,7 +33,10 @@ header {
 
 .card img {
   width: 100%;
-  border-radius: 6px;
+  height: 180px; /* фіксована висота */
+  object-fit: cover; /* обрізає зайве, зберігає пропорції */
+  border-radius: 8px;
+  background: #f0f0f0; /* на випадок, якщо фото немає */
 }
 
 .availability.yes {
