@@ -246,3 +246,14 @@ header {
 .modal-gallery img.thumb:hover {
   transform: scale(1.05);
 }
+
+.site-footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-top: 2px solid #444;
+}
