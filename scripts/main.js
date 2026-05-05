@@ -63,7 +63,8 @@ function setupCardClick(items) {
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => {
       const id = card.dataset.id;
-      openModal(items[id]);
+      const item = items.find(i => i.id == id); // ← шукаємо товар по id
+      openModal(item);
     });
   });
 }
