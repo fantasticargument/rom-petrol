@@ -257,3 +257,48 @@ header {
   letter-spacing: 1px;
   border-top: 2px solid #444;
 }
+
+/* Горизонтальна орієнтація телефонів */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+
+  /* Картки — робимо компактнішими */
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .card img {
+    height: 100px;
+  }
+
+  .card h3 {
+    font-size: 14px;
+  }
+
+  .card .category {
+    font-size: 12px;
+  }
+
+  /* Модалка — адаптація */
+  .modal {
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+  .modal-img {
+    max-height: 150px;
+  }
+
+  .modal-gallery img {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* Кнопка "вгору" */
+  #scrollTopBtn {
+    bottom: 10px;
+    right: 10px;
+    transform: scale(0.8);
+  }
+}
