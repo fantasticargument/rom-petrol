@@ -1,3 +1,7 @@
+/* ===========================
+   1. БАЗОВІ СТИЛІ
+   =========================== */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -11,130 +15,43 @@ header {
   text-align: center;
 }
 
+/* Сітка карток — універсальна */
 .cards {
   display: grid;
   gap: 20px;
   padding: 20px 40px;
-  grid-template-columns: repeat(4, 1fr); /* великі екрани */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-/* 3 колонки — ноутбуки */
-@media (max-width: 1200px) {
-  .cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* 2 колонки — планшети */
-@media (max-width: 800px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* 1 колонка — телефони */
-@media (max-width: 500px) {
-  .cards {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-
-
+/* Картка */
 .card {
   background: #fff;
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: transform .2s, box-shadow .2s;
-  height: 400px; /* нова збільшена висота */
+  height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 }
 
 .card img {
   width: 100%;
-  height: 260px;     
+  height: 260px;
   object-fit: contain;
   background: #fff;
   border-radius: 8px;
   padding: 4px;
-  display: block;
-  margin: 0 auto;
-}
-
-.availability.yes {
-  color: green;
-  font-weight: bold;
-}
-
-.availability.no {
-  color: red;
-  font-weight: bold;
-}
-
-/* Overlay */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.hidden {
-  display: none;
-}
-
-.modal {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-  max-width: 90%;
-}
-
-.close {
-  float: right;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.card h3 {
-  font-size: 18px;
-  margin: 10px 0 5px;
-  height: 48px; /* фіксована висота для 2 рядків */
-  overflow: hidden;
-}
-
-.card .category {
-  font-size: 14px;
-  color: #555;
-  height: 20px; /* фіксована висота */
-  overflow: hidden;
-}
-
-.card .availability {
-  margin-top: auto; /* притискає availability вниз */
-  font-size: 16px;
-  font-weight: bold;
 }
 
 .card-body {
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* вертикально по центру */
-  align-items: center;     /* горизонтально по центру */
-  text-align: center;      /* текст по центру */
+  text-align: center;
 }
 
 .card .category {
@@ -154,65 +71,47 @@ header {
 .card .availability {
   font-size: 16px;
   font-weight: bold;
-  text-align: center;   /* горизонтальне центрування */
-  width: 100%;          /* щоб text-align працював гарантовано */
-  margin-top: 10px;
+  margin-top: auto;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-}
+.availability.yes { color: green; }
+.availability.no { color: red; }
 
-.cards {
-  padding: 20px 40px; /* десктоп */
-}
+/* ===========================
+   2. МОДАЛЬНЕ ВІКНО
+   =========================== */
 
-@media (max-width: 1024px) {
-  .cards {
-    padding: 20px 30px; /* планшети */
-  }
-}
-
-@media (max-width: 600px) {
-  .cards {
-    padding: 15px 20px; /* телефони */
-  }
-}
-
-@media (max-width: 400px) {
-  .cards {
-    padding: 10px 15px; /* дуже маленькі екрани */
-  }
-}
-
-#scrollTopBtn {
+.overlay {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #222;
-  color: #fff;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  display: none; /* прихована за замовчуванням */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  transition: opacity 0.3s ease;
-  z-index: 99999;
+  z-index: 1000;
 }
 
-#scrollTopBtn.show {
-  display: flex;
-  opacity: 1;
+.hidden { display: none; }
+
+.modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-#scrollTopBtn:hover {
-  background: #444;
+.close {
+  float: right;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .modal-img {
@@ -247,6 +146,43 @@ header {
   transform: scale(1.05);
 }
 
+/* ===========================
+   3. КНОПКА "ВГОРУ"
+   =========================== */
+
+#scrollTopBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #222;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: opacity 0.3s ease;
+  z-index: 99999;
+}
+
+#scrollTopBtn.show {
+  display: flex;
+  opacity: 1;
+}
+
+#scrollTopBtn:hover {
+  background: #444;
+}
+
+/* ===========================
+   4. ФУТЕР
+   =========================== */
+
 .site-footer {
   background: #222;
   color: #fff;
@@ -258,47 +194,92 @@ header {
   border-top: 2px solid #444;
 }
 
-/* Горизонтальна орієнтація телефонів */
-@media screen and (max-height: 480px) and (orientation: landscape) {
+/* ===========================
+   5. АДАПТАЦІЯ — ПЛАНШЕТИ
+   =========================== */
 
-  /* Картки — робимо компактнішими */
+@media (max-width: 900px) {
   .cards {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    padding: 20px 30px;
+  }
+}
+
+/* ===========================
+   6. АДАПТАЦІЯ — ТЕЛЕФОНИ (ПОРТРЕТ)
+   =========================== */
+
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 15px 20px;
   }
 
   .card img {
-    height: 100px;
+    height: 130px;
+  }
+
+  .modal-img {
+    max-height: 220px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  .modal-img {
+    max-height: 180px;
+  }
+}
+
+/* ===========================
+   7. АДАПТАЦІЯ — ТЕЛЕФОНИ (ГОРИЗОНТАЛЬ)
+   =========================== */
+
+@media (orientation: landscape) and (max-height: 480px) {
+
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .card img {
+    height: 90px;
   }
 
   .card h3 {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .card .category {
-    font-size: 12px;
+    font-size: 11px;
   }
 
-  /* Модалка — адаптація */
   .modal {
-    max-height: 90vh;
-    overflow-y: auto;
+    width: 90%;
+    max-height: 95vh;
     padding: 10px;
   }
 
   .modal-img {
-    max-height: 150px;
+    max-height: 140px;
   }
 
   .modal-gallery img {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
   }
 
-  /* Кнопка "вгору" */
   #scrollTopBtn {
-    bottom: 10px;
-    right: 10px;
+    bottom: 8px;
+    right: 8px;
     transform: scale(0.8);
   }
 }
