@@ -35,7 +35,6 @@ header {
   height: 200px;
   object-fit: contain;
   border-radius: 8px;
-  background: transparent; /* або просто видалити цей рядок */
 }
 
 .availability.yes {
