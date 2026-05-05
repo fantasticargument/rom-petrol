@@ -32,10 +32,10 @@ header {
 
 .card img {
   width: 100%;
-  height: 200px; /* збільшена висота під фото */
-  object-fit: contain; /* вписує фото повністю */
-  background: #f0f0f0; /* сірий фон, якщо фото вузьке */
+  height: 200px;
+  object-fit: contain;
   border-radius: 8px;
+  background: transparent; /* або просто видалити цей рядок */
 }
 
 .availability.yes {
