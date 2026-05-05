@@ -4,21 +4,33 @@ async function loadData() {
   const response = await fetch(url);
   const data = await response.json();
 
-  const items = data.records.map((record, index) => ({
-    id: index,
+ const items = data.records.map((record) => ({
+    id: record.fields.id || 0,   // ← ТЕПЕР ПРАВИЛЬНО
     title: record.fields.Title || "",
     category: record.fields.Category || "",
     available: record.fields.Available || "",
     description: record.fields.Description || "",
     images: record.fields.Images || [],
     code: record.fields.Code || "",
-  }));
+}));
+
+
+  items.sort((a, b) => {
+  // 1. Спочатку сортуємо за наявністю
+  const aAvailable = a.available.includes("Є") ? 1 : 0;
+  const bAvailable = b.available.includes("Є") ? 1 : 0;
+
+  if (aAvailable !== bAvailable) {
+    return bAvailable - aAvailable; // Є → вгору, Немає → вниз
+  }
+
+  // 2. Якщо наявність однакова — сортуємо за твоїм полем id
+  return (a.id || 0) - (b.id || 0);
+});
 
   renderCards(items);
   setupCardClick(items);
 }
-
-
 
 // РЕНДЕР КАРТОЧОК
 function renderCards(items) {
