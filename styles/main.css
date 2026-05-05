@@ -15,8 +15,11 @@ header {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  padding: 20px;
+  padding: 20px;        
+  padding-left: 30px;   
+  padding-right: 30px;  
 }
+
 
 .card {
   background: #fff;
@@ -138,4 +141,26 @@ header {
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+.cards {
+  padding: 20px 40px; /* десктоп */
+}
+
+@media (max-width: 1024px) {
+  .cards {
+    padding: 20px 30px; /* планшети */
+  }
+}
+
+@media (max-width: 600px) {
+  .cards {
+    padding: 15px 20px; /* телефони */
+  }
+}
+
+@media (max-width: 400px) {
+  .cards {
+    padding: 10px 15px; /* дуже маленькі екрани */
+  }
 }
