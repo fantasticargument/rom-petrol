@@ -1,4 +1,5 @@
-// =========================
+document.addEventListener("DOMContentLoaded", () => {
+  // =========================
 // 1. Завантаження даних
 // =========================
 async function loadData() {
@@ -137,3 +138,6 @@ scrollBtn.addEventListener("click", () => {
 
 // Запуск
 loadData();
+
+});
+
