@@ -32,11 +32,11 @@ header {
 
 .card img {
   width: 100%;
-  height: 260px;
+  height: 260px;     
   object-fit: contain;
-  background: #fff;     
-  border-radius: 8px;   
-  padding: 4px;         
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px;
   display: block;
   margin: 0 auto;
 }
