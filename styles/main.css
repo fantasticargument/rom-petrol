@@ -85,6 +85,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .hidden {
@@ -202,7 +203,7 @@ header {
   align-items: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   transition: opacity 0.3s ease;
-  z-index: 999;
+  z-index: 99999;
 }
 
 #scrollTopBtn.show {
@@ -213,3 +214,4 @@ header {
 #scrollTopBtn:hover {
   background: #444;
 }
+
