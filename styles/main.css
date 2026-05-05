@@ -100,3 +100,30 @@ header {
   font-size: 16px;
   font-weight: bold;
 }
+
+.card-body {
+  flex-grow: 1; /* займає весь простір між фото і availability */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+  height: 48px;
+  overflow: hidden;
+}
+
+.card .category {
+  font-size: 14px;
+  color: #555;
+  height: 20px;
+  overflow: hidden;
+}
+
+.card .availability {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
