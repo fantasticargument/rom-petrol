@@ -298,3 +298,7 @@ header {
     transform: scale(0.8);
   }
 }
+
+.favorite-btn {
+  display: none !important;
+}
