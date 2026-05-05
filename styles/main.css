@@ -15,7 +15,7 @@ header {
   text-align: center;
 }
 
-/* Сітка карток — універсальна */
+/* Універсальна адаптивна сітка */
 .cards {
   display: grid;
   gap: 20px;
@@ -23,14 +23,16 @@ header {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-/* Картка */
+/* ===========================
+   2. КАРТКИ
+   =========================== */
+
 .card {
   background: #fff;
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: transform .2s, box-shadow .2s;
-  height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -51,6 +53,8 @@ header {
 
 .card-body {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
@@ -72,13 +76,14 @@ header {
   font-size: 16px;
   font-weight: bold;
   margin-top: auto;
+  text-align: center;
 }
 
 .availability.yes { color: green; }
 .availability.no { color: red; }
 
 /* ===========================
-   2. МОДАЛЬНЕ ВІКНО
+   3. МОДАЛЬНЕ ВІКНО
    =========================== */
 
 .overlay {
@@ -147,7 +152,7 @@ header {
 }
 
 /* ===========================
-   3. КНОПКА "ВГОРУ"
+   4. КНОПКА "ВГОРУ"
    =========================== */
 
 #scrollTopBtn {
@@ -180,7 +185,7 @@ header {
 }
 
 /* ===========================
-   4. ФУТЕР
+   5. ФУТЕР
    =========================== */
 
 .site-footer {
@@ -195,7 +200,7 @@ header {
 }
 
 /* ===========================
-   5. АДАПТАЦІЯ — ПЛАНШЕТИ
+   6. АДАПТАЦІЯ — ПЛАНШЕТИ
    =========================== */
 
 @media (max-width: 900px) {
@@ -205,10 +210,11 @@ header {
 }
 
 /* ===========================
-   6. АДАПТАЦІЯ — ТЕЛЕФОНИ (ПОРТРЕТ)
+   7. АДАПТАЦІЯ — ТЕЛЕФОНИ (ПОРТРЕТ)
    =========================== */
 
 @media (max-width: 600px) {
+
   .cards {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
@@ -216,7 +222,15 @@ header {
   }
 
   .card img {
-    height: 130px;
+    height: 200px;
+  }
+
+  .card h3 {
+    margin: 6px 0;
+  }
+
+  .card .category {
+    margin-bottom: 6px;
   }
 
   .modal-img {
@@ -230,7 +244,7 @@ header {
   }
 
   .card img {
-    height: 150px;
+    height: 180px;
   }
 
   .modal-img {
@@ -239,7 +253,7 @@ header {
 }
 
 /* ===========================
-   7. АДАПТАЦІЯ — ТЕЛЕФОНИ (ГОРИЗОНТАЛЬ)
+   8. АДАПТАЦІЯ — ТЕЛЕФОНИ (ГОРИЗОНТАЛЬ)
    =========================== */
 
 @media (orientation: landscape) and (max-height: 480px) {
@@ -251,15 +265,16 @@ header {
   }
 
   .card img {
-    height: 90px;
+    height: 120px;
   }
 
   .card h3 {
-    font-size: 13px;
+    font-size: 14px;
+    height: auto;
   }
 
   .card .category {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .modal {
@@ -269,7 +284,7 @@ header {
   }
 
   .modal-img {
-    max-height: 140px;
+    max-height: 150px;
   }
 
   .modal-gallery img {
