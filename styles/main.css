@@ -80,3 +80,23 @@ header {
   font-size: 24px;
   cursor: pointer;
 }
+
+.card h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+  height: 48px; /* фіксована висота для 2 рядків */
+  overflow: hidden;
+}
+
+.card .category {
+  font-size: 14px;
+  color: #555;
+  height: 20px; /* фіксована висота */
+  overflow: hidden;
+}
+
+.card .availability {
+  margin-top: auto; /* притискає availability вниз */
+  font-size: 16px;
+  font-weight: bold;
+}
