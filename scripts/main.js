@@ -85,20 +85,58 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. Відкрити модалку
   // =========================
   function openModal(item) {
-    const gallery = document.querySelector(".modal-gallery");
+  const overlay = document.querySelector(".overlay");
+  const gallery = document.querySelector(".modal-gallery");
+  const mainImg = document.querySelector(".modal-img");
 
-    gallery.innerHTML = item.images
-      .map((img) => `<img src="${img.url}" alt="${item.title}">`)
+  // Безпечний масив фото
+  const images = Array.isArray(item.images) ? item.images : [];
+
+  // --- ГОЛОВНЕ ФОТО ---
+  if (images.length > 0 && images[0].url) {
+    mainImg.src = images[0].url;
+  } else {
+    mainImg.src = "placeholder.png";
+  }
+
+  // --- ГАЛЕРЕЯ ---
+  if (images.length > 1) {
+    gallery.innerHTML = images
+      .map((img, index) => `
+        <img 
+          src="${img.url}" 
+          data-index="${index}" 
+          class="thumb"
+          alt="${item.title}"
+        >
+      `)
       .join("");
 
-    document.querySelector(".modal-title").textContent = item.title;
-    document.querySelector(".modal-category").textContent = item.category;
-    document.querySelector(".modal-availability").textContent = item.available;
-    document.querySelector(".modal-description").textContent = item.description;
-    document.querySelector(".modal-code").textContent = item.code;
+    gallery.style.display = "flex";
 
-    document.querySelector(".overlay").classList.remove("hidden");
+    // Клік по мініатюрі → змінює головне фото
+    gallery.querySelectorAll("img").forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        const idx = thumb.dataset.index;
+        mainImg.src = images[idx].url;
+      });
+    });
+
+  } else {
+    gallery.innerHTML = "";
+    gallery.style.display = "none";
   }
+
+  // --- ТЕКСТОВІ ПОЛЯ ---
+  document.querySelector(".modal-title").textContent = item.title;
+  document.querySelector(".modal-category").textContent = item.category;
+  document.querySelector(".modal-availability").textContent = item.available;
+  document.querySelector(".modal-description").textContent = item.description;
+  document.querySelector(".modal-code").textContent = item.code;
+
+  overlay.classList.remove("hidden");
+}
+
 
   // =========================
   // 5. Закриття модалки
