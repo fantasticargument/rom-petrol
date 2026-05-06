@@ -21,15 +21,19 @@ header {
 
 /* Контейнер у один рядок */
 .header-content {
-  display: grid;
-  grid-template-columns: auto 1fr auto; /* Ліво — центр — право */
+  position: relative;
+}
+
+.search-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.search-wrapper {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px 40px;
-  height: 90px;
-  column-gap: 40px; /* Додаємо відстань між колонками */
 }
 
 /* Назва зліва */
