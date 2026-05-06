@@ -222,6 +222,15 @@ header {
   transform: scale(1.05);
 }
 
+/* Опис у модальному вікні — вирівнювання по ширині */
+.modal-description {
+  text-align: justify;
+  line-height: 1.5;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
 /* ===========================
    4. КНОПКА "ВГОРУ"
    =========================== */
