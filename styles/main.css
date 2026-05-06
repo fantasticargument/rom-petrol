@@ -263,14 +263,6 @@ header {
   }
 }
 
-/* Приховати кнопку "Вгору" на телефонах */
-@media (max-width: 600px) {
-  #scrollTopBtn {
-    display: none !important;
-  }
-}
-
-
 /* ===========================
    8. ВЕЛИКІ ЕКРАНИ
    =========================== */
@@ -284,5 +276,12 @@ header {
 @media (min-width: 1600px) {
   .cards {
     padding: 20px 120px;
+  }
+}
+
+/* Приховати кнопку "Вгору" на телефонах */
+@media (max-width: 600px) {
+  #scrollTopBtn {
+    display: none !important;
   }
 }
