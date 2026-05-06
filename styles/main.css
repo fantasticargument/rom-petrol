@@ -139,9 +139,9 @@ header {
 /* Головне зображення */
 .modal-img {
   width: 100%;
-  max-height: 260px;
+  max-height: 200px;
   object-fit: contain;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 /* Галерея */
@@ -149,7 +149,7 @@ header {
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 /*.modal-gallery img.thumb {
@@ -168,16 +168,8 @@ header {
 .modal-content {
   overflow-y: auto;
   padding-right: 5px;
-  max-height: calc(100vh - 350px);
-}
 
-/* Прокручуваний блок опису */
-.modal-content {
-  overflow-y: auto;
-  padding-right: 5px;
-
-  /* Висота = вся модалка мінус картинка, галерея, кнопка, відступи */
-  max-height: calc(100vh - 350px);
+  max-height: calc(100vh - 300px);
 }
 
 /* Опис */
