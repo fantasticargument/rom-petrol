@@ -204,7 +204,28 @@ document.addEventListener("DOMContentLoaded", () => {
     setupCardClick(filtered);
   });
 
+  const searchInput = document.getElementById("searchInput");
+  const clearBtn = document.getElementById("clearSearch");
+
+  // показуємо / ховаємо кнопку
+  searchInput.addEventListener("input", () => {
+    clearBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
+  });
+
+  // очищення поля
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    clearBtn.style.display = "none";
+
+    // повертаємо всі картки
+    renderCards(items);
+    setupCardClick(items);
+});
+
+
+
   // Запуск
   loadData();
 
 });
+
