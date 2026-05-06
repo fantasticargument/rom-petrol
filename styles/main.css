@@ -23,15 +23,15 @@ header {
 .header-content {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 25px; /* відстань між назвою і пошуком */
+  align-items: center; /* ГОЛОВНЕ: вирівнює по вертикалі */
+  gap: 25px;
 }
 
-/* Назва сайту */
+/* Прибираємо зайві відступи у заголовка */
 .site-title {
-  font-size: 42px;
-  font-weight: 700;
   margin: 0;
+  padding: 0;
+  line-height: 1; /* щоб текст не "висів" */
 }
 
 /* Пошукове поле */
@@ -45,10 +45,13 @@ header {
 
   color: #fff;
   font-size: 18px;
+  line-height: 1; /* вирівнює висоту тексту */
+  height: 44px;   /* фіксована висота для ідеального центрування */
 
   outline: none;
   transition: 0.25s ease;
 }
+
 
 /* Ефект при фокусі */
 #searchInput:focus {
