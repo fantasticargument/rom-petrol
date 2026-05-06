@@ -360,9 +360,15 @@ header {
   }
 
   #searchInput {
-    width: 90%;
-    height: 40px;
-    line-height: normal;
+    width: 50%;          /* було 90% → тепер вдвічі менше */
+    height: 36px;
+    font-size: 16px;
+    padding: 0 36px 0 14px;
+  }
+
+  .clear-btn {
+    right: 10px;
+    font-size: 20px;
   }
 
   .right-space {
