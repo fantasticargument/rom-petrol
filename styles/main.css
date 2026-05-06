@@ -124,7 +124,7 @@ header {
   overflow-y: auto;
 }
 
-/* Кнопка закриття — повертаємо */
+/* Кнопка закриття */
 .close {
   float: right;
   background: none;
@@ -230,39 +230,36 @@ header {
 
 @media (max-width: 600px) {
 
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    padding: 15px 20px;
+  /* Збільшуємо висоту картки */
+  .card {
+    padding: 12px;
+    min-height: 360px; /* було ~300, тепер більше */
   }
 
+  /* Збільшуємо картинку */
   .card img {
-    height: 200px; /* повернули великий розмір */
+    height: 240px; /* було 200px */
+    object-fit: contain;
   }
 
-  .modal {
-    width: 95%;
-    max-height: 90vh;
-    padding: 20px;
+  /* Текст підлаштовується автоматично */
+  .card h3 {
+    height: 48px;
   }
 
-  .modal-img {
-    max-height: 260px;
+  .card .category {
+    height: 20px;
   }
 }
 
 @media (max-width: 380px) {
 
-  .cards {
-    grid-template-columns: 1fr;
+  .card {
+    min-height: 340px;
   }
 
   .card img {
-    height: 180px;
-  }
-
-  .modal-img {
-    max-height: 220px;
+    height: 220px;
   }
 }
 
