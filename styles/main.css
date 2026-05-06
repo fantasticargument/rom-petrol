@@ -15,14 +15,16 @@ header {
   text-align: center;
 }
 
-/* Центральний контейнер */
 .container {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
 }
 
-/* Сітка карток */
+/* ===========================
+   2. СІТКА КАРТОК
+   =========================== */
+
 .cards {
   display: grid;
   gap: 20px;
@@ -32,7 +34,7 @@ header {
 }
 
 /* ===========================
-   2. КАРТКИ
+   3. КАРТКИ
    =========================== */
 
 .card {
@@ -50,7 +52,6 @@ header {
   box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 }
 
-/* Картинка — стабільна висота */
 .card img {
   width: 100%;
   height: 200px;
@@ -60,7 +61,6 @@ header {
   padding: 4px;
 }
 
-/* Контейнер тексту */
 .card-body {
   flex-grow: 1;
   display: flex;
@@ -68,7 +68,6 @@ header {
   text-align: center;
 }
 
-/* Категорія */
 .card .category {
   font-size: 14px;
   color: #555;
@@ -76,7 +75,6 @@ header {
   overflow: hidden;
 }
 
-/* Назва — до 3 рядків */
 .card h3 {
   font-size: 18px;
   margin: 8px 0;
@@ -84,7 +82,6 @@ header {
   overflow: hidden;
 }
 
-/* Availability */
 .card .availability {
   font-size: 16px;
   font-weight: bold;
@@ -96,10 +93,24 @@ header {
 .availability.no { color: red; }
 
 /* ===========================
-   3. МОДАЛЬНЕ ВІКНО
+   4. МОДАЛЬНЕ ВІКНО
    =========================== */
 
-   /* Модальне вікно — обмеження розміром в’юпорта */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.hidden { display: none; }
+
 .modal {
   position: relative;
   background: #fff;
@@ -109,17 +120,15 @@ header {
   width: 90%;
   max-width: 500px;
 
-  max-height: 100vh;   /* не більше висоти екрана */
-  overflow-y: auto;    /* прокрутка всередині */
+  max-height: 100vh;   /* модалка не більша за екран */
+  overflow: hidden;    /* прокрутка тільки всередині */
 }
 
-/* Кнопка закриття завжди справа */
+/* Кнопка закриття */
 .close {
   position: absolute;
   top: 10px;
   right: 10px;
-  float: none !important;
-  display: block !important;
   font-size: 26px;
   background: none;
   border: none;
@@ -127,10 +136,10 @@ header {
   z-index: 10;
 }
 
-/* Головне зображення в модалці */
+/* Головне зображення */
 .modal-img {
   width: 100%;
-  max-height: calc(100vh - 160px); /* щоб не вивалювалося */
+  max-height: 260px;
   object-fit: contain;
   margin-bottom: 15px;
 }
@@ -155,78 +164,14 @@ header {
   transition: transform .2s;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.hidden { display: none; }
-
-/* Модальне вікно — не більше екрана */
-.modal {
-  position: relative;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-
-  width: 90%;
-  max-width: 500px;
-
-  max-height: 100vh;   /* обмеження розміром екрана */
-  overflow: hidden;    /* важливо! не даємо модалці прокручуватися */
-}
-
-/* Кнопка закриття */
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 26px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-}
-
-/* Картинка */
-.modal-img {
-  width: 100%;
-  max-height: 260px;
-  object-fit: contain;
-  margin-bottom: 15px;
-}
-
-/* Галерея */
-.modal-gallery {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  margin-bottom: 15px;
-}
-
-/* Контейнер, який прокручується */
+/* Прокручуваний блок опису */
 .modal-content {
   overflow-y: auto;
   padding-right: 5px;
-
-  /* Висота = весь екран мінус:
-     - картинка
-     - галерея
-     - відступи
-     - кнопка закриття */
   max-height: calc(100vh - 350px);
 }
 
-
-/* Опис у модальному вікні — вирівнювання по ширині */
+/* Опис */
 .modal-description {
   text-align: justify;
   line-height: 1.5;
@@ -236,7 +181,7 @@ header {
 }
 
 /* ===========================
-   4. КНОПКА "ВГОРУ"
+   5. КНОПКА "ВГОРУ"
    =========================== */
 
 #scrollTopBtn {
@@ -269,7 +214,7 @@ header {
 }
 
 /* ===========================
-   5. ФУТЕР
+   6. ФУТЕР
    =========================== */
 
 .site-footer {
@@ -284,7 +229,7 @@ header {
 }
 
 /* ===========================
-   6. АДАПТАЦІЯ — ПЛАНШЕТИ
+   7. АДАПТАЦІЯ — ПЛАНШЕТИ
    =========================== */
 
 @media (max-width: 900px) {
@@ -294,30 +239,17 @@ header {
 }
 
 /* ===========================
-   7. АДАПТАЦІЯ — ТЕЛЕФОНИ
+   8. АДАПТАЦІЯ — ТЕЛЕФОНИ
    =========================== */
 
 @media (max-width: 600px) {
 
-  /* Збільшуємо висоту картки */
   .card {
-    padding: 12px;
-    min-height: 360px; /* було ~300, тепер більше */
+    min-height: 360px;
   }
 
-  /* Збільшуємо картинку */
   .card img {
-    height: 240px; /* було 200px */
-    object-fit: contain;
-  }
-
-  /* Текст підлаштовується автоматично */
-  .card h3 {
-    height: 48px;
-  }
-
-  .card .category {
-    height: 20px;
+    height: 240px;
   }
 }
 
@@ -332,8 +264,15 @@ header {
   }
 }
 
+/* Приховати кнопку "Вгору" на телефонах */
+@media (max-width: 600px) {
+  #scrollTopBtn {
+    display: none !important;
+  }
+}
+
 /* ===========================
-   8. ВЕЛИКІ ЕКРАНИ
+   9. ВЕЛИКІ ЕКРАНИ
    =========================== */
 
 @media (min-width: 1200px) {
@@ -345,12 +284,5 @@ header {
 @media (min-width: 1600px) {
   .cards {
     padding: 20px 120px;
-  }
-}
-
-/* Приховати кнопку "Вгору" на телефонах */
-@media (max-width: 600px) {
-  #scrollTopBtn {
-    display: none !important;
   }
 }
