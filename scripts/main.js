@@ -176,53 +176,48 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // =========================
-  // 7. ПОШУК (виправлений)
-  // =========================
-  document.getElementById("searchInput").addEventListener("input", function () {
-    const query = this.value.trim().toLowerCase();
+// 7. ПОШУК (фінальна версія)
+// =========================
+const searchInput = document.getElementById("searchInput");
+const clearBtn = document.getElementById("clearSearch");
 
-    if (!query) {
-      renderCards(items);
-      setupCardClick(items);
-      return;
-    }
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.trim().toLowerCase();
 
-    // Пошук по коду
-    const byCode = items.find(item => item.code.toLowerCase() === query);
+  // показуємо / ховаємо кнопку ×
+  clearBtn.style.display = query.length > 0 ? "block" : "none";
 
-    if (byCode) {
-      openModal(byCode);
-      return;
-    }
-
-    // Пошук по назві
-    const filtered = items.filter(item =>
-      item.title.toLowerCase().includes(query)
-    );
-
-    renderCards(filtered);
-    setupCardClick(filtered);
-  });
-
-  const searchInput = document.getElementById("searchInput");
-  const clearBtn = document.getElementById("clearSearch");
-
-  // показуємо / ховаємо кнопку
-  searchInput.addEventListener("input", () => {
-    clearBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
-  });
-
-  // очищення поля
-  clearBtn.addEventListener("click", () => {
-    searchInput.value = "";
-    clearBtn.style.display = "none";
-
-    // повертаємо всі картки
+  // якщо поле порожнє → повертаємо всі картки
+  if (!query) {
     renderCards(items);
     setupCardClick(items);
+    return;
+  }
+
+  // Пошук по коду (точний збіг)
+  const byCode = items.find(item => item.code.toLowerCase() === query);
+  if (byCode) {
+    openModal(byCode);
+    return;
+  }
+
+  // Пошук по назві (частковий збіг)
+  const filtered = items.filter(item =>
+    item.title.toLowerCase().includes(query)
+  );
+
+  renderCards(filtered);
+  setupCardClick(filtered);
 });
 
+// Кнопка очистити
+clearBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  clearBtn.style.display = "none";
 
+  renderCards(items);
+  setupCardClick(items);
+});
 
   // Запуск
   loadData();
