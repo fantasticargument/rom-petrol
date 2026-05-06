@@ -23,21 +23,25 @@ header {
 .header-content {
   display: flex;
   justify-content: center;
-  align-items: center; /* ГОЛОВНЕ: вирівнює по вертикалі */
+  align-items: center; /* Вирівнює по вертикалі */
   gap: 25px;
+  height: 80px; /* Фіксуємо висоту блоку, щоб елементи не “плавали” */
 }
 
-/* Прибираємо зайві відступи у заголовка */
+/* Назва сайту */
 .site-title {
   margin: 0;
   padding: 0;
-  line-height: 1; /* щоб текст не "висів" */
+  line-height: 1; /* Прибирає зайві відступи */
+  display: flex;
+  align-items: center; /* Вирівнює текст всередині */
 }
 
 /* Пошукове поле */
 #searchInput {
   width: 320px;
-  padding: 10px 18px;
+  height: 44px; /* Фіксована висота — ключ до вирівнювання */
+  padding: 0 18px;
 
   background: transparent;
   border: 2px solid rgba(255,255,255,0.9);
@@ -45,18 +49,14 @@ header {
 
   color: #fff;
   font-size: 18px;
-  line-height: 1; /* вирівнює висоту тексту */
-  height: 44px;   /* фіксована висота для ідеального центрування */
+  line-height: 44px; /* Текст по центру вертикально */
 
   outline: none;
   transition: 0.25s ease;
 }
 
-
-/* Ефект при фокусі */
-#searchInput:focus {
-  border-color: #fff;
-  box-shadow: 0 0 10px rgba(255,255,255,0.4);
+#searchInput::placeholder {
+  color: rgba(255,255,255,0.8);
 }
 
 /* Плейсхолдер */
