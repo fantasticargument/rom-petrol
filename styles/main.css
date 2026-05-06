@@ -120,8 +120,8 @@ header {
   width: 90%;
   max-width: 500px;
 
-  max-height: 100vh;   /* модалка не більша за екран */
-  overflow: hidden;    /* прокрутка тільки всередині */
+  max-height: calc(100vh - 40px); /* відступи зверху/знизу */
+  overflow: hidden; /* важливо! модалка НЕ прокручується */
 }
 
 /* Кнопка закриття */
@@ -152,7 +152,7 @@ header {
   margin-bottom: 15px;
 }
 
-.modal-gallery img.thumb {
+/*.modal-gallery img.thumb {
   width: 70px;
   height: 70px;
   object-fit: contain;
@@ -162,12 +162,21 @@ header {
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   transition: transform .2s;
+}*/
+
+/* Прокручуваний блок опису */
+.modal-content {
+  overflow-y: auto;
+  padding-right: 5px;
+  max-height: calc(100vh - 350px);
 }
 
 /* Прокручуваний блок опису */
 .modal-content {
   overflow-y: auto;
   padding-right: 5px;
+
+  /* Висота = вся модалка мінус картинка, галерея, кнопка, відступи */
   max-height: calc(100vh - 350px);
 }
 
