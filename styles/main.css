@@ -21,19 +21,14 @@ header {
 
 /* Контейнер у один рядок */
 .header-content {
-  position: relative;
-}
-
-.search-wrapper {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.search-wrapper {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* Ліво — центр — право */
   align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  height: 90px;
 }
 
 /* Назва зліва */
@@ -46,7 +41,14 @@ header {
   line-height: 1;
 }
 
-/* Пошук по центру */
+/* Центруючий контейнер */
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Поле пошуку */
 #searchInput {
   width: 320px;
   height: 44px;
@@ -61,7 +63,6 @@ header {
   line-height: 44px;
 
   outline: none;
-  transition: 0.25s ease;
 }
 
 #searchInput::placeholder {
