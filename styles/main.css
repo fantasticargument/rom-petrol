@@ -39,8 +39,6 @@ header {
   font-weight: 700;
   color: #fff;
   line-height: 1;
-  display: flex;
-  align-items: center;
 }
 
 /* Пошук по центру */
@@ -65,9 +63,9 @@ header {
   color: rgba(255,255,255,0.8);
 }
 
-/* Права зона — порожня, але потрібна для балансу */
+/* Права зона — порожня, але потрібна для симетрії */
 .right-space {
-  width: 100px; /* можна змінити */
+  width: 120px; /* можна змінити */
 }
 
 
