@@ -9,11 +9,16 @@ body {
 }
 
 header {
-  background: #222;
+  background: 
+    linear-gradient(to right, rgba(0,0,0,0.55), rgba(0,0,0,0.15)),
+    url('images/header-desktop.jpg');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
   color: #fff;
-  padding: 20px;
-  text-align: center;
+  padding: 40px 20px;
 }
+
 
 .container {
   max-width: 1400px;
