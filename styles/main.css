@@ -19,21 +19,39 @@ header {
   padding: 40px 20px;
 }
 
+/* Контейнер пошуку по центру */
 .search-box {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
+/* Прозоре поле з білою рамкою */
 #searchInput {
   width: 60%;
-  max-width: 500px;
-  padding: 12px 18px;
+  max-width: 480px;
+  padding: 12px 20px;
+
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.8);
   border-radius: 30px;
-  border: none;
+
+  color: #fff;
   font-size: 18px;
+
   outline: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: 0.25s ease;
+}
+
+/* Ефект при фокусі */
+#searchInput:focus {
+  border-color: #fff;
+  box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
+/* Стиль плейсхолдера */
+#searchInput::placeholder {
+  color: rgba(255,255,255,0.8);
 }
 
 
@@ -291,6 +309,14 @@ header {
 @media (max-width: 600px) {
   #scrollTopBtn {
     display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #searchInput {
+    width: 85%;
+    font-size: 16px;
+    padding: 10px 16px;
   }
 }
 
