@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // =========================
+  // ГЛОБАЛЬНИЙ МАСИВ items
+  // =========================
+  let items = [];
+
+  // =========================
   // 1. Завантаження даних
   // =========================
   async function loadData() {
@@ -10,7 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(url);
       const data = await response.json();
 
-      const items = data.records.map((record) => ({
+      // Записуємо у ГЛОБАЛЬНИЙ items
+      items = data.records.map((record) => ({
         id: record.fields.id || 0,
         title: record.fields.Title || "",
         category: record.fields.Category || "",
@@ -40,10 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // 2. Рендер карток
   // =========================
-  function renderCards(items) {
+  function renderCards(list) {
     const container = document.querySelector(".cards");
 
-    container.innerHTML = items
+    container.innerHTML = list
       .map((item) => {
         const imgUrl =
           item.images.length > 0 && item.images[0].url
@@ -71,11 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // 3. Клік по картці → модалка
   // =========================
-  function setupCardClick(items) {
+  function setupCardClick(list) {
     document.querySelectorAll(".card").forEach((card) => {
       card.addEventListener("click", () => {
         const id = card.dataset.id;
-        const item = items.find((i) => i.id == id);
+        const item = list.find((i) => i.id == id);
         openModal(item);
       });
     });
@@ -85,58 +91,52 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. Відкрити модалку
   // =========================
   function openModal(item) {
-  const overlay = document.querySelector(".overlay");
-  const gallery = document.querySelector(".modal-gallery");
-  const mainImg = document.querySelector(".modal-img");
+    const overlay = document.querySelector(".overlay");
+    const gallery = document.querySelector(".modal-gallery");
+    const mainImg = document.querySelector(".modal-img");
 
-  // Безпечний масив фото
-  const images = Array.isArray(item.images) ? item.images : [];
+    const images = Array.isArray(item.images) ? item.images : [];
 
-  // --- ГОЛОВНЕ ФОТО ---
-  if (images.length > 0 && images[0].url) {
-    mainImg.src = images[0].url;
-  } else {
-    mainImg.src = "placeholder.png";
-  }
+    if (images.length > 0 && images[0].url) {
+      mainImg.src = images[0].url;
+    } else {
+      mainImg.src = "placeholder.png";
+    }
 
-  // --- ГАЛЕРЕЯ ---
-  if (images.length > 1) {
-    gallery.innerHTML = images
-      .map((img, index) => `
-        <img 
-          src="${img.url}" 
-          data-index="${index}" 
-          class="thumb"
-          alt="${item.title}"
-        >
-      `)
-      .join("");
+    if (images.length > 1) {
+      gallery.innerHTML = images
+        .map((img, index) => `
+          <img 
+            src="${img.url}" 
+            data-index="${index}" 
+            class="thumb"
+            alt="${item.title}"
+          >
+        `)
+        .join("");
 
-    gallery.style.display = "flex";
+      gallery.style.display = "flex";
 
-    // Клік по мініатюрі → змінює головне фото
-    gallery.querySelectorAll("img").forEach((thumb) => {
-      thumb.addEventListener("click", () => {
-        const idx = thumb.dataset.index;
-        mainImg.src = images[idx].url;
+      gallery.querySelectorAll("img").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          const idx = thumb.dataset.index;
+          mainImg.src = images[idx].url;
+        });
       });
-    });
 
-  } else {
-    gallery.innerHTML = "";
-    gallery.style.display = "none";
+    } else {
+      gallery.innerHTML = "";
+      gallery.style.display = "none";
+    }
+
+    document.querySelector(".modal-title").textContent = item.title;
+    document.querySelector(".modal-category").textContent = item.category;
+    document.querySelector(".modal-availability").textContent = item.available;
+    document.querySelector(".modal-description").textContent = item.description;
+    document.querySelector(".modal-code").textContent = item.code;
+
+    overlay.classList.remove("hidden");
   }
-
-  // --- ТЕКСТОВІ ПОЛЯ ---
-  document.querySelector(".modal-title").textContent = item.title;
-  document.querySelector(".modal-category").textContent = item.category;
-  document.querySelector(".modal-availability").textContent = item.available;
-  document.querySelector(".modal-description").textContent = item.description;
-  document.querySelector(".modal-code").textContent = item.code;
-
-  overlay.classList.remove("hidden");
-}
-
 
   // =========================
   // 5. Закриття модалки
@@ -175,28 +175,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Запуск
-  loadData();
-
-    // === ПОШУК ===
-
+  // =========================
+  // 7. ПОШУК (виправлений)
+  // =========================
   document.getElementById("searchInput").addEventListener("input", function () {
     const query = this.value.trim().toLowerCase();
 
     if (!query) {
-      renderCards(items); // показуємо всі картки
+      renderCards(items);
+      setupCardClick(items);
       return;
     }
 
-    // 1) Якщо введено код → шукаємо точний збіг
+    // Пошук по коду
     const byCode = items.find(item => item.code.toLowerCase() === query);
 
     if (byCode) {
-      openModal(byCode); // одразу відкриваємо модалку
+      openModal(byCode);
       return;
     }
 
-    // 2) Якщо введено частину назви → фільтруємо картки
+    // Пошук по назві
     const filtered = items.filter(item =>
       item.title.toLowerCase().includes(query)
     );
@@ -204,5 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCards(filtered);
     setupCardClick(filtered);
   });
+
+  // Запуск
+  loadData();
 
 });
