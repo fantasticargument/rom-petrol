@@ -227,6 +227,10 @@ header {
    7. АДАПТАЦІЯ — ТЕЛЕФОНИ (ПОРТРЕТ)
    =========================== */
 
+/* ===========================
+   МОБІЛЬНА ВЕРСІЯ — ЯК БУЛО РАНІШЕ
+   =========================== */
+
 @media (max-width: 600px) {
 
   .cards {
@@ -235,26 +239,64 @@ header {
     padding: 15px 20px;
   }
 
+  /* Повертаємо */
   .card img {
-    height: 160px; /* трохи менше, але однаково */
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+  }
+
+  /* Пропорції тексту */
+  .card h3 {
+    font-size: 18px;
+    margin: 8px 0;
+    height: 48px;
+    overflow: hidden;
+  }
+
+  .card .category {
+    font-size: 14px;
+    height: 20px;
+    overflow: hidden;
+  }
+
+  /* Availability */
+  .card .availability {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  /* Модальне вікно */
+  .modal {
+    width: 95%;
+    max-height: 90vh;
+    padding: 20px;
   }
 
   .modal-img {
-    max-height: 220px;
+    max-height: 260px;
+  }
+
+  /* Кнопка закриття */
+  .close {
+    display: block !important;
   }
 }
 
 @media (max-width: 380px) {
+
   .cards {
     grid-template-columns: 1fr;
   }
 
   .card img {
-    height: 150px;
+    height: 180px;
   }
 
   .modal-img {
-    max-height: 180px;
+    max-height: 220px;
   }
 }
 
