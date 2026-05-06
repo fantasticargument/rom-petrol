@@ -99,6 +99,62 @@ header {
    3. МОДАЛЬНЕ ВІКНО
    =========================== */
 
+   /* Модальне вікно — обмеження розміром в’юпорта */
+.modal {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+
+  width: 90%;
+  max-width: 500px;
+
+  max-height: 100vh;   /* не більше висоти екрана */
+  overflow-y: auto;    /* прокрутка всередині */
+}
+
+/* Кнопка закриття завжди справа */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  float: none !important;
+  display: block !important;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Головне зображення в модалці */
+.modal-img {
+  width: 100%;
+  max-height: calc(100vh - 160px); /* щоб не вивалювалося */
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* Галерея */
+.modal-gallery {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+.modal-gallery img.thumb {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  transition: transform .2s;
+}
+
 .overlay {
   position: fixed;
   top: 0;
