@@ -359,16 +359,19 @@ header {
     font-size: 32px;
   }
 
-  #searchInput {
-    width: 50%;          /* було 90% → тепер вдвічі менше */
+   #searchInput {
+    width: 50%;
     height: 36px;
     font-size: 16px;
-    padding: 0 36px 0 14px;
+    padding: 0 36px 0 14px; /* місце під кнопку × */
+    line-height: 36px;
   }
 
   .clear-btn {
     right: 10px;
-    font-size: 20px;
+    font-size: 18px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .right-space {
