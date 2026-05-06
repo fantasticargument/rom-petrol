@@ -199,6 +199,20 @@ header {
   border-top: 2px solid #444;
 }
 
+/* Великі екрани — збільшені відступи */
+@media (min-width: 1200px) {
+  .cards {
+    padding: 20px 80px;
+  }
+}
+
+/* Дуже великі монітори */
+@media (min-width: 1600px) {
+  .cards {
+    padding: 20px 120px;
+  }
+}
+
 /* ===========================
    6. АДАПТАЦІЯ — ПЛАНШЕТИ
    =========================== */
@@ -301,4 +315,27 @@ header {
 
 .favorite-btn {
   display: none !important;
+}
+
+.container {
+  max-width: 1400px; /* ширина контенту */
+  margin: 0 auto;    /* центрування */
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .cards {
+    padding: 20px 80px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .cards {
+    padding: 20px 120px;
+  }
+}
+
+.cards {
+  width: 100%;
+  box-sizing: border-box;
 }
