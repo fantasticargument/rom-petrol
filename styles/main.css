@@ -22,25 +22,30 @@ header {
 /* Контейнер у один рядок */
 .header-content {
   display: flex;
-  justify-content: center;
-  align-items: center; /* Вирівнює по вертикалі */
-  gap: 25px;
-  height: 80px; /* Фіксуємо висоту блоку, щоб елементи не “плавали” */
+  justify-content: space-between; /* Розводимо елементи по краях */
+  align-items: center;            /* Вирівнюємо по вертикалі */
+  width: 100%;
+  max-width: 1200px;              /* Щоб не розтягувалося на всю ширину */
+  margin: 0 auto;                 /* Центруємо блок */
+  padding: 0 20px;
+  height: 80px;
 }
 
 /* Назва сайту */
 .site-title {
   margin: 0;
   padding: 0;
-  line-height: 1; /* Прибирає зайві відступи */
+  line-height: 1;
+  font-size: 42px;
+  font-weight: 700;
   display: flex;
-  align-items: center; /* Вирівнює текст всередині */
+  align-items: center;
 }
 
 /* Пошукове поле */
 #searchInput {
   width: 320px;
-  height: 44px; /* Фіксована висота — ключ до вирівнювання */
+  height: 44px;
   padding: 0 18px;
 
   background: transparent;
@@ -49,7 +54,7 @@ header {
 
   color: #fff;
   font-size: 18px;
-  line-height: 44px; /* Текст по центру вертикально */
+  line-height: 44px;
 
   outline: none;
   transition: 0.25s ease;
@@ -58,12 +63,6 @@ header {
 #searchInput::placeholder {
   color: rgba(255,255,255,0.8);
 }
-
-/* Плейсхолдер */
-#searchInput::placeholder {
-  color: rgba(255,255,255,0.8);
-}
-
 
 .container {
   max-width: 1400px;
