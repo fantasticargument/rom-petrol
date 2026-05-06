@@ -21,28 +21,29 @@ header {
 
 /* Контейнер у один рядок */
 .header-content {
-  display: flex;
-  justify-content: space-between; /* Розводимо елементи по краях */
-  align-items: center;            /* Вирівнюємо по вертикалі */
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* Ліво — центр — право */
+  align-items: center;
   width: 100%;
-  max-width: 1200px;              /* Щоб не розтягувалося на всю ширину */
-  margin: 0 auto;                 /* Центруємо блок */
-  padding: 0 20px;
-  height: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  height: 90px;
 }
 
-/* Назва сайту */
+/* Назва зліва */
 .site-title {
   margin: 0;
   padding: 0;
-  line-height: 1;
   font-size: 42px;
   font-weight: 700;
+  color: #fff;
+  line-height: 1;
   display: flex;
   align-items: center;
 }
 
-/* Пошукове поле */
+/* Пошук по центру */
 #searchInput {
   width: 320px;
   height: 44px;
@@ -63,6 +64,12 @@ header {
 #searchInput::placeholder {
   color: rgba(255,255,255,0.8);
 }
+
+/* Права зона — порожня, але потрібна для балансу */
+.right-space {
+  width: 100px; /* можна змінити */
+}
+
 
 .container {
   max-width: 1400px;
@@ -323,13 +330,24 @@ header {
 
 @media (max-width: 600px) {
   .header-content {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 15px;
+    height: auto;
+    text-align: center;
+  }
+
+  .site-title {
+    font-size: 32px;
   }
 
   #searchInput {
     width: 90%;
-    font-size: 16px;
+    height: 40px;
+    line-height: normal;
+  }
+
+  .right-space {
+    display: none;
   }
 }
 
