@@ -178,4 +178,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // Запуск
   loadData();
 
+    // === ПОШУК ===
+
+  document.getElementById("searchInput").addEventListener("input", function () {
+    const query = this.value.trim().toLowerCase();
+
+    if (!query) {
+      renderCards(items); // показуємо всі картки
+      return;
+    }
+
+    // 1) Якщо введено код → шукаємо точний збіг
+    const byCode = items.find(item => item.code.toLowerCase() === query);
+
+    if (byCode) {
+      openModal(byCode); // одразу відкриваємо модалку
+      return;
+    }
+
+    // 2) Якщо введено частину назви → фільтруємо картки
+    const filtered = items.filter(item =>
+      item.title.toLowerCase().includes(query)
+    );
+
+    renderCards(filtered);
+    setupCardClick(filtered);
+  });
+
 });
