@@ -128,7 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- ТЕКСТОВІ ПОЛЯ ---
-  document.getElementById("modalDescription").textContent = item.description;
+  document.querySelector(".modal-title").textContent = item.title;
+  document.querySelector(".modal-category").textContent = item.category;
+  document.querySelector(".modal-availability").textContent = item.available;
+  document.querySelector(".modal-description").textContent = item.description;
+  document.querySelector(".modal-code").textContent = item.code;
 
   overlay.classList.remove("hidden");
 }
