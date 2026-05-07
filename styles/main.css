@@ -91,9 +91,29 @@ header.scrolled {
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 18px;
-  color: rgba(255,255,255,0.85);
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.85); /* коло */
+  border-radius: 50%;
   pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+/* Ручка лупи */
+.search-icon::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 2px;
+  background: rgba(255,255,255,0.85);
+  bottom: -4px;
+  right: -4px;
+  transform: rotate(45deg);
+}
+
+.search-box.has-text .search-icon {
+  opacity: 0;
 }
 
 .clear-btn {
