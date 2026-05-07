@@ -20,7 +20,7 @@ header {
   background-position: center right;
   background-repeat: no-repeat;
   color: #fff;
-  padding: 40px 20px;
+  padding: 0px;
   transition: background 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(-20px);
@@ -165,9 +165,6 @@ header.scrolled {
   align-items: center;
 }
 
-.content-area {
-  padding: 20px 40px;
-}
 
 .sidebar h3 {
   margin: 0 0 20px 0;
@@ -190,7 +187,7 @@ header.scrolled {
   box-shadow: 4px 0 14px rgba(0,0,0,0.4);
 
   position: sticky;
-  top: 90px; /* висота хедера */
+  top: 0px; /* висота хедера */
   height: calc(100vh - 90px);
   overflow-y: auto;
 
