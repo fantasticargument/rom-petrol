@@ -363,8 +363,8 @@ header {
     width: 50%;
     height: 36px;
     line-height: 36px;
+    padding: 0 36px 0 14px;  /* ← менше місце під кнопку */
     font-size: 16px;
-    padding: 0 36px 0 14px; /* місце під кнопку × */
   }
 
   .clear-btn {
@@ -373,7 +373,6 @@ header {
     top: 50%;
     transform: translateY(-50%);
   }
-
 
   .right-space {
     display: none;
