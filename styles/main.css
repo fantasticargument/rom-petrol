@@ -143,9 +143,7 @@ header.scrolled {
 .layout {
   display: grid;
   grid-template-columns: 240px 1fr;
-  gap: 20px;
-  padding: 0 40px 20px 40px; /* зверху 0, бо хедер */
-  min-height: calc(100vh - 60px); /* футер */
+  min-height: calc(100vh - 90px - 60px); /* хедер + футер */
   box-sizing: border-box;
 }
 
@@ -153,12 +151,22 @@ header.scrolled {
   background: rgba(0,0,0,0.75);
   backdrop-filter: blur(4px);
   color: #fff;
-  padding: 20px 10px;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+
+  padding: 20px 10px 20px 10px; /* рівні відступи */
+  margin: 0; /* важливо */
+
+  border-radius: 0; /* без скруглень */
+  box-shadow: 4px 0 14px rgba(0,0,0,0.4);
+
+  height: 100%; /* тягнеться вниз */
+
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.content-area {
+  padding: 20px 40px;
 }
 
 .sidebar h3 {
