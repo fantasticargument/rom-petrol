@@ -175,28 +175,6 @@ header.scrolled {
   padding-bottom: 10px;
 }
 
-.sidebar {
-  background: rgba(0,0,0,0.75);
-  backdrop-filter: blur(4px);
-  color: #fff;
-
-  padding: 20px 10px;
-  margin: 0;
-
-  border-radius: 0;
-  box-shadow: 4px 0 14px rgba(0,0,0,0.4);
-
-  position: sticky;
-  top: 0px; /* висота хедера */
-  height: calc(100vh - 90px);
-  overflow-y: auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
 /* Заголовок */
 .sidebar h3 {
   margin: 0 0 20px 0;
