@@ -215,8 +215,8 @@ header.scrolled {
 
 .sidebar li {
   text-align: center;
-  padding: 6px 0;        
-  font-size: 15px;       
+  padding: 4px 0;        
+  font-size: 14px;       
   line-height: 1.2;      
   cursor: pointer;
   transition: 0.2s ease;
