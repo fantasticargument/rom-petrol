@@ -159,7 +159,7 @@ header.scrolled {
   box-shadow: 4px 0 14px rgba(0,0,0,0.4);
 
   position: sticky;
-  top: 90px;
+  top: 0px;
   height: calc(100vh - 90px);
   overflow-y: auto;
 
