@@ -159,7 +159,7 @@ header.scrolled {
   box-shadow: 4px 0 14px rgba(0,0,0,0.4);
 
   position: sticky;
-  top: 90px;
+  top: 0px;
   height: calc(100vh - 90px);
   overflow-y: auto;
 
@@ -406,7 +406,7 @@ header.scrolled {
   color: #fff;
   text-align: center;
   padding: 15px 0;
-  margin-top: 40px;
+  margin-top: 0px;
   font-size: 14px;
   letter-spacing: 1px;
   border-top: 2px solid #444;
