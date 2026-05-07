@@ -144,8 +144,9 @@ header.scrolled {
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: 20px;
-  padding: 20px 40px;
-  min-height: calc(100vh - 90px - 60px);
+  padding: 0 40px 20px 40px; /* зверху 0, бо хедер */
+  min-height: calc(100vh - 60px); /* футер */
+  box-sizing: border-box;
 }
 
 .sidebar {
@@ -169,6 +170,34 @@ header.scrolled {
   padding-bottom: 10px;
 }
 
+.sidebar {
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  padding: 20px 10px;
+  box-shadow: 4px 0 14px rgba(0,0,0,0.4);
+
+  border-radius: 0; /* без заокруглень */
+
+  margin-top: 0; /* прилягає до хедера */
+  height: 100%; /* тягнеться вниз */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Заголовок */
+.sidebar h3 {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+/* Список */
 .sidebar ul {
   list-style: none;
   padding: 0;
@@ -196,8 +225,10 @@ header.scrolled {
   color: #fff;
 }
 
+/* Контент */
 .content-area {
   width: 100%;
+  padding-top: 20px; /* щоб контент не прилипав до хедера */
 }
 
 /* ===========================
