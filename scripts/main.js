@@ -218,14 +218,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector("header");
     header.classList.toggle("scrolled", window.scrollY > 50);
   });
-  function buildCategoryList() {
+
+ function buildCategoryList() {
   const categoryList = document.getElementById("categoryList");
 
   // Унікальні категорії
   const categories = [...new Set(items.map(i => i.category))].sort();
 
   // Додаємо "Усі товари"
-  categoryList.innerHTML = `<li data-cat="all" class="active">Всі</li>`;
+  categoryList.innerHTML = `<li data-cat="all" class="active">Усі товари</li>`;
 
   // Додаємо категорії
   categories.forEach(cat => {
@@ -235,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Обробники кліку
   categoryList.querySelectorAll("li").forEach(li => {
     li.addEventListener("click", () => {
+
       // Активний елемент
       categoryList.querySelectorAll("li").forEach(el => el.classList.remove("active"));
       li.classList.add("active");
@@ -252,7 +254,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 }
-
 
   // Запуск
   loadData();
