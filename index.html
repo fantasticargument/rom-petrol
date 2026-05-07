@@ -9,13 +9,7 @@
 </head>
 <body>
 
-<aside class="sidebar">
-  <h3>Категорії</h3>
-  <ul id="categoryList"></ul>
-</aside>
-
-<div class="content-area">
-  <header>
+<header>
   <div class="header-content">
 
     <h1 class="site-title">ROM-PETROL</h1>
@@ -32,14 +26,23 @@
 
   </div>
 </header>
+
+<div class="layout">
+
+  <!-- ЛІВИЙ САЙДБАР -->
+  <aside class="sidebar">
+    <h3>Категорії</h3>
+    <ul id="categoryList"></ul>
+  </aside>
+
+  <!-- ПРАВА ЧАСТИНА — КОНТЕНТ -->
+  <main class="content-area">
+    <div class="cards"></div>
+  </main>
+
 </div>
 
-<main>
-  <div class="cards"></div>
-</div>
-
-</main>
-
+<!-- МОДАЛЬНЕ ВІКНО -->
 <div class="overlay hidden">
   <div class="modal">
     <button class="close">×</button>
@@ -62,6 +65,7 @@
   </div>
 </div>
 
+<!-- КНОПКА ВГОРУ -->
 <button id="scrollTopBtn">▲</button>
 
 <script src="scripts/main.js"></script>
