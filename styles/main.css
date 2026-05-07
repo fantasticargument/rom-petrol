@@ -8,8 +8,12 @@ body {
   background: #f4f4f4;
 }
 
+/* ===========================
+   ХЕДЕР
+   =========================== */
+
 header {
-  background: 
+  background:
     linear-gradient(to right, rgba(0,0,0,0.55), rgba(0,0,0,0.15)),
     url('images/header-desktop.jpg');
   background-size: cover;
@@ -30,10 +34,15 @@ header {
   }
 }
 
-/* Контейнер у один рядок */
+header.scrolled {
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+}
+
 .header-content {
   display: grid;
-  grid-template-columns: auto 1fr auto; /* Ліво — центр — право */
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   width: 100%;
   max-width: 1400px;
@@ -42,39 +51,17 @@ header {
   height: 90px;
 }
 
-header.scrolled {
-  background: rgba(0, 0, 0, 0.75); /* затемнення */
-  backdrop-filter: blur(4px);      /* легкий блюр */
-  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
-}
-
-/* Назва зліва */
 .site-title {
   margin: 0;
-  padding: 0;
   font-size: 42px;
   font-weight: 700;
   color: #fff;
-  line-height: 1;
 }
 
-/* Поле пошуку */
-#searchInput {
-  width: 320px;
-  height: 44px;
-  padding: 0 42px 0 18px;
-  background: transparent;
-  border: 2px solid rgba(255,255,255,0.9);
-  border-radius: 30px;
-  color: #fff;
-  font-size: 18px;
-  line-height: 44px;
-  outline: none;
-  padding-left: 40px;   /* місце під іконку */
-  padding-right: 42px;  /* місце під кнопку × */
-}
+/* ===========================
+   ПОШУК
+   =========================== */
 
-/* Контейнер для поля пошуку */
 .search-wrapper {
   display: flex;
   justify-content: center;
@@ -86,6 +73,24 @@ header.scrolled {
   display: inline-block;
 }
 
+#searchInput {
+  width: 320px;
+  height: 44px;
+  padding: 0 42px 0 40px;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.9);
+  border-radius: 30px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 44px;
+  outline: none;
+}
+
+#searchInput::placeholder {
+  color: rgba(255,255,255,0.8);
+}
+
+/* Лупа */
 .search-icon {
   position: absolute;
   left: 14px;
@@ -93,14 +98,12 @@ header.scrolled {
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(255,255,255,0.85); /* коло */
+  border: 2px solid rgba(255,255,255,0.85);
   border-radius: 50%;
   pointer-events: none;
-  opacity: 1;
   transition: opacity 0.2s ease;
 }
 
-/* Ручка лупи */
 .search-icon::after {
   content: "";
   position: absolute;
@@ -116,6 +119,7 @@ header.scrolled {
   opacity: 0;
 }
 
+/* Кнопка × */
 .clear-btn {
   position: absolute;
   right: 14px;
@@ -126,51 +130,34 @@ header.scrolled {
   cursor: pointer;
   display: none;
   user-select: none;
-  z-index: 3;
 }
 
 .clear-btn:hover {
   color: #fff;
 }
 
+/* ===========================
+   2. LAYOUT + САЙДБАР
+   =========================== */
 
-#searchInput::placeholder {
-  color: rgba(255,255,255,0.8);
-}
-
-/* Права зона — баланс */
-.right-space {
-  width: 120px; /* Можеш збільшити або зменшити */
-}
-
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.content-with-sidebar {
+.layout {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 240px 1fr;
   gap: 20px;
   padding: 20px 40px;
+  min-height: calc(100vh - 90px - 60px);
 }
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 240px;
-  height: 100vh; /* на всю висоту */
   background: rgba(0,0,0,0.75);
   backdrop-filter: blur(4px);
   color: #fff;
   padding: 20px 10px;
-  box-shadow: 4px 0 18px rgba(0,0,0,0.4);
-  z-index: 999;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
   display: flex;
   flex-direction: column;
-  align-items: center; /* центруємо текст */
+  align-items: center;
 }
 
 .sidebar h3 {
@@ -199,8 +186,8 @@ header.scrolled {
 }
 
 .sidebar li:hover {
-  color: #fff;
   background: rgba(255,255,255,0.1);
+  color: #fff;
 }
 
 .sidebar li.active {
@@ -210,22 +197,11 @@ header.scrolled {
 }
 
 .content-area {
-  margin-left: 240px; /* ширина сайдбару */
-}
-
-
-@media (max-width: 600px) {
-  .sidebar {
-    display: none;
-  }
-
-  .content-area {
-    margin-left: 0;
-  }
+  width: 100%;
 }
 
 /* ===========================
-   2. СІТКА КАРТОК
+   3. СІТКА КАРТОК
    =========================== */
 
 .cards {
@@ -237,7 +213,7 @@ header.scrolled {
 }
 
 /* ===========================
-   3. КАРТКИ
+   4. КАРТКИ
    =========================== */
 
 .card {
@@ -296,7 +272,7 @@ header.scrolled {
 .availability.no { color: red; }
 
 /* ===========================
-   4. МОДАЛЬНЕ ВІКНО
+   5. МОДАЛЬНЕ ВІКНО
    =========================== */
 
 .overlay {
@@ -319,15 +295,12 @@ header.scrolled {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-
   width: 90%;
   max-width: 500px;
-
-  max-height: calc(100vh - 40px); /* відступи зверху/знизу */
-  overflow: hidden; /* важливо! модалка НЕ прокручується */
+  max-height: calc(100vh - 40px);
+  overflow: hidden;
 }
 
-/* Кнопка закриття */
 .close {
   position: absolute;
   top: 10px;
@@ -336,10 +309,8 @@ header.scrolled {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 10;
 }
 
-/* Головне зображення */
 .modal-img {
   width: 100%;
   max-height: 200px;
@@ -347,7 +318,6 @@ header.scrolled {
   margin-bottom: 10px;
 }
 
-/* Галерея */
 .modal-gallery {
   display: flex;
   gap: 10px;
@@ -355,27 +325,12 @@ header.scrolled {
   margin-bottom: 10px;
 }
 
-/*.modal-gallery img.thumb {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-  background: #fff;
-  border-radius: 6px;
-  padding: 4px;
-  cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-  transition: transform .2s;
-}*/
-
-/* Прокручуваний блок опису */
 .modal-content {
   overflow-y: auto;
   padding-right: 5px;
-
   max-height: calc(100vh - 300px);
 }
 
-/* Опис */
 .modal-description {
   text-align: justify;
   line-height: 1.5;
@@ -384,14 +339,8 @@ header.scrolled {
   margin-bottom: 20px;
 }
 
-
-.search-box {
-  position: relative;
-  display: inline-block;
-}
-
 /* ===========================
-   5. КНОПКА "ВГОРУ"
+   6. КНОПКА "ВГОРУ"
    =========================== */
 
 #scrollTopBtn {
@@ -424,7 +373,7 @@ header.scrolled {
 }
 
 /* ===========================
-   6. ФУТЕР
+   7. ФУТЕР
    =========================== */
 
 .site-footer {
@@ -439,7 +388,7 @@ header.scrolled {
 }
 
 /* ===========================
-   7. АДАПТАЦІЯ — ПЛАНШЕТИ
+   8. АДАПТИВНІСТЬ
    =========================== */
 
 @media (max-width: 900px) {
@@ -448,40 +397,17 @@ header.scrolled {
   }
 }
 
-/* ===========================
-   8. АДАПТАЦІЯ — ТЕЛЕФОНИ
-   =========================== */
-
 @media (max-width: 600px) {
 
-  .card {
-    min-height: 360px;
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 10px 20px;
   }
 
-  .card img {
-    height: 240px;
-  }
-}
-
-@media (max-width: 380px) {
-
-  .card {
-    min-height: 340px;
+  .sidebar {
+    display: none;
   }
 
-  .card img {
-    height: 220px;
-  }
-}
-
-/* Приховати кнопку "Вгору" на телефонах */
-@media (max-width: 600px) {
-  #scrollTopBtn {
-    display: none !important;
-  }
-}
-
-@media (max-width: 600px) {
   .header-content {
     grid-template-columns: 1fr;
     gap: 15px;
@@ -493,7 +419,7 @@ header.scrolled {
     font-size: 32px;
   }
 
-    #searchInput {
+  #searchInput {
     width: 50%;
     height: 36px;
     line-height: 36px;
@@ -506,11 +432,20 @@ header.scrolled {
     font-size: 18px;
   }
 
-  .right-space {
-    display: none;
+  #scrollTopBtn {
+    display: none !important;
   }
 }
 
+@media (max-width: 380px) {
+  .card {
+    min-height: 340px;
+  }
+
+  .card img {
+    height: 220px;
+  }
+}
 
 /* ===========================
    9. ВЕЛИКІ ЕКРАНИ
