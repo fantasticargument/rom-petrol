@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const categories = [...new Set(items.map(i => i.category))].sort();
 
   // Додаємо "Усі товари"
-  categoryList.innerHTML = `<li data-cat="all" class="active">Усі товари</li>`;
+  categoryList.innerHTML = `<li data-cat="all" class="active">Всі</li>`;
 
   // Додаємо категорії
   categories.forEach(cat => {
