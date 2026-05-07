@@ -37,6 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
       renderCards(items);
       setupCardClick(items);
 
+      // Після завантаження — будуємо категорії
+      buildCategoryList();
+
     } catch (err) {
       console.error("Помилка завантаження:", err);
     }
@@ -173,27 +176,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const query = searchInput.value.trim().toLowerCase();
     const hasText = query.length > 0;
 
-    // кнопка ×
     clearBtn.style.display = hasText ? "block" : "none";
-
-    // лупа
     searchBox.classList.toggle("has-text", hasText);
 
-    // якщо поле порожнє → повертаємо всі картки
     if (!hasText) {
       renderCards(items);
       setupCardClick(items);
       return;
     }
 
-    // Пошук по коду
     const byCode = items.find(item => item.code.toLowerCase() === query);
     if (byCode) {
       openModal(byCode);
       return;
     }
 
-    // Пошук по назві
     const filtered = items.filter(item =>
       item.title.toLowerCase().includes(query)
     );
@@ -219,46 +216,43 @@ document.addEventListener("DOMContentLoaded", () => {
     header.classList.toggle("scrolled", window.scrollY > 50);
   });
 
- function buildCategoryList() {
-  const categoryList = document.getElementById("categoryList");
+  // =========================
+  // 9. САЙДБАР — КАТЕГОРІЇ
+  // =========================
+  function buildCategoryList() {
+    const categoryList = document.getElementById("categoryList");
 
-  // Унікальні категорії
-  const categories = [...new Set(items.map(i => i.category))].sort();
+    const categories = [...new Set(items.map(i => i.category))].sort();
 
-  // Додаємо "Усі товари"
-  categoryList.innerHTML = `<li data-cat="all" class="active">Усі товари</li>`;
+    categoryList.innerHTML = `<li data-cat="all" class="active">Усі товари</li>`;
 
-  // Додаємо категорії
-  categories.forEach(cat => {
-    categoryList.innerHTML += `<li data-cat="${cat}">${cat}</li>`;
-  });
-
-  // Обробники кліку
-  categoryList.querySelectorAll("li").forEach(li => {
-    li.addEventListener("click", () => {
-
-      // Активний елемент
-      categoryList.querySelectorAll("li").forEach(el => el.classList.remove("active"));
-      li.classList.add("active");
-
-      const cat = li.dataset.cat;
-
-      if (cat === "all") {
-        renderCards(items);
-        setupCardClick(items);
-      } else {
-        const filtered = items.filter(i => i.category === cat);
-        renderCards(filtered);
-        setupCardClick(filtered);
-      }
+    categories.forEach(cat => {
+      categoryList.innerHTML += `<li data-cat="${cat}">${cat}</li>`;
     });
-  });
-}
 
-  // Запуск
+    categoryList.querySelectorAll("li").forEach(li => {
+      li.addEventListener("click", () => {
+
+        categoryList.querySelectorAll("li").forEach(el => el.classList.remove("active"));
+        li.classList.add("active");
+
+        const cat = li.dataset.cat;
+
+        if (cat === "all") {
+          renderCards(items);
+          setupCardClick(items);
+        } else {
+          const filtered = items.filter(i => i.category === cat);
+          renderCards(filtered);
+          setupCardClick(filtered);
+        }
+      });
+    });
+  }
+
+  // =========================
+  // 10. Запуск
+  // =========================
   loadData();
-  loadData().then(() => {
-  buildCategoryList();
-});
 
 });
