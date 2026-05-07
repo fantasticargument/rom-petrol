@@ -17,6 +17,17 @@ header {
   background-repeat: no-repeat;
   color: #fff;
   padding: 40px 20px;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: headerFadeIn 0.6s ease forwards;
+}
+
+@keyframes headerFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Контейнер у один рядок */
@@ -29,6 +40,12 @@ header {
   margin: 0 auto;
   padding: 20px 40px;
   height: 90px;
+}
+
+header.scrolled {
+  background: rgba(0, 0, 0, 0.75); /* затемнення */
+  backdrop-filter: blur(4px);      /* легкий блюр */
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
 }
 
 /* Назва зліва */
@@ -53,6 +70,8 @@ header {
   font-size: 18px;
   line-height: 44px;
   outline: none;
+  padding-left: 40px;   /* місце під іконку */
+  padding-right: 42px;  /* місце під кнопку × */
 }
 
 /* Контейнер для поля пошуку */
@@ -65,6 +84,16 @@ header {
 .search-box {
   position: relative;
   display: inline-block;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
+  pointer-events: none;
 }
 
 .clear-btn {
