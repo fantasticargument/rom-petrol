@@ -215,12 +215,14 @@ header.scrolled {
 
 .sidebar li {
   text-align: center;
-  padding: 12px 0;
-  font-size: 18px;
+  padding: 6px 0;        
+  font-size: 15px;       
+  line-height: 1.2;      
   cursor: pointer;
   transition: 0.2s ease;
   color: rgba(255,255,255,0.85);
 }
+
 
 .sidebar li:hover {
   background: rgba(255,255,255,0.1);
