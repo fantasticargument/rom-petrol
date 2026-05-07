@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(url);
       const data = await response.json();
 
-      // Записуємо у ГЛОБАЛЬНИЙ items
       items = data.records.map((record) => ({
         id: record.fields.id || 0,
         title: record.fields.Title || "",
@@ -97,11 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const images = Array.isArray(item.images) ? item.images : [];
 
-    if (images.length > 0 && images[0].url) {
-      mainImg.src = images[0].url;
-    } else {
-      mainImg.src = "placeholder.png";
-    }
+    mainImg.src = images.length > 0 && images[0].url ? images[0].url : "placeholder.png";
 
     if (images.length > 1) {
       gallery.innerHTML = images
@@ -119,8 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       gallery.querySelectorAll("img").forEach((thumb) => {
         thumb.addEventListener("click", () => {
-          const idx = thumb.dataset.index;
-          mainImg.src = images[idx].url;
+          mainImg.src = images[thumb.dataset.index].url;
         });
       });
 
@@ -161,102 +155,71 @@ document.addEventListener("DOMContentLoaded", () => {
   const scrollBtn = document.getElementById("scrollTopBtn");
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-      scrollBtn.classList.add("show");
-    } else {
-      scrollBtn.classList.remove("show");
-    }
+    scrollBtn.classList.toggle("show", window.scrollY > 200);
   });
 
   scrollBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   // =========================
-// 7. ПОШУК (фінальна версія)
-// =========================
-const searchInput = document.getElementById("searchInput");
-const clearBtn = document.getElementById("clearSearch");
+  // 7. ПОШУК + ЛУПА + КНОПКА ×
+  // =========================
+  const searchInput = document.getElementById("searchInput");
+  const clearBtn = document.getElementById("clearSearch");
+  const searchBox = document.querySelector(".search-box");
 
-searchInput.addEventListener("input", () => {
-  const query = searchInput.value.trim().toLowerCase();
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    const hasText = query.length > 0;
 
-  // показуємо / ховаємо кнопку ×
-  clearBtn.style.display = query.length > 0 ? "block" : "none";
+    // кнопка ×
+    clearBtn.style.display = hasText ? "block" : "none";
 
-  // якщо поле порожнє → повертаємо всі картки
-  if (!query) {
+    // лупа
+    searchBox.classList.toggle("has-text", hasText);
+
+    // якщо поле порожнє → повертаємо всі картки
+    if (!hasText) {
+      renderCards(items);
+      setupCardClick(items);
+      return;
+    }
+
+    // Пошук по коду
+    const byCode = items.find(item => item.code.toLowerCase() === query);
+    if (byCode) {
+      openModal(byCode);
+      return;
+    }
+
+    // Пошук по назві
+    const filtered = items.filter(item =>
+      item.title.toLowerCase().includes(query)
+    );
+
+    renderCards(filtered);
+    setupCardClick(filtered);
+  });
+
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    clearBtn.style.display = "none";
+    searchBox.classList.remove("has-text");
+
     renderCards(items);
     setupCardClick(items);
-    return;
-  }
+  });
 
-  // Пошук по коду (точний збіг)
-  const byCode = items.find(item => item.code.toLowerCase() === query);
-  if (byCode) {
-    openModal(byCode);
-    return;
-  }
-
-  // Пошук по назві (частковий збіг)
-  const filtered = items.filter(item =>
-    item.title.toLowerCase().includes(query)
-  );
-
-  renderCards(filtered);
-  setupCardClick(filtered);
-});
-
-// Кнопка очистити
-clearBtn.addEventListener("click", () => {
-  searchInput.value = "";
-  clearBtn.style.display = "none";
-
-  renderCards(items);
-  setupCardClick(items);
-});
+  // =========================
+  // 8. Затемнення хедера при скролі
+  // =========================
+  window.addEventListener("scroll", () => {
+    const header = document.querySelector("header");
+    header.classList.toggle("scrolled", window.scrollY > 50);
+  });
 
   // Запуск
   loadData();
 
-});
-
-window.addEventListener("scroll", () => {
-  const header = document.querySelector("header");
-
-  if (window.scrollY > 50) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
-
-const searchBox = document.querySelector(".search-box");
-
-searchInput.addEventListener("input", () => {
-  const hasText = searchInput.value.trim().length > 0;
-
-  // показуємо / ховаємо кнопку ×
-  clearBtn.style.display = hasText ? "block" : "none";
-
-  // показуємо / ховаємо іконку лупи
-  if (hasText) {
-    searchBox.classList.add("has-text");
-  } else {
-    searchBox.classList.remove("has-text");
-  }
-
-  // ... твоя логіка пошуку далі
-});
-
-clearBtn.addEventListener("click", () => {
-  searchInput.value = "";
-  clearBtn.style.display = "none";
-  searchBox.classList.remove("has-text");
-
-  renderCards(items);
-  setupCardClick(items);
 });
