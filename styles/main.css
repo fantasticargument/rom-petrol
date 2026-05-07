@@ -45,17 +45,13 @@ header {
 #searchInput {
   width: 320px;
   height: 44px;
-  padding: 0 40px 0 18px;
-
-  background: transparent;
-  border: 2px solid rgba(255,255,255,0.9);
+  padding: 0 42px 0 18px; /* місце під кнопку */
   border-radius: 30px;
-
+  border: 2px solid rgba(255,255,255,0.9);
+  background: transparent;
   color: #fff;
   font-size: 18px;
   line-height: 44px;
-
-  outline: none;
 }
 
 .search-wrapper {
@@ -67,13 +63,15 @@ header {
 
 .clear-btn {
   position: absolute;
-  right: 12px;
-  font-size: 22px;
-  color: rgba(255,255,255,0.8);
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: rgba(255,255,255,0.85);
   cursor: pointer;
-  display: none; /* приховано за замовчуванням */
+  display: none;
   user-select: none;
-  transition: 0.2s ease;
+  z-index: 3;
 }
 
 .clear-btn:hover {
@@ -256,6 +254,12 @@ header {
   margin-bottom: 20px;
 }
 
+
+.search-box {
+  position: relative;
+  display: inline-block;
+}
+
 /* ===========================
    5. КНОПКА "ВГОРУ"
    =========================== */
@@ -359,19 +363,17 @@ header {
     font-size: 32px;
   }
 
-   #searchInput {
+    #searchInput {
     width: 50%;
     height: 36px;
     line-height: 36px;
-    padding: 0 36px 0 14px;  /* ← менше місце під кнопку */
+    padding: 0 36px 0 14px;
     font-size: 16px;
   }
 
   .clear-btn {
     right: 10px;
     font-size: 18px;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .right-space {
