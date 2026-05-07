@@ -143,9 +143,9 @@ header.scrolled {
 .layout {
   display: grid;
   grid-template-columns: 240px 1fr;
-  grid-template-rows: auto 1fr auto; /* футер всередині */
-  height: calc(100vh - 90px); /* хедер зверху */
+  box-sizing: border-box;
 }
+
 
 .sidebar {
   background: rgba(0,0,0,0.75);
