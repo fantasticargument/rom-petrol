@@ -152,18 +152,22 @@ header.scrolled {
   backdrop-filter: blur(4px);
   color: #fff;
 
-  padding: 20px 10px 20px 10px; /* рівні відступи */
-  margin: 0; /* важливо */
+  padding: 20px 10px;
+  margin: 0;
 
-  border-radius: 0; /* без скруглень */
+  border-radius: 0;
   box-shadow: 4px 0 14px rgba(0,0,0,0.4);
 
-  height: 100%; /* тягнеться вниз */
+  position: sticky;
+  top: 90px;
+  height: calc(100vh - 90px);
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 
 
 .sidebar h3 {
