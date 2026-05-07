@@ -143,8 +143,8 @@ header.scrolled {
 .layout {
   display: grid;
   grid-template-columns: 240px 1fr;
-  min-height: calc(100vh - 90px - 60px); /* хедер + футер */
-  box-sizing: border-box;
+  grid-template-rows: auto 1fr auto; /* футер всередині */
+  height: calc(100vh - 90px); /* хедер зверху */
 }
 
 .sidebar {
@@ -159,7 +159,7 @@ header.scrolled {
   box-shadow: 4px 0 14px rgba(0,0,0,0.4);
 
   position: sticky;
-  top: 0px;
+  top: 90px;
   height: calc(100vh - 90px);
   overflow-y: auto;
 
