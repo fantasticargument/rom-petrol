@@ -149,6 +149,64 @@ header.scrolled {
   width: 100%;
 }
 
+.content-with-sidebar {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  padding: 20px 40px;
+}
+
+.sidebar {
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  height: fit-content;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  font-size: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar li:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.sidebar li.active {
+  background: rgba(255,255,255,0.25);
+  font-weight: bold;
+}
+
+@media (max-width: 900px) {
+  .content-with-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
 /* ===========================
    2. СІТКА КАРТОК
    =========================== */
