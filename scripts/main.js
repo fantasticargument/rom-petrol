@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const categories = [...new Set(items.map(i => i.category))].sort();
 
-    categoryList.innerHTML = `<li data-cat="all" class="active">Усі товари</li>`;
+    categoryList.innerHTML = `<li data-cat="all" class="active">Усі категорії</li>`;
 
     categories.forEach(cat => {
       categoryList.innerHTML += `<li data-cat="${cat}">${cat}</li>`;
