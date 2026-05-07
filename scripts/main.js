@@ -233,3 +233,30 @@ window.addEventListener("scroll", () => {
     header.classList.remove("scrolled");
   }
 });
+
+const searchBox = document.querySelector(".search-box");
+
+searchInput.addEventListener("input", () => {
+  const hasText = searchInput.value.trim().length > 0;
+
+  // показуємо / ховаємо кнопку ×
+  clearBtn.style.display = hasText ? "block" : "none";
+
+  // показуємо / ховаємо іконку лупи
+  if (hasText) {
+    searchBox.classList.add("has-text");
+  } else {
+    searchBox.classList.remove("has-text");
+  }
+
+  // ... твоя логіка пошуку далі
+});
+
+clearBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  clearBtn.style.display = "none";
+  searchBox.classList.remove("has-text");
+
+  renderCards(items);
+  setupCardClick(items);
+});
