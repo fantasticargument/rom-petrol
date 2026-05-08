@@ -30,8 +30,12 @@ header {
 .site-title {
   margin: 0;
   font-size: 22px;
-  white-space: nowrap;
+  line-height: 1.1;
+  white-space: normal;   /* ← дозволяємо перенос */
+  max-width: 80px;       /* ← коли місця мало → перенос */
+  flex-shrink: 1;        /* ← дозволяємо стискання */
 }
+
 
 /* Пошук */
 .search-wrapper {
@@ -287,6 +291,12 @@ header {
 
   .card img {
     height: 200px;
+  }
+
+  .site-title {
+    font-size: 26px;
+    max-width: none;      /* ← не обмежуємо */
+    white-space: nowrap;  /* ← забороняємо перенос */
   }
 }
 
