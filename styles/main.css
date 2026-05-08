@@ -21,44 +21,40 @@ header {
 }
 
 .header-inner {
-  position: relative;        /* ← дозволяє центрувати пошук */
   display: flex;
-  align-items: center;
+  flex-direction: column;   /* ← логотип + бургер зверху, пошук знизу */
+  align-items: stretch;
+  gap: 8px;
+}
+
+.header-top {
+  display: flex;
   justify-content: space-between;
-  padding: 0 12px;
-  height: 56px;              /* ← фіксована висота хедера */
+  align-items: center;
 }
 
 /* Логотип */
 .site-title {
   margin: 0;
   font-size: 22px;
-  line-height: 1.1;
-  max-width: 80px;
-  white-space: normal;
+  white-space: nowrap;      /* ← завжди в один рядок */
 }
-
 
 /* Пошук */
 .search-wrapper {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 260px;          /* ← обмеження ширини */
-  z-index: 1; 
+  width: 100%;              /* ← на всю ширину */
 }
 
 /* Поле пошуку */
 #searchInput {
   width: 100%;
-  height: 38px;
+  height: 40px;
   padding: 0 14px;
   border-radius: 30px;
   border: 2px solid rgba(255,255,255,0.9);
   background: transparent;
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 #searchInput::placeholder {
@@ -69,8 +65,10 @@ header {
 .burger {
   width: 28px;
   height: 20px;
-  flex-shrink: 0;
-  z-index: 2; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
 .burger span {
