@@ -256,3 +256,41 @@ document.addEventListener("DOMContentLoaded", () => {
   loadData();
 
 });
+
+// ===============================
+// ПОВНОЕКРАННЕ МЕНЮ (Mobile First)
+// ===============================
+
+// Елементи
+const burger = document.querySelector('.burger');
+const menuOverlay = document.querySelector('.menu-overlay');
+const menuClose = document.querySelector('.menu-close');
+const menuItems = document.querySelectorAll('.menu-content li');
+
+// Відкрити меню
+burger.addEventListener('click', () => {
+  menuOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden'; // блокуємо скрол сторінки
+});
+
+// Закрити меню
+menuClose.addEventListener('click', () => {
+  menuOverlay.classList.remove('active');
+  document.body.style.overflow = ''; // повертаємо скрол
+});
+
+// Закриття при кліку на пункт меню
+menuItems.forEach(item => {
+  item.addEventListener('click', () => {
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
+
+// Закриття при кліку поза меню (по фону)
+menuOverlay.addEventListener('click', (e) => {
+  if (e.target === menuOverlay) {
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
