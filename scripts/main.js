@@ -165,12 +165,6 @@ if (searchMobile) {
   });
 }
 
-const searchDesktop = document.getElementById('searchInputDesktop');
-if (searchDesktop) {
-  searchDesktop.addEventListener('input', () => {
-    searchProducts(searchDesktop.value);
-  });
-}
 
 // ===============================
 // МОДАЛКА
