@@ -21,11 +21,12 @@ header {
 }
 
 .header-inner {
+  position: relative;        /* ← дозволяє центрувати пошук */
   display: flex;
   align-items: center;
-  justify-content: space-between; /* ← логотип зліва, бургер справа */
-  position: relative;             /* ← дозволяє центрувати пошук */
-  padding: 0 10px;
+  justify-content: space-between;
+  padding: 0 12px;
+  height: 56px;              /* ← фіксована висота хедера */
 }
 
 /* Логотип */
@@ -33,19 +34,18 @@ header {
   margin: 0;
   font-size: 22px;
   line-height: 1.1;
-  white-space: normal;
-  flex-shrink: 1;
   max-width: 80px;
+  white-space: normal;
 }
 
 
 /* Пошук */
-.search-wrapper {
+search-wrapper {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);   /* ← ідеальне центрування */
+  transform: translateX(-50%);
   width: 100%;
-  max-width: 260px;              /* ← пошук НЕ на всю ширину */
+  max-width: 260px;          /* ← обмеження ширини */
 }
 
 /* Поле пошуку */
