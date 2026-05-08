@@ -107,7 +107,8 @@ header {
    =========================== */
 
 .search-wrapper {
-  margin: 16px;
+  width: 100%;
+  margin-top: 12px;
 }
 
 #searchInput {
@@ -226,11 +227,12 @@ header {
   }
 
   .search-wrapper {
+    width: 320px;
     margin: 0;
+    margin-left: auto;
   }
 
   #searchInput {
-    width: 320px;
     height: 44px;
     font-size: 18px;
   }
