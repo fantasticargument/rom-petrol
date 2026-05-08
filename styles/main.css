@@ -40,7 +40,7 @@ header {
 
 
 /* Пошук */
-search-wrapper {
+.search-wrapper {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
