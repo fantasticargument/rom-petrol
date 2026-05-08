@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ROM-PETROL</title>
@@ -9,47 +8,81 @@
 </head>
 <body>
 
+<!-- ===========================
+     HEADER (Mobile First)
+     =========================== -->
 <header>
-  <div class="header-content">
 
-    <h1 class="site-title">ROM-PETROL</h1>
+  <!-- ЛОГО -->
+  <h1 class="site-title">ROM-PETROL</h1>
 
-    <div class="search-wrapper">
-      <div class="search-box">
-        <span class="search-icon"></span>
-        <input type="text" id="searchInput" placeholder="Пошук...">
-        <span id="clearSearch" class="clear-btn">×</span>
-      </div>
-    </div>
-
-    <div class="right-space"></div>
-
+  <!-- ПОШУК (мобільний — під хедером, десктоп — всередині) -->
+  <div class="search-wrapper mobile-only">
+    <input type="text" id="searchInput" placeholder="Пошук...">
   </div>
+
+  <!-- БУРГЕР (мобільний) -->
+  <div class="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
 </header>
 
-<!-- ОСНОВНА СІТКА -->
+<!-- ===========================
+     ПОВНОЕКРАННЕ МЕНЮ
+     =========================== -->
+<div class="menu-overlay">
+  <div class="menu-close">×</div>
+
+  <div class="menu-content">
+    <ul>
+      <li data-category="AdBlue">AdBlue</li>
+      <li data-category="А 80">А 80</li>
+      <li data-category="А 92">А 92</li>
+      <li data-category="А 95">А 95</li>
+      <li data-category="ДП З">ДП З</li>
+      <li data-category="ДП Л">ДП Л</li>
+      <li data-category="Олива моторна">Олива моторна</li>
+      <li data-category="Олива гідравлічна">Олива гідравлічна</li>
+      <li data-category="Олива трансмісійна">Олива трансмісійна</li>
+      <li data-category="Охолоджуючі рідини">Охолоджуючі рідини</li>
+      <li data-category="Спеціальні рідини">Спеціальні рідини</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===========================
+     ОСНОВНА СІТКА
+     =========================== -->
 <div class="layout">
 
-  <!-- ЛІВИЙ САЙДБАР -->
-  <aside class="sidebar">
+  <!-- САЙДБАР (десктоп) -->
+  <aside class="sidebar desktop-only">
     <h3>Категорії</h3>
     <ul id="categoryList"></ul>
   </aside>
 
-  <!-- ПРАВА ЧАСТИНА — КОНТЕНТ -->
+  <!-- КОНТЕНТ -->
   <main class="content-area">
+    <div class="search-wrapper desktop-only">
+      <input type="text" id="searchInputDesktop" placeholder="Пошук...">
+    </div>
+
     <div class="cards"></div>
   </main>
 
-</div> <!-- КІНЕЦЬ layout -->
+</div>
 
-<!-- МОДАЛЬНЕ ВІКНО -->
+<!-- ===========================
+     МОДАЛЬНЕ ВІКНО
+     =========================== -->
 <div class="overlay hidden">
   <div class="modal">
     <button class="close">×</button>
 
     <img class="modal-img" id="modalImage">
-
     <div class="modal-gallery" id="modalGallery"></div>
 
     <div class="modal-header">
@@ -62,7 +95,6 @@
     <div class="modal-content">
       <p id="modalDescription" class="modal-description"></p>
     </div>
-
   </div>
 </div>
 
