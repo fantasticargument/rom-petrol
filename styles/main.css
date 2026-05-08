@@ -24,6 +24,7 @@ header {
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;
 }
 
 /* Логотип */
@@ -31,15 +32,15 @@ header {
   margin: 0;
   font-size: 22px;
   line-height: 1.1;
-  white-space: normal;   /* ← дозволяємо перенос */
-  max-width: 80px;       /* ← коли місця мало → перенос */
-  flex-shrink: 1;        /* ← дозволяємо стискання */
+  white-space: normal;
+  flex-shrink: 1;      /* ← дозволяємо стискання */
+  max-width: 80px;     /* ← щоб переносився */
 }
-
 
 /* Пошук */
 .search-wrapper {
-  flex: 1; /* ← головне! Пошук займає весь вільний простір */
+  flex: 1;             /* ← займає весь вільний простір */
+  min-width: 120px;    /* ← ГОЛОВНЕ! не дає пошуку тиснути бургер */
 }
 
 #searchInput {
@@ -65,7 +66,7 @@ header {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  flex-shrink: 0; /* ← бургер не стискається */
+  flex-shrink: 0;      /* ← бургер не стискається */
 }
 
 .burger span {
