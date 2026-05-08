@@ -13,20 +13,19 @@ body {
    2. HEADER (Mobile First)
    =========================== */
 
-/* MOBILE FIRST — хедер в один рядок */
 header {
   background: rgba(0,0,0,0.85);
   color: #fff;
-  padding: 12px 16px;
+  padding: 10px 12px;
 }
 
 .header-inner {
   display: flex;
-  flex-direction: column;   /* ← логотип + бургер зверху, пошук знизу */
-  align-items: stretch;
-  gap: 8px;
+  flex-direction: column;
+  gap: 10px;
 }
 
+/* Верхній рядок: логотип + бургер */
 .header-top {
   display: flex;
   justify-content: space-between;
@@ -37,28 +36,7 @@ header {
 .site-title {
   margin: 0;
   font-size: 22px;
-  white-space: nowrap;      /* ← завжди в один рядок */
-}
-
-/* Пошук */
-.search-wrapper {
-  width: 100%;              /* ← на всю ширину */
-}
-
-/* Поле пошуку */
-#searchInput {
-  width: 100%;
-  height: 40px;
-  padding: 0 14px;
-  border-radius: 30px;
-  border: 2px solid rgba(255,255,255,0.9);
-  background: transparent;
-  color: #fff;
-  font-size: 16px;
-}
-
-#searchInput::placeholder {
-  color: rgba(255,255,255,0.7);
+  white-space: nowrap;
 }
 
 /* Бургер */
@@ -75,6 +53,26 @@ header {
   height: 3px;
   background: #fff;
   border-radius: 2px;
+}
+
+/* Пошук */
+.search-wrapper {
+  width: 100%;
+}
+
+#searchInput {
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 30px;
+  border: 2px solid rgba(255,255,255,0.9);
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+}
+
+#searchInput::placeholder {
+  color: rgba(255,255,255,0.7);
 }
 
 /* ===========================
@@ -124,7 +122,6 @@ header {
   color: #ffd700;
 }
 
-/* Кнопка закриття */
 .menu-close {
   position: absolute;
   top: 20px;
@@ -135,44 +132,19 @@ header {
 }
 
 /* ===========================
-   4. ПОШУК (Mobile First)
-   =========================== */
-
-.search-wrapper {
-  width: 100%;
-  margin-top: 12px;
-}
-
-#searchInput {
-  width: 100%;
-  height: 42px;
-  padding: 0 16px;
-  border-radius: 30px;
-  border: 2px solid rgba(255,255,255,0.9);
-  background: transparent;
-  color: #fff;
-  font-size: 16px;
-}
-
-#searchInput::placeholder {
-  color: rgba(255,255,255,0.7);
-}
-
-/* ===========================
-   5. LAYOUT (Mobile First)
+   4. LAYOUT (Mobile First)
    =========================== */
 
 .layout {
   padding: 16px;
 }
 
-/* Sidebar прихований на мобільному */
 .sidebar {
   display: none;
 }
 
 /* ===========================
-   6. КАРТКИ (Mobile First)
+   5. КАРТКИ
    =========================== */
 
 .cards {
@@ -204,7 +176,7 @@ header {
 .availability.no { color: red; }
 
 /* ===========================
-   7. МОДАЛКА
+   6. МОДАЛКА
    =========================== */
 
 .overlay {
@@ -230,7 +202,7 @@ header {
 }
 
 /* ===========================
-   8. ФУТЕР
+   7. ФУТЕР
    =========================== */
 
 .site-footer {
@@ -242,10 +214,30 @@ header {
 }
 
 /* ===========================
-   9. ДЕСKTOP
+   8. ПЛАНШЕТ (600–899px)
    =========================== */
 
-   @media (min-width: 900px) {
+@media (min-width: 600px) and (max-width: 899px) {
+  #searchInput {
+    height: 44px;
+    font-size: 17px;
+  }
+
+  .search-wrapper {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .site-title {
+    font-size: 24px;
+  }
+}
+
+/* ===========================
+   9. ДЕСКТОП (900px+)
+   =========================== */
+
+@media (min-width: 900px) {
 
   header {
     padding: 20px 40px;
@@ -254,13 +246,21 @@ header {
     align-items: center;
   }
 
+  .header-inner {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .header-top {
+    display: contents;
+  }
+
   .burger {
     display: none;
   }
 
   .search-wrapper {
     width: 320px;
-    margin: 0;
     margin-left: auto;
   }
 
@@ -298,12 +298,11 @@ header {
 
   .site-title {
     font-size: 26px;
-    max-width: none;      /* ← не обмежуємо */
-    white-space: nowrap;  /* ← забороняємо перенос */
+    white-space: nowrap;
   }
 }
 
-  /* ===========================
+/* ===========================
    10. ВЕЛИКИЙ ДЕСКТОП
    =========================== */
 
@@ -315,11 +314,11 @@ header {
   }
 }
 
-  /* ===========================
+/* ===========================
    11. ДУЖЕ ШИРОКИЙ ЕКРАН
    =========================== */
 
-   @media (min-width: 1600px) {
+@media (min-width: 1600px) {
   .cards {
     padding: 20px 120px;
   }
