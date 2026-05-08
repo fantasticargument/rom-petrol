@@ -1,4 +1,55 @@
 // ===============================
+// ЗАВАНТАЖЕННЯ ДАНИХ З API
+// ===============================
+
+let PRODUCTS = [];
+
+async function loadData() {
+  try {
+    const url = "https://billowing-dust-b910.romic-argument.workers.dev/";
+    const response = await fetch(url);
+    const data = await response.json();
+
+    PRODUCTS = data.records.map(record => ({
+      name: record.fields.Title || "",
+      category: record.fields.Category || "",
+      available: record.fields.Available?.includes("Є") || false,
+      description: record.fields.Description || "",
+      image: record.fields.Images?.[0]?.url || "placeholder.png",
+      code: record.fields.Code || ""
+    }));
+
+    // Сортування: Є → вгору
+    PRODUCTS.sort((a, b) => {
+      const aA = a.available ? 1 : 0;
+      const bA = b.available ? 1 : 0;
+      if (aA !== bA) return bA - aA;
+      return a.name.localeCompare(b.name);
+    });
+
+    loadCards(PRODUCTS);
+    buildSidebarCategories();
+
+  } catch (err) {
+    console.error("Помилка завантаження даних:", err);
+  }
+}
+
+loadData();
+
+function buildSidebarCategories() {
+  const sidebarList = document.getElementById('categoryList');
+  if (!sidebarList) return;
+
+  const categories = [...new Set(PRODUCTS.map(p => p.category))];
+
+  sidebarList.innerHTML = categories
+    .map(cat => `<li data-category="${cat}">${cat}</li>`)
+    .join("");
+}
+
+
+// ===============================
 // ПОВНОЕКРАННЕ МЕНЮ
 // ===============================
 
