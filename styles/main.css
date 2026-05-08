@@ -29,18 +29,17 @@ header {
 
 /* Логотип */
 .site-title {
-  margin: 0;
-  font-size: 22px;
-  line-height: 1.1;
+  flex-shrink: 1;
+  max-width: 70px; /* ← щоб переносився */
   white-space: normal;
-  flex-shrink: 1;      /* ← дозволяємо стискання */
-  max-width: 80px;     /* ← щоб переносився */
+  line-height: 1.1;
 }
+
 
 /* Пошук */
 .search-wrapper {
   flex: 1;             /* ← займає весь вільний простір */
-  min-width: 120px;    /* ← ГОЛОВНЕ! не дає пошуку тиснути бургер */
+  min-width: 150px;    /* ← ГОЛОВНЕ! не дає пошуку тиснути бургер */
 }
 
 #searchInput {
