@@ -21,15 +21,16 @@ async function loadData() {
 
     // Сортування: Є → вгору
     PRODUCTS.sort((a, b) => {
-  // 1. Спочатку — за наявністю
-  const aA = a.available.includes("Є") ? 1 : 0;
-  const bA = b.available.includes("Є") ? 1 : 0;
+  // 1. Спочатку — за наявністю (булеве поле)
+  const aA = a.available ? 1 : 0;
+  const bA = b.available ? 1 : 0;
 
   if (aA !== bA) return bA - aA; // Є → вгору, Немає → вниз
 
   // 2. Якщо наявність однакова — за ID з Airtable
   return (a.id || 0) - (b.id || 0);
 });
+
 
 
     loadCards(PRODUCTS);
