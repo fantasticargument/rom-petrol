@@ -19,10 +19,11 @@ header {
   padding: 10px 12px;
 }
 
-.header-inner,
-.header-top {
-  max-width: 0;
-  overflow: hidden;
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0; /* ← критично */
 }
 
 /* Верхній рядок: логотип + бургер */
@@ -30,15 +31,16 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-shrink: 1;
-  min-width: 0; 
+  min-width: 0; /* ← критично */
 }
 
 /* Логотип */
 .site-title {
+  margin: 0;
+  font-size: 22px;
   white-space: nowrap;
-  max-width: 100%;
-  overflow: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Бургер */
