@@ -26,7 +26,7 @@ header {
   inset: 0;
   background: url("images/header-desktop.jpg") center/cover no-repeat;
   opacity: 0;
-  transform: translateY(-40px) scale(1.05);
+  transform: translateX(40px) scale(1.05);
   animation: headerAnim 1.4s ease-out forwards;
   z-index: 0;
 }
@@ -47,15 +47,15 @@ header::before {
 @keyframes headerAnim {
   0% {
     opacity: 0;
-    transform: translateY(-40px) scale(1.05); /* ← старт зверху */
+    transform: translateX(40px) scale(1.05); /* ← старт зверху */
   }
   60% {
     opacity: 1;
-    transform: translateY(0) scale(1.02);
+    transform: translateX(0) scale(1.02);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateX(0) scale(1);
   }
 }
 
@@ -110,8 +110,28 @@ header::before {
 
 /* Пошук */
 .search-wrapper {
+  position: relative;
   width: 100%;
 }
+
+.clear-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  display: none;
+  user-select: none;
+  transition: 0.2s ease;
+  z-index: 3;
+}
+
+.clear-btn:hover {
+  color: #fff;
+}
+
 
 #searchInput {
   width: 100%;
