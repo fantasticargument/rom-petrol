@@ -11,6 +11,7 @@ async function loadData() {
     const data = await response.json();
 
     PRODUCTS = data.records.map(record => ({
+      id: record.fields.ID || 0, 
       name: record.fields.Title || "",
       category: record.fields.Category || "",
       available: record.fields.Available?.includes("Є") || false,
