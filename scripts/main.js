@@ -99,14 +99,6 @@ if (burger) {
   });
 }
 
-// Закрити меню
-if (menuClose) {
-  menuClose.addEventListener('click', () => {
-    menuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-  });
-}
-
 // Закриття при кліку на пункт меню
 menuItems.forEach(item => {
   item.addEventListener('click', () => {
