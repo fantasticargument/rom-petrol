@@ -19,13 +19,9 @@ header {
   padding: 10px 12px;
 }
 
-.header-inner {
-  min-width: 0;      /* ← щоб контейнер не розтягувався */
-}
-
 .header-inner,
 .header-top {
-  max-width: 100%;
+  max-width: 0;
   overflow: hidden;
 }
 
@@ -42,7 +38,7 @@ header {
 .site-title {
   white-space: nowrap;
   max-width: 100%;
-  overflow: hidden;
+  overflow: break-word;
 }
 
 /* Бургер */
