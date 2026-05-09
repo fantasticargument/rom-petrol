@@ -53,27 +53,33 @@ function buildMobileMenuCategories() {
   const mobileList = document.getElementById('mobileCategoryList');
   if (!mobileList) return;
 
-  const categories = [...new Set(PRODUCTS.map(p => p.category))];
+  // Унікальні категорії
+  let categories = [...new Set(PRODUCTS.map(p => p.category))];
 
+  // Алфавітне сортування
+  categories.sort((a, b) => a.localeCompare(b, 'uk'));
+
+  // Формуємо HTML
   mobileList.innerHTML = `
     <li data-category="all">Всі категорії</li>
     ${categories.map(cat => `<li data-category="${cat}">${cat}</li>`).join("")}
   `;
 
-  // Додаємо кліки
+  // Обробники кліку
   mobileList.querySelectorAll('li').forEach(item => {
     item.addEventListener('click', () => {
       menuOverlay.classList.remove('active');
       document.body.style.overflow = '';
 
       if (item.dataset.category === "all") {
-        loadCards(PRODUCTS); // ← показуємо всі картки
+        loadCards(PRODUCTS);
       } else {
         filterByCategory(item.dataset.category);
       }
     });
   });
 }
+
 
 
 // ===============================
