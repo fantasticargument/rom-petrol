@@ -136,8 +136,8 @@ function loadCards(data) {
     card.innerHTML = `
       <img src="${item.image}" alt="${item.name}">
       <div class="card-body">
-        <h3>${item.name}</h3>
         <p class="category">${item.category}</p>
+        <h3>${item.name}</h3>
         <p class="availability ${item.available ? 'yes' : 'no'}">
           ${item.available ? 'Є в наявності' : 'Немає'}
         </p>
