@@ -229,6 +229,5 @@ clearBtn.addEventListener("click", () => {
   clearBtn.style.display = "none";
 
   // Повертаємо всі картки
-  renderCards(items);
-  setupCardClick(items);
+  loadCards(PRODUCTS);
 });
