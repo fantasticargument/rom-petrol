@@ -14,11 +14,15 @@ body {
    =========================== */
 
 header {
-  position: relative;
+  position: fixed;
   color: #fff;
   padding: 10px 12px;
   overflow: hidden; /* важливо */
   background: #222;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; 
 }
 
 /* Фоновий анімований шар */
@@ -265,6 +269,7 @@ header::before {
 
 .layout {
   padding: 16px;
+  padding-top: 130px;
 }
 
 .sidebar {
