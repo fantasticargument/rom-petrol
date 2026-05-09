@@ -18,12 +18,10 @@ header {
   position: relative;
   color: #fff;
   padding: 10px 12px;
-   animation: headerFade 1.2s ease forwards;
-  transform-origin: center;
-  overflow: hidden;
+  overflow: hidden; /* важливо */
 }
 
-/* Фоновий шар */
+/* Фоновий анімований шар */
 .header-bg {
   position: absolute;
   inset: 0;
@@ -33,19 +31,20 @@ header {
   animation: headerAnim 1.4s ease-out forwards;
   z-index: 0;
 }
+
 /* Легке затемнення */
 header::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.45);
-  z-index: 1;
   backdrop-filter: blur(2px);
   opacity: 0;
   animation: fadeOverlay 1.4s ease forwards;
+  z-index: 1;
 }
 
-/* Анімація */
+/* Анімація фону */
 @keyframes headerAnim {
   0% {
     opacity: 0;
@@ -61,43 +60,28 @@ header::before {
   }
 }
 
+/* Анімація затемнення */
 @keyframes fadeOverlay {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* Щоб контент був поверх затемнення */
+/* Контент поверх */
 .header-inner {
   position: relative;
-  z-index: 1;
-}
-
-.header-inner {
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 0; /* ← критично */
-  position: relative;
-  z-index: 2;
+  min-width: 0;
 }
 
-/* Верхній рядок: логотип + бургер */
+/* Верхній рядок */
 .header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 0; /* ← критично */
-}
-
-@keyframes headerFade {
-  0% {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  min-width: 0;
 }
 
 /* Логотип */
@@ -133,7 +117,7 @@ header::before {
 #searchInput {
   width: 100%;
   height: 40px;
-  padding: 0px;
+  padding: 0;
   border-radius: 30px;
   border: 2px solid rgba(255,255,255,0.9);
   background: transparent;
