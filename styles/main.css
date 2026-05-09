@@ -99,6 +99,9 @@ header::before {
 
 /* Бургер */
 .burger {
+  position: relative;
+  right: 0;
+  margin-left: auto;
   width: 28px;
   height: 20px;
   display: flex;
