@@ -10,29 +10,51 @@ async function loadData() {
     const response = await fetch(url);
     const data = await response.json();
 
-    PRODUCTS = data.records.map(record => ({
-      id: record.fields.ID || 0, 
-      name: record.fields.Title || "",
-      category: record.fields.Category || "",
-      available: record.fields.Available?.includes("Є") || false,
-      description: record.fields.Description || "",
-      image: record.fields.Images?.[0]?.url || "placeholder.png",
-      code: record.fields.Code || ""
-    }));
+    PRODUCTS = data.records.map(record => {
+      const f = record.fields;
 
-    // Сортування: Є → вгору
+      // 1. ID — перевіряємо кілька варіантів назв
+      const id =
+        f.ID ??
+        f.Id ??
+        f.id ??
+        0;
+
+      // 2. Available — підлаштовуємось під тип
+      const rawAvailable = f.Available;
+      let available = false;
+
+      if (typeof rawAvailable === 'string') {
+        available = rawAvailable.includes('Є');
+      } else {
+        available = !!rawAvailable; // якщо checkbox / boolean
+      }
+
+      return {
+        id: Number(id) || 0,
+        name: f.Title || "",
+        category: f.Category || "",
+        available,
+        description: f.Description || "",
+        image: f.Images?.[0]?.url || "placeholder.png",
+        code: f.Code || ""
+      };
+    });
+
+    // Для контролю — подивимось у консоль
+    console.log('PRODUCTS after map:', PRODUCTS);
+
+    // Сортування: Є → вгору, всередині — за ID
     PRODUCTS.sort((a, b) => {
-  // 1. Спочатку — за наявністю (булеве поле)
-  const aA = a.available ? 1 : 0;
-  const bA = b.available ? 1 : 0;
+      const aA = a.available ? 1 : 0;
+      const bA = b.available ? 1 : 0;
 
-  if (aA !== bA) return bA - aA; // Є → вгору, Немає → вниз
+      if (aA !== bA) return bA - aA; // Є в наявності → вгору
 
-  // 2. Якщо наявність однакова — за ID з Airtable
-  return (a.id || 0) - (b.id || 0);
-});
+      return a.id - b.id; // порядок Airtable
+    });
 
-
+    console.log('PRODUCTS after sort:', PRODUCTS);
 
     loadCards(PRODUCTS);
     buildSidebarCategories();
