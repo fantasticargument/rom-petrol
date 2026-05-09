@@ -122,6 +122,7 @@ header::before {
   background: transparent;
   color: #fff;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
 #searchInput::placeholder {
