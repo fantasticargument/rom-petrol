@@ -20,17 +20,45 @@ header {
   padding: 10px 12px;
    animation: headerFade 1.2s ease forwards;
   transform-origin: center;
+  overflow: hidden;
 }
 
+/* Фоновий шар */
+.header-bg {
+  position: absolute;
+  inset: 0;
+  background: url("images/header-bg.jpg") right center/contain no-repeat;
+  opacity: 0;
+  transform: translateX(40px) scale(1.05);
+  animation: headerAnim 1.4s ease-out forwards;
+  z-index: 0;
+}
 /* Легке затемнення */
 header::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.45);
+  z-index: 1;
   backdrop-filter: blur(2px);
   opacity: 0;
-  animation: fadeOverlay 1.2s ease forwards;
+  animation: fadeOverlay 1.4s ease forwards;
+}
+
+/* Анімація */
+@keyframes headerAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(40px) scale(1.05);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(0) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }
 
 @keyframes fadeOverlay {
