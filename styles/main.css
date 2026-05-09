@@ -234,15 +234,6 @@ header,
   color: #ffd700;
 }
 
-.menu-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 36px;
-  color: #fff;
-  cursor: pointer;
-}
-
 #mobileCategoryList::-webkit-scrollbar {
   width: 6px;
 }
