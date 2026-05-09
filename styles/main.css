@@ -109,11 +109,13 @@ header,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
   gap: 4px;
   cursor: pointer;
 }
 
 .burger span {
+  width: 26px;
   height: 3px;
   background: #fff;
   border-radius: 2px;
