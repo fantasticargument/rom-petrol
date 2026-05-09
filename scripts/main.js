@@ -55,16 +55,22 @@ function buildMobileMenuCategories() {
 
   const categories = [...new Set(PRODUCTS.map(p => p.category))];
 
-  mobileList.innerHTML = categories
-    .map(cat => `<li data-category="${cat}">${cat}</li>`)
-    .join("");
+  mobileList.innerHTML = `
+    <li data-category="all">Всі категорії</li>
+    ${categories.map(cat => `<li data-category="${cat}">${cat}</li>`).join("")}
+  `;
 
   // Додаємо кліки
   mobileList.querySelectorAll('li').forEach(item => {
     item.addEventListener('click', () => {
       menuOverlay.classList.remove('active');
       document.body.style.overflow = '';
-      filterByCategory(item.dataset.category);
+
+      if (item.dataset.category === "all") {
+        loadCards(PRODUCTS); // ← показуємо всі картки
+      } else {
+        filterByCategory(item.dataset.category);
+      }
     });
   });
 }
