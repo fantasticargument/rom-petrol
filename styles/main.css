@@ -26,7 +26,7 @@ header {
   inset: 0;
   background: url("images/header-desktop.jpg") center/cover no-repeat;
   opacity: 0;
-  transform: translateX(40px) scale(1.05);
+  transform: translateY(-40px) scale(1.05);
   animation: headerAnim 1.4s ease-out forwards;
   z-index: 0;
 }
@@ -47,15 +47,15 @@ header::before {
 @keyframes headerAnim {
   0% {
     opacity: 0;
-    transform: translateX(40px) scale(1.05);
+    transform: translateY(-40px) scale(1.05); /* ← старт зверху */
   }
   60% {
     opacity: 1;
-    transform: translateX(0) scale(1.02);
+    transform: translateY(0) scale(1.02);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
