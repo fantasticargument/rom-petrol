@@ -66,8 +66,8 @@ header {
 
 #searchInput {
   width: 100%;
-  height: 0px;
-  padding: 0 14px;
+  height: 40px;
+  padding: 0px;
   border-radius: 30px;
   border: 2px solid rgba(255,255,255,0.9);
   background: transparent;
