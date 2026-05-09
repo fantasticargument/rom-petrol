@@ -184,16 +184,14 @@ header::before {
 }
 
 #mobileCategoryList {
-  max-height: 65vh; /* компактний список */
-  overflow-y: auto;
-  padding: 12px 0;
-  margin: 0 0 20px 0;
-
+  margin: 20px auto;
+  padding: 10px 16px;
   background: rgba(0,0,0,0.35);
   border-radius: 12px;
-
-  padding-left: 16px;  /* відступи всередині */
-  padding-right: 16px;
+  width: 90%;
+  max-width: 360px;
+  overflow: visible;
+  max-height: none;
 }
 
 .menu-content ul {
@@ -211,8 +209,8 @@ header::before {
 }
 
 #mobileCategoryList li {
-  padding: 12px 0;
-  font-size: 22px;
+  padding: 8px 0;
+  font-size: 18px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
@@ -245,6 +243,21 @@ header::before {
 #mobileCategoryList::-webkit-scrollbar-thumb:hover {
   background: rgba(255,255,255,0.5);
 }
+
+@media (max-height: 700px) {
+  #mobileCategoryList li {
+    font-size: 16px;
+    padding: 6px 0;
+  }
+}
+
+@media (max-height: 600px) {
+  #mobileCategoryList li {
+    font-size: 14px;
+    padding: 5px 0;
+  }
+}
+
 
 /* ===========================
    4. LAYOUT (Mobile First)
