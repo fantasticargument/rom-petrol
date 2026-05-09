@@ -304,6 +304,14 @@ header,
   margin: 10px 0;
 }
 
+.card-body {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+}
+
 .availability.yes { color: green; }
 .availability.no { color: red; }
 
