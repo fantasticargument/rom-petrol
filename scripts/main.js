@@ -29,6 +29,7 @@ async function loadData() {
 
     loadCards(PRODUCTS);
     buildSidebarCategories();
+    buildMobileMenuCategories();
 
   } catch (err) {
     console.error("Помилка завантаження даних:", err);
@@ -46,6 +47,26 @@ function buildSidebarCategories() {
   sidebarList.innerHTML = categories
     .map(cat => `<li data-category="${cat}">${cat}</li>`)
     .join("");
+}
+
+function buildMobileMenuCategories() {
+  const mobileList = document.getElementById('mobileCategoryList');
+  if (!mobileList) return;
+
+  const categories = [...new Set(PRODUCTS.map(p => p.category))];
+
+  mobileList.innerHTML = categories
+    .map(cat => `<li data-category="${cat}">${cat}</li>`)
+    .join("");
+
+  // Додаємо кліки
+  mobileList.querySelectorAll('li').forEach(item => {
+    item.addEventListener('click', () => {
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+      filterByCategory(item.dataset.category);
+    });
+  });
 }
 
 
