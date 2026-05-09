@@ -19,6 +19,10 @@ header {
   padding: 10px 12px;
 }
 
+.header-inner {
+  min-width: 0;      /* ← щоб контейнер не розтягувався */
+}
+
 .header-inner,
 .header-top {
   max-width: 100%;
@@ -31,6 +35,7 @@ header {
   justify-content: space-between;
   align-items: center;
   flex-shrink: 1;
+  min-width: 0; 
 }
 
 /* Логотип */
