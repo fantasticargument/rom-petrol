@@ -186,7 +186,6 @@ header::before {
 #mobileCategoryList {
   margin: 20px auto;
   padding: 10px 16px;
-  background: rgba(0,0,0,0.35);
   border-radius: 12px;
   width: 90%;
   max-width: 360px;
