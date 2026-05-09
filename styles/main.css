@@ -19,10 +19,10 @@ header {
   padding: 10px 12px;
 }
 
-.header-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.header-inner,
+.header-top {
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* Верхній рядок: логотип + бургер */
@@ -30,13 +30,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 1;
 }
 
 /* Логотип */
 .site-title {
-  margin: 0;
-  font-size: 22px;
   white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* Бургер */
