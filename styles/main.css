@@ -18,6 +18,8 @@ header {
   position: relative;
   color: #fff;
   padding: 10px 12px;
+   animation: headerFade 1.2s ease forwards;
+  transform-origin: center;
 }
 
 /* Легке затемнення */
@@ -27,7 +29,13 @@ header::before {
   inset: 0;
   background: rgba(0,0,0,0.45);
   backdrop-filter: blur(2px);
-  z-index: 0;
+  opacity: 0;
+  animation: fadeOverlay 1.2s ease forwards;
+}
+
+@keyframes fadeOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* Щоб контент був поверх затемнення */
@@ -41,6 +49,8 @@ header::before {
   flex-direction: column;
   gap: 10px;
   min-width: 0; /* ← критично */
+  position: relative;
+  z-index: 2;
 }
 
 /* Верхній рядок: логотип + бургер */
@@ -49,6 +59,17 @@ header::before {
   justify-content: space-between;
   align-items: center;
   min-width: 0; /* ← критично */
+}
+
+@keyframes headerFade {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Логотип */
