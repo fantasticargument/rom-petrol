@@ -216,6 +216,11 @@ clearBtn.addEventListener("click", () => {
 const modalOverlay = document.querySelector('.overlay');
 const modalClose = document.querySelector('.close');
 
+function isInFavorites(item) {
+  const favs = JSON.parse(localStorage.getItem("favorites")) || [];
+  return favs.some(f => f.id === item.id);
+}
+
 function openModal(item) {
   // Заповнення модалки
   document.getElementById('modalImage').src = item.image || "images/placeholder.png";
