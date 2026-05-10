@@ -264,9 +264,18 @@ scrollBtn.addEventListener('click', () => {
 function addToFavorites(item) {
   let favs = JSON.parse(localStorage.getItem("favorites")) || [];
 
-  // Перевірка, щоб не дублювати
-  if (!favs.find(f => f.id === item.id)) {
-    favs.push(item);
+  const normalized = {
+    id: item.id,
+    name: item.name,
+    category: item.category,
+    available: item.available,
+    description: item.description,
+    code: item.code || "",
+    image: item.image || "images/placeholder.png"
+  };
+
+  if (!favs.find(f => f.id === normalized.id)) {
+    favs.push(normalized);
     localStorage.setItem("favorites", JSON.stringify(favs));
   }
 }
