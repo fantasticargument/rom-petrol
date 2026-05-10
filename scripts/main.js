@@ -226,7 +226,8 @@ function openModal(item) {
   document.querySelector('.modal-code').textContent = item.code || "";
   modalOverlay.classList.add('active');  
   document.querySelector('.add-fav-btn').onclick = () => {
-  addToFavorites(item);
+  addToFavorites(item);  
+};
   document.querySelector(".add-fav-btn").addEventListener("click", function () {
     const btn = this;
 
@@ -244,8 +245,6 @@ function openModal(item) {
       Додано
     `;
 });
-
-};
 
 }
 
