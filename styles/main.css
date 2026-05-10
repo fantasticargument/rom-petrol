@@ -105,7 +105,6 @@ header,
   stroke: white !important;
   width: 26px;
   height: 26px;
-  filter: invert(1);
   opacity: 0.9;
   cursor: pointer;
   transition: 0.2s ease;
