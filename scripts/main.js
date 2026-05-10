@@ -97,7 +97,7 @@ function loadCards(data) {
     card.className = 'card';
 
     card.innerHTML = `
-      <img src="${item.image}" alt="${item.name}">
+      <img src="${item.image || 'images/placeholder.png'}" alt="${item.name}">
       <div class="card-body">
         <p class="category">${item.category}</p>
         <h3>${item.name}</h3>
@@ -217,15 +217,14 @@ const modalOverlay = document.querySelector('.overlay');
 const modalClose = document.querySelector('.close');
 
 function openModal(item) {
-  document.getElementById('modalImage').src = item.image;
+  document.getElementById('modalImage').src = item.image || "images/placeholder.png";
   document.querySelector('.modal-title').textContent = item.name;
   document.querySelector('.modal-category').textContent = item.category;
   document.querySelector('.modal-availability').textContent =
     item.available ? 'Є в наявності' : 'Немає';
   document.querySelector('.modal-description').textContent = item.description;
-
-  modalOverlay.classList.add('active');
-  
+  document.querySelector('.modal-code').textContent = item.code || "";
+  modalOverlay.classList.add('active');  
   document.querySelector('.add-fav-btn').onclick = () => {
   addToFavorites(item);
 };
