@@ -87,9 +87,11 @@ const cardsContainer = document.querySelector('.cards');
 function loadCards(data) {
   if (!cardsContainer) return;
 
+  // 1. Перед рендером — ховаємо картки
   cardsContainer.classList.remove("loaded");
   cardsContainer.innerHTML = '';
 
+  // 2. Рендеримо картки
   data.forEach(item => {
     const card = document.createElement('div');
     card.className = 'card';
@@ -107,11 +109,14 @@ function loadCards(data) {
 
     card.addEventListener('click', () => openModal(item));
     cardsContainer.appendChild(card);
+  });
 
-     requestAnimationFrame(() => {
-    cardsContainer.classList.add("loaded");
+  // 3. Дозволяємо браузеру перемалювати DOM
+  requestAnimationFrame(() => {
+    cardsContainer.classList.add("loaded"); // ← плавна поява
   });
-  });
+}
+
 
   // ДАЄМО БРАУЗЕРУ 1 КАДР НА ПЕРЕМАЛЮВАННЯ
   setTimeout(() => {
