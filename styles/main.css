@@ -95,6 +95,27 @@ header,
   min-width: 0;
 }
 
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.fav-icon {
+  width: 26px;
+  height: 26px;
+  filter: invert(1);
+  opacity: 0.9;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.fav-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+
 /* Логотип */
 .site-title {
   margin: 0;
