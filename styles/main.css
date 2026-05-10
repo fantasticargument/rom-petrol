@@ -138,9 +138,10 @@ header,
 .burger span {
   width: 26px;
   height: 3px;
-  background: white;     /* ← завжди білий */
+  background: #fff !important;     /* ← завжди білий */
   border-radius: 2px;
   transition: 0.2s ease;
+  box-shadow: 0 0 2px rgba(0,0,0,0.8);
 }
 
 /* Пошук */
