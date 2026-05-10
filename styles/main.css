@@ -483,19 +483,20 @@ header,
   align-items: center;
   gap: 6px;
 
-  background: #ff4444;
-  color: #fff;
+  background: #e0e0e0;      /* світло‑сіра */
+  color: #222;              /* темний текст */
   border: none;
   padding: 8px 12px;
   border-radius: 8px;
 
   cursor: pointer;
   font-size: 15px;
+  font-weight: bold;
   transition: 0.2s ease;
 }
 
 .add-fav-btn:hover {
-  background: #ff2222;
+  background: #cfcfcf;      /* темніший сірий при наведенні */
 }
 
 /* Іконка в кнопці */
