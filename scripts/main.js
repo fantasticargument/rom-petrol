@@ -217,8 +217,6 @@ const modalOverlay = document.querySelector('.overlay');
 const modalClose = document.querySelector('.close');
 
 function openModal(item) {
-  if (!modalOverlay) return;
-
   document.getElementById('modalImage').src = item.image;
   document.querySelector('.modal-title').textContent = item.name;
   document.querySelector('.modal-category').textContent = item.category;
@@ -226,22 +224,18 @@ function openModal(item) {
     item.available ? 'Є в наявності' : 'Немає';
   document.querySelector('.modal-description').textContent = item.description;
 
-  modalOverlay.classList.remove('hidden');
+  modalOverlay.classList.add('active');
 }
 
-if (modalClose) {
-  modalClose.addEventListener('click', () => {
-    modalOverlay.classList.add('hidden');
-  });
-}
+modalClose.addEventListener('click', () => {
+  modalOverlay.classList.remove('active');
+});
 
-if (modalOverlay) {
-  modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-      modalOverlay.classList.add('hidden');
-    }
-  });
-}
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) {
+    modalOverlay.classList.remove('active');
+  }
+});
 
 
 // ===============================
