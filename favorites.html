@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Обрані товари</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1 class="site-title">Обрані товари</h1>
+  </div>
+</header>
+
+<div class="layout">
+  <main class="content-area">
+    <div class="cards" id="favCards"></div>
+  </main>
+</div>
+
+<script>
+  const favCards = document.getElementById("favCards");
+  const favs = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  function renderFavs() {
+    favCards.innerHTML = "";
+
+    favs.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${item.image}">
+        <div class="card-body">
+          <p class="category">${item.category}</p>
+          <h3>${item.name}</h3>
+          <p class="availability ${item.available ? 'yes' : 'no'}">
+            ${item.available ? 'Є в наявності' : 'Немає'}
+          </p>
+        </div>
+      `;
+
+      favCards.appendChild(card);
+    });
+  }
+
+  renderFavs();
+</script>
+
+</body>
+</html>
