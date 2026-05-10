@@ -225,6 +225,11 @@ function openModal(item) {
   document.querySelector('.modal-description').textContent = item.description;
 
   modalOverlay.classList.add('active');
+
+  document.querySelector('.add-fav-btn').onclick = () => {
+  addToFavorites(item);
+};
+
 }
 
 modalClose.addEventListener('click', () => {
@@ -251,3 +256,17 @@ window.addEventListener('scroll', () => {
 scrollBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// ===============================
+// Додати в обране
+// ===============================
+
+function addToFavorites(item) {
+  let favs = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  // Перевірка, щоб не дублювати
+  if (!favs.find(f => f.id === item.id)) {
+    favs.push(item);
+    localStorage.setItem("favorites", JSON.stringify(favs));
+  }
+}
