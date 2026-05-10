@@ -283,8 +283,13 @@ header,
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
+.cards.loaded {
+  opacity: 1;
+}
 .card {
   background: #fff;
   border-radius: 12px;
