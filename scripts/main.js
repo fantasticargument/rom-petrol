@@ -225,7 +225,7 @@ function openModal(item) {
   document.querySelector('.modal-description').textContent = item.description;
 
   modalOverlay.classList.add('active');
-
+  
   document.querySelector('.add-fav-btn').onclick = () => {
   addToFavorites(item);
 };
