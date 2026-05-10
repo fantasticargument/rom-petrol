@@ -109,11 +109,11 @@ function loadCards(data) {
     cardsContainer.appendChild(card);
   });
 
-  requestAnimationFrame(() => {
+  // ДАЄМО БРАУЗЕРУ 1 КАДР НА ПЕРЕМАЛЮВАННЯ
+  setTimeout(() => {
     cardsContainer.classList.add("loaded");
-  });
+  }, 0);
 }
-
 
 // ===============================
 // ФІЛЬТРАЦІЯ КАТЕГОРІЙ
