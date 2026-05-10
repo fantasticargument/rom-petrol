@@ -31,15 +31,15 @@
       card.className = "card";
 
       card.innerHTML = `
-        <img src="${item.image}">
-        <div class="card-body">
-          <p class="category">${item.category}</p>
-          <h3>${item.name}</h3>
-          <p class="availability ${item.available ? 'yes' : 'no'}">
-            ${item.available ? 'Є в наявності' : 'Немає'}
-          </p>
-        </div>
-      `;
+    <img src="${item.image || 'images/placeholder.png'}">
+    <div class="card-body">
+        <p class="category">${item.category}</p>
+        <h3>${item.name}</h3>
+        <p class="availability ${item.available ? 'yes' : 'no'}">
+        ${item.available ? 'Є в наявності' : 'Немає'}
+        </p>
+    </div>
+    `;
 
       favCards.appendChild(card);
     });
