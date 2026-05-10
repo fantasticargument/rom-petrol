@@ -50,6 +50,7 @@
           Немає обраних товарів. Поверніться на головну і додайте щось в обране.
         </div>
       `;
+      favCards.classList.add("loaded");   /* ← ДОДАНО */
       return;
     }
 
@@ -72,6 +73,8 @@
 
       favCards.appendChild(card);
     });
+
+    favCards.classList.add("loaded");   /* ← ГОЛОВНЕ ВИПРАВЛЕННЯ */
   }
 
   document.addEventListener("DOMContentLoaded", renderFavs);
