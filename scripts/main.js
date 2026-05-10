@@ -227,7 +227,6 @@ function openModal(item) {
   modalOverlay.classList.add('active');  
   document.querySelector('.add-fav-btn').onclick = () => {
   addToFavorites(item);  
-};
   document.querySelector(".add-fav-btn").addEventListener("click", function () {
     const btn = this;
 
@@ -246,6 +245,8 @@ function openModal(item) {
     `;
 });
 
+};
+  
 }
 
 modalClose.addEventListener('click', () => {
