@@ -217,6 +217,7 @@ const modalOverlay = document.querySelector('.overlay');
 const modalClose = document.querySelector('.close');
 
 function openModal(item) {
+  // Заповнення модалки
   document.getElementById('modalImage').src = item.image || "images/placeholder.png";
   document.querySelector('.modal-title').textContent = item.name;
   document.querySelector('.modal-category').textContent = item.category;
@@ -224,18 +225,39 @@ function openModal(item) {
     item.available ? 'Є в наявності' : 'Немає';
   document.querySelector('.modal-description').textContent = item.description;
   document.querySelector('.modal-code').textContent = item.code || "";
-  modalOverlay.classList.add('active');  
-  document.querySelector('.add-fav-btn').onclick = () => {
-  addToFavorites(item);  
-  document.querySelector(".add-fav-btn").addEventListener("click", function () {
-    const btn = this;
+
+  // Показуємо модалку
+  modalOverlay.classList.add('active');
+
+  // Кнопка
+  const btn = document.querySelector('.add-fav-btn');
+
+  // Скидаємо кнопку до початкового стану
+  btn.classList.remove("added");
+  btn.innerHTML = `
+    <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round"
+         stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1"></circle>
+      <circle cx="20" cy="21" r="1"></circle>
+      <path d="M1 1h4l2.68 12.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+    </svg>
+    Додати в обране
+  `;
+
+  // Видаляємо старі слухачі, щоб не дублювалися
+  btn.replaceWith(btn.cloneNode(true));
+  const newBtn = document.querySelector('.add-fav-btn');
+
+  // Додаємо новий слухач
+  newBtn.addEventListener("click", function () {
 
     // Додаємо товар у обране
-    addToFavorites(currentItem); // твоя змінна item / currentItem
+    addToFavorites(item);
 
-    // Змінюємо кнопку
-    btn.classList.add("added");
-    btn.innerHTML = `
+    // Змінюємо кнопку на "Додано"
+    newBtn.classList.add("added");
+    newBtn.innerHTML = `
       <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round"
            stroke-linejoin="round">
@@ -243,11 +265,9 @@ function openModal(item) {
       </svg>
       Додано
     `;
-});
-
-};
-  
+  });
 }
+
 
 modalClose.addEventListener('click', () => {
   modalOverlay.classList.remove('active');
