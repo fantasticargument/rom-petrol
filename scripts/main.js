@@ -236,7 +236,7 @@ function openModal(item) {
   // Кнопка
   let btn = document.querySelector('.add-fav-btn');
 
-  // Скидаємо кнопку до початкового стану
+  // Скидаємо кнопку
   btn.classList.remove("added");
   btn.innerHTML = `
     <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
@@ -266,16 +266,31 @@ function openModal(item) {
   btn.replaceWith(btn.cloneNode(true));
   btn = document.querySelector('.add-fav-btn');
 
-  // Додаємо новий слухач
+  // Додаємо новий слухач — toggle
   btn.addEventListener("click", function () {
 
-    // Якщо вже в обраному — нічого не робимо
-    if (isInFavorites(item)) return;
+    // Якщо товар уже в обраному → видаляємо
+    if (isInFavorites(item)) {
+      removeFromFavorites(item);
 
-    // Додаємо товар у обране
+      // Повертаємо кнопку у початковий стан
+      btn.classList.remove("added");
+      btn.innerHTML = `
+        <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 12.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        Додати в обране
+      `;
+      return;
+    }
+
+    // Якщо товар НЕ в обраному → додаємо
     addToFavorites(item);
 
-    // Анімація + галочка
     btn.classList.add("added");
     btn.innerHTML = `
       <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
@@ -286,6 +301,13 @@ function openModal(item) {
       Додано
     `;
   });
+}
+
+
+function removeFromFavorites(item) {
+  let favs = JSON.parse(localStorage.getItem("favorites")) || [];
+  favs = favs.filter(f => f.id !== item.id);
+  localStorage.setItem("favorites", JSON.stringify(favs));
 }
 
 
