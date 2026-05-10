@@ -683,3 +683,7 @@ header,
     padding: 20px 120px;
   }
 }
+
+.burger span {
+  background: #fff !important;
+}
