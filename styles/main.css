@@ -449,6 +449,33 @@ header,
   object-fit: contain;
 }
 
+.fav-icon {
+  width: 26px;
+  height: 26px;
+  stroke: white;      /* колір ліній */
+  transition: 0.2s;
+}
+
+.fav-icon:hover {
+  stroke: #ffcc00;
+  transform: scale(1.1);
+}
+
+.fav-icon,
+.fav-icon-small {
+  width: 26px;
+  height: 26px;
+  stroke: white;
+  transition: 0.2s ease;
+}
+
+.fav-icon:hover,
+.fav-icon-small:hover {
+  stroke: #ffcc00;
+  transform: scale(1.1);
+}
+
+
 @media (max-width: 600px) {
   .modal-img {
     max-height: 200px;
