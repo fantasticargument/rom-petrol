@@ -446,6 +446,7 @@ header,
 /* Категорія */
 .modal-category {
   font-size: 15px;
+  font-weight: bold;
   color: #555;
   margin: 0;
   text-align: left;
@@ -469,8 +470,9 @@ header,
 
 /* Код */
 .modal-code {
-  font-size: 14px;
-  color: #444;
+  font-size: 15px;
+  font-weight: bold;
+  color: #555;
   margin: 0;
   text-align: left;
 }
