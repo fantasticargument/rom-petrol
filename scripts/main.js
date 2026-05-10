@@ -13,22 +13,14 @@ async function loadData() {
     PRODUCTS = data.records.map(record => {
       const f = record.fields;
 
-      // 1. ID — перевіряємо кілька варіантів назв
-      const id =
-        f.ID ??
-        f.Id ??
-        f.id ??
-        0;
+      // ID з Airtable
+      const id = f.ID ?? f.Id ?? f.id ?? 0;
 
-      // 2. Available — підлаштовуємось під тип
+      // Available (рядок або boolean)
       const rawAvailable = f.Available;
-      let available = false;
-
-      if (typeof rawAvailable === 'string') {
-        available = rawAvailable.includes('Є');
-      } else {
-        available = !!rawAvailable; // якщо checkbox / boolean
-      }
+      const available = typeof rawAvailable === "string"
+        ? rawAvailable.includes("Є")
+        : !!rawAvailable;
 
       return {
         id: Number(id) || 0,
@@ -41,20 +33,14 @@ async function loadData() {
       };
     });
 
-    // Для контролю — подивимось у консоль
-    console.log('PRODUCTS after map:', PRODUCTS);
-
     // Сортування: Є → вгору, всередині — за ID
     PRODUCTS.sort((a, b) => {
       const aA = a.available ? 1 : 0;
       const bA = b.available ? 1 : 0;
 
-      if (aA !== bA) return bA - aA; // Є в наявності → вгору
-
-      return a.id - b.id; // порядок Airtable
+      if (aA !== bA) return bA - aA;
+      return a.id - b.id;
     });
-
-    console.log('PRODUCTS after sort:', PRODUCTS);
 
     loadCards(PRODUCTS);
     buildSidebarCategories();
@@ -67,49 +53,6 @@ async function loadData() {
 
 loadData();
 
-function buildSidebarCategories() {
-  const sidebarList = document.getElementById('categoryList');
-  if (!sidebarList) return;
-
-  const categories = [...new Set(PRODUCTS.map(p => p.category))];
-
-  sidebarList.innerHTML = categories
-    .map(cat => `<li data-category="${cat}">${cat}</li>`)
-    .join("");
-}
-
-function buildMobileMenuCategories() {
-  const mobileList = document.getElementById('mobileCategoryList');
-  if (!mobileList) return;
-
-  // Унікальні категорії
-  let categories = [...new Set(PRODUCTS.map(p => p.category))];
-
-  // Алфавітне сортування
-  categories.sort((a, b) => a.localeCompare(b, 'uk'));
-
-  // Формуємо HTML
-  mobileList.innerHTML = `
-    <li data-category="all">Всі категорії</li>
-    ${categories.map(cat => `<li data-category="${cat}">${cat}</li>`).join("")}
-  `;
-
-  // Обробники кліку
-  mobileList.querySelectorAll('li').forEach(item => {
-    item.addEventListener('click', () => {
-      menuOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-
-      if (item.dataset.category === "all") {
-        loadCards(PRODUCTS);
-      } else {
-        filterByCategory(item.dataset.category);
-      }
-    });
-  });
-}
-
-
 
 // ===============================
 // ПОВНОЕКРАННЕ МЕНЮ
@@ -117,10 +60,7 @@ function buildMobileMenuCategories() {
 
 const burger = document.querySelector('.burger');
 const menuOverlay = document.querySelector('.menu-overlay');
-const menuClose = document.querySelector('.menu-close');
-const menuItems = document.querySelectorAll('.menu-content li');
 
-// Відкрити меню
 if (burger) {
   burger.addEventListener('click', () => {
     menuOverlay.classList.add('active');
@@ -128,16 +68,6 @@ if (burger) {
   });
 }
 
-// Закриття при кліку на пункт меню
-menuItems.forEach(item => {
-  item.addEventListener('click', () => {
-    menuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-    filterByCategory(item.dataset.category);
-  });
-});
-
-// Закриття при кліку по фону
 if (menuOverlay) {
   menuOverlay.addEventListener('click', (e) => {
     if (e.target === menuOverlay) {
@@ -146,6 +76,7 @@ if (menuOverlay) {
     }
   });
 }
+
 
 // ===============================
 // КАРТКИ
@@ -156,6 +87,7 @@ const cardsContainer = document.querySelector('.cards');
 function loadCards(data) {
   if (!cardsContainer) return;
 
+  cardsContainer.classList.remove("loaded");
   cardsContainer.innerHTML = '';
 
   data.forEach(item => {
@@ -176,7 +108,12 @@ function loadCards(data) {
     card.addEventListener('click', () => openModal(item));
     cardsContainer.appendChild(card);
   });
+
+  requestAnimationFrame(() => {
+    cardsContainer.classList.add("loaded");
+  });
 }
+
 
 // ===============================
 // ФІЛЬТРАЦІЯ КАТЕГОРІЙ
@@ -190,16 +127,59 @@ function filterByCategory(category) {
   loadCards(filtered);
 }
 
-// Sidebar (десктоп)
-const sidebarList = document.getElementById('categoryList');
 
-if (sidebarList) {
+// ===============================
+// САЙДБАР
+// ===============================
+
+function buildSidebarCategories() {
+  const sidebarList = document.getElementById('categoryList');
+  if (!sidebarList) return;
+
+  const categories = [...new Set(PRODUCTS.map(p => p.category))];
+
+  sidebarList.innerHTML = categories
+    .map(cat => `<li data-category="${cat}">${cat}</li>`)
+    .join("");
+
   sidebarList.addEventListener('click', (e) => {
     if (e.target.tagName === 'LI') {
       filterByCategory(e.target.dataset.category);
     }
   });
 }
+
+
+// ===============================
+// МЕНЮ (МОБІЛЬНЕ)
+// ===============================
+
+function buildMobileMenuCategories() {
+  const mobileList = document.getElementById('mobileCategoryList');
+  if (!mobileList) return;
+
+  let categories = [...new Set(PRODUCTS.map(p => p.category))];
+  categories.sort((a, b) => a.localeCompare(b, 'uk'));
+
+  mobileList.innerHTML = `
+    <li data-category="all">Всі категорії</li>
+    ${categories.map(cat => `<li data-category="${cat}">${cat}</li>`).join("")}
+  `;
+
+  mobileList.querySelectorAll('li').forEach(item => {
+    item.addEventListener('click', () => {
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+
+      if (item.dataset.category === "all") {
+        loadCards(PRODUCTS);
+      } else {
+        filterByCategory(item.dataset.category);
+      }
+    });
+  });
+}
+
 
 // ===============================
 // ПОШУК
@@ -212,12 +192,19 @@ function searchProducts(value) {
   loadCards(filtered);
 }
 
-const searchMobile = document.getElementById('searchInput');
-if (searchMobile) {
-  searchMobile.addEventListener('input', () => {
-    searchProducts(searchMobile.value);
-  });
-}
+const searchInput = document.getElementById("searchInput");
+const clearBtn = document.getElementById("clearSearch");
+
+searchInput.addEventListener("input", () => {
+  clearBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
+  searchProducts(searchInput.value);
+});
+
+clearBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  clearBtn.style.display = "none";
+  loadCards(PRODUCTS);
+});
 
 
 // ===============================
@@ -254,6 +241,7 @@ if (modalOverlay) {
   });
 }
 
+
 // ===============================
 // КНОПКА ВГОРУ
 // ===============================
@@ -261,27 +249,9 @@ if (modalOverlay) {
 const scrollBtn = document.getElementById('scrollTopBtn');
 
 window.addEventListener('scroll', () => {
-  if (!scrollBtn) return;
   scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
 });
 
-if (scrollBtn) {
-  scrollBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-const searchInput = document.getElementById("searchInput");
-const clearBtn = document.getElementById("clearSearch");
-
-searchInput.addEventListener("input", () => {
-  clearBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
-});
-
-clearBtn.addEventListener("click", () => {
-  searchInput.value = "";
-  clearBtn.style.display = "none";
-
-  // Повертаємо всі картки
-  loadCards(PRODUCTS);
+scrollBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
