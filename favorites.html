@@ -20,32 +20,61 @@
 </div>
 
 <script>
-  const favCards = document.getElementById("favCards");
-  const favs = JSON.parse(localStorage.getItem("favorites")) || [];
+  function safeGetFavorites() {
+    try {
+      const raw = localStorage.getItem("favorites");
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      console.error("Помилка парсу favorites:", e);
+      return [];
+    }
+  }
 
   function renderFavs() {
+    const favCards = document.getElementById("favCards");
+    if (!favCards) {
+      console.error("Не знайдено #favCards");
+      return;
+    }
+
+    const favs = safeGetFavorites();
+    console.log("Обрані з localStorage:", favs);
+
     favCards.innerHTML = "";
+
+    if (!favs.length) {
+      favCards.innerHTML = `
+        <div class="empty-favs">
+          Немає обраних товарів. Поверніться на головну і додайте щось в обране.
+        </div>
+      `;
+      return;
+    }
 
     favs.forEach(item => {
       const card = document.createElement("div");
       card.className = "card";
 
+      const imgSrc = item.image || "images/placeholder.png";
+
       card.innerHTML = `
-    <img src="${item.image || 'images/placeholder.png'}">
-    <div class="card-body">
-        <p class="category">${item.category}</p>
-        <h3>${item.name}</h3>
-        <p class="availability ${item.available ? 'yes' : 'no'}">
-        ${item.available ? 'Є в наявності' : 'Немає'}
-        </p>
-    </div>
-    `;
+        <img src="${imgSrc}" alt="${item.name || ''}">
+        <div class="card-body">
+          <p class="category">${item.category || ''}</p>
+          <h3>${item.name || ''}</h3>
+          <p class="availability ${item.available ? 'yes' : 'no'}">
+            ${item.available ? 'Є в наявності' : 'Немає'}
+          </p>
+        </div>
+      `;
 
       favCards.appendChild(card);
     });
   }
 
-  renderFavs();
+  document.addEventListener("DOMContentLoaded", renderFavs);
 </script>
 
 </body>
