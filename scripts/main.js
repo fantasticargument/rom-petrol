@@ -107,6 +107,10 @@ function loadCards(data) {
 
     card.addEventListener('click', () => openModal(item));
     cardsContainer.appendChild(card);
+
+     requestAnimationFrame(() => {
+    cardsContainer.classList.add("loaded");
+  });
   });
 
   // ДАЄМО БРАУЗЕРУ 1 КАДР НА ПЕРЕМАЛЮВАННЯ
