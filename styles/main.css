@@ -447,7 +447,7 @@ header,
 .modal-category {
   font-size: 15px;
   font-weight: bold;
-  color: #555;
+  color: #222;
   margin: 0;
   text-align: left;
 }
@@ -472,7 +472,7 @@ header,
 .modal-code {
   font-size: 15px;
   font-weight: bold;
-  color: #555;
+  color: #222;
   margin: 0;
   text-align: left;
 }
