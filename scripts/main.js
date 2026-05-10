@@ -226,11 +226,10 @@ function openModal(item) {
   document.querySelector('.modal-description').textContent = item.description;
   document.querySelector('.modal-code').textContent = item.code || "";
 
-  // Показуємо модалку
   modalOverlay.classList.add('active');
 
   // Кнопка
-  const btn = document.querySelector('.add-fav-btn');
+  let btn = document.querySelector('.add-fav-btn');
 
   // Скидаємо кнопку до початкового стану
   btn.classList.remove("added");
@@ -245,19 +244,35 @@ function openModal(item) {
     Додати в обране
   `;
 
-  // Видаляємо старі слухачі, щоб не дублювалися
+  // Якщо товар уже в обраному → одразу показуємо "Додано"
+  if (isInFavorites(item)) {
+    btn.classList.add("added");
+    btn.innerHTML = `
+      <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"></path>
+      </svg>
+      Додано
+    `;
+  }
+
+  // Видаляємо старі слухачі
   btn.replaceWith(btn.cloneNode(true));
-  const newBtn = document.querySelector('.add-fav-btn');
+  btn = document.querySelector('.add-fav-btn');
 
   // Додаємо новий слухач
-  newBtn.addEventListener("click", function () {
+  btn.addEventListener("click", function () {
+
+    // Якщо вже в обраному — нічого не робимо
+    if (isInFavorites(item)) return;
 
     // Додаємо товар у обране
     addToFavorites(item);
 
-    // Змінюємо кнопку на "Додано"
-    newBtn.classList.add("added");
-    newBtn.innerHTML = `
+    // Анімація + галочка
+    btn.classList.add("added");
+    btn.innerHTML = `
       <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round"
            stroke-linejoin="round">
