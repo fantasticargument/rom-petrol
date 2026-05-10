@@ -380,6 +380,7 @@ header,
   position: relative;
 }
 
+/* Кнопка закриття */
 .modal .close {
   position: absolute;
   top: 10px;
@@ -405,32 +406,89 @@ header,
   z-index: 10;
 }
 
-.modal-description {
-  text-align: justify;
-  line-height: 1.55;
-  font-size: 16px;
-  color: #333;
-  text-indent: 12px; /* відступ першого рядка */
-}
-
 .modal .close:hover {
   background: rgba(0,0,0,0.8);
   transform: scale(1.1);
 }
 
-.add-fav-btn {
+/* Фото */
+.modal-img {
+  width: 100%;
+  object-fit: contain;
+}
+
+/* ===========================
+   НОВА СТРУКТУРА HEADER
+   =========================== */
+
+.modal-header {
   margin-top: 12px;
+  padding: 0 4px;
+}
+
+/* Назва по центру */
+.modal-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 0 12px;
+  color: #222;
+}
+
+/* Горизонтальні ряди */
+.modal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0;
+}
+
+/* Категорія */
+.modal-category {
+  font-size: 15px;
+  color: #555;
+  margin: 0;
+  text-align: left;
+}
+
+/* Наявність */
+.modal-availability {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+  text-align: right;
+}
+
+.modal-availability.yes {
+  color: green;
+}
+
+.modal-availability.no {
+  color: red;
+}
+
+/* Код */
+.modal-code {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+  text-align: left;
+}
+
+/* Кнопка "Додати в обране" */
+.add-fav-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 
   background: #ff4444;
   color: #fff;
   border: none;
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: 8px;
+
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   transition: 0.2s ease;
 }
 
@@ -438,44 +496,28 @@ header,
   background: #ff2222;
 }
 
+/* Іконка в кнопці */
 .fav-icon-small {
   width: 20px;
   height: 20px;
-  filter: invert(1);
-}
-
-.modal-img {
-  width: 100%;
-  object-fit: contain;
-}
-
-.fav-icon {
-  width: 26px;
-  height: 26px;
-  stroke: white;      /* колір ліній */
-  transition: 0.2s;
-}
-
-.fav-icon:hover {
-  stroke: #ffcc00;
-  transform: scale(1.1);
-}
-
-.fav-icon,
-.fav-icon-small {
-  width: 26px;
-  height: 26px;
   stroke: white;
   transition: 0.2s ease;
 }
 
-.fav-icon:hover,
 .fav-icon-small:hover {
   stroke: #ffcc00;
-  transform: scale(1.1);
 }
 
+/* Опис */
+.modal-description {
+  text-align: justify;
+  line-height: 1.55;
+  font-size: 16px;
+  color: #333;
+  text-indent: 12px;
+}
 
+/* Адаптивність */
 @media (max-width: 600px) {
   .modal-img {
     max-height: 200px;
