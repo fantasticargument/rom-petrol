@@ -102,6 +102,7 @@ header,
 }
 
 .fav-icon {
+  stroke: white !important;
   width: 26px;
   height: 26px;
   filter: invert(1);
@@ -141,10 +142,6 @@ header,
   background: white;     /* ← завжди білий */
   border-radius: 2px;
   transition: 0.2s ease;
-}
-
-.fav-icon {
-  stroke: white !important;
 }
 
 /* Пошук */
