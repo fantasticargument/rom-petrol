@@ -227,6 +227,24 @@ function openModal(item) {
   modalOverlay.classList.add('active');  
   document.querySelector('.add-fav-btn').onclick = () => {
   addToFavorites(item);
+  document.querySelector(".add-fav-btn").addEventListener("click", function () {
+    const btn = this;
+
+    // Додаємо товар у обране
+    addToFavorites(currentItem); // твоя змінна item / currentItem
+
+    // Змінюємо кнопку
+    btn.classList.add("added");
+    btn.innerHTML = `
+      <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"></path>
+      </svg>
+      Додано
+    `;
+});
+
 };
 
 }
