@@ -1,4 +1,15 @@
 // ===============================
+// ГЛОБАЛЬНІ ЕЛЕМЕНТИ
+// ===============================
+const cardsContainer = document.querySelector('.cards');
+const menuOverlay = document.querySelector('.menu-overlay');
+const burger = document.querySelector('.burger');
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+let PRODUCTS = [];
+let currentItem = null;
+
+// ===============================
 // БЕЗПЕЧНЕ ЗЧИТУВАННЯ ОБРАНОГО
 // ===============================
 function safeGetFavorites() {
@@ -56,6 +67,99 @@ function removeFromFavorites(item) {
 }
 
 // ===============================
+// РЕНДЕР КАРТОК
+// ===============================
+function loadCards(data) {
+  if (!cardsContainer) return;
+
+  cardsContainer.classList.remove("loaded");
+  cardsContainer.innerHTML = '';
+
+  data.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    card.innerHTML = `
+      <img src="${item.image || 'images/placeholder.png'}" alt="${item.name}">
+      <div class="card-body">
+        <p class="category">${item.category}</p>
+        <h3>${item.name}</h3>
+        <p class="availability ${item.available ? 'yes' : 'no'}">
+          ${item.available ? 'Є в наявності' : 'Немає'}
+        </p>
+      </div>
+    `;
+
+    card.addEventListener('click', () => openModal(item));
+    cardsContainer.appendChild(card);
+  });
+
+  requestAnimationFrame(() => {
+    cardsContainer.classList.add("loaded");
+  });
+}
+
+// ===============================
+// ФІЛЬТР ЗА КАТЕГОРІЄЮ
+// ===============================
+function filterByCategory(category) {
+  if (category === "all") {
+    loadCards(PRODUCTS);
+  } else {
+    loadCards(PRODUCTS.filter(p => p.category === category));
+  }
+}
+
+// ===============================
+// САЙДБАР КАТЕГОРІЙ
+// ===============================
+function buildSidebarCategories() {
+  const sidebarList = document.getElementById('categoryList');
+  if (!sidebarList) return;
+
+  const categories = [...new Set(PRODUCTS.map(p => p.category))];
+
+  sidebarList.innerHTML = categories
+    .map(cat => `<li data-category="${cat}">${cat}</li>`)
+    .join("");
+
+  sidebarList.addEventListener('click', (e) => {
+    if (e.target.tagName === 'LI') {
+      filterByCategory(e.target.dataset.category);
+    }
+  });
+}
+
+// ===============================
+// МОБІЛЬНЕ МЕНЮ КАТЕГОРІЙ
+// ===============================
+function buildMobileMenuCategories() {
+  const mobileList = document.getElementById('mobileCategoryList');
+  if (!mobileList) return;
+
+  let categories = [...new Set(PRODUCTS.map(p => p.category))];
+  categories.sort((a, b) => a.localeCompare(b, 'uk'));
+
+  mobileList.innerHTML = `
+    <li data-category="all">Всі категорії</li>
+    ${categories.map(cat => `<li data-category="${cat}">${cat}</li>`).join("")}
+  `;
+
+  mobileList.querySelectorAll('li').forEach(item => {
+    item.addEventListener('click', () => {
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+
+      if (item.dataset.category === "all") {
+        loadCards(PRODUCTS);
+      } else {
+        filterByCategory(item.dataset.category);
+      }
+    });
+  });
+}
+
+// ===============================
 // ВІДКРИТТЯ МОДАЛКИ
 // ===============================
 function openModal(item) {
@@ -77,9 +181,6 @@ function openModal(item) {
   const btn = document.getElementById("addFavBtn");
   btn.classList.remove("added");
 
-  // ============================
-  // МИ НА СТОРІНЦІ ОБРАНЕ
-  // ============================
   if (typeof IS_FAVORITES_PAGE !== "undefined" && IS_FAVORITES_PAGE) {
     btn.innerHTML = `
       <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
@@ -97,10 +198,6 @@ function openModal(item) {
     };
 
   } else {
-
-    // ============================
-    // МИ НА ГОЛОВНІЙ
-    // ============================
     if (isInFavorites(item)) {
       btn.classList.add("added");
       btn.innerHTML = `
@@ -164,21 +261,19 @@ function closeModal() {
   if (modalOverlay) modalOverlay.classList.remove("active");
 }
 
-const modalOverlay = document.querySelector(".overlay");
+const modalOverlayEl = document.querySelector(".overlay");
 const modalClose = document.querySelector(".close");
 
-if (modalClose) {
-  modalClose.addEventListener("click", closeModal);
-}
+if (modalClose) modalClose.addEventListener("click", closeModal);
 
-if (modalOverlay) {
-  modalOverlay.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) closeModal();
+if (modalOverlayEl) {
+  modalOverlayEl.addEventListener("click", (e) => {
+    if (e.target === modalOverlayEl) closeModal();
   });
 }
 
 // ===============================
-// РЕНДЕР ОБРАНОГО (favorites.html)
+// РЕНДЕР ОБРАНОГО
 // ===============================
 function renderFavs() {
   const favCards = document.getElementById("favCards");
@@ -215,3 +310,101 @@ function renderFavs() {
     favCards.appendChild(card);
   });
 }
+
+// ===============================
+// ПОШУК
+// ===============================
+const searchInput = document.getElementById("searchInput");
+const clearBtn = document.getElementById("clearSearch");
+
+if (searchInput && clearBtn) {
+  searchInput.addEventListener("input", () => {
+    clearBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
+
+    const value = searchInput.value.toLowerCase();
+    const filtered = PRODUCTS.filter(item =>
+      item.name.toLowerCase().includes(value)
+    );
+
+    loadCards(filtered);
+  });
+
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    clearBtn.style.display = "none";
+    loadCards(PRODUCTS);
+  });
+}
+
+// ===============================
+// БУРГЕР-МЕНЮ
+// ===============================
+if (burger && menuOverlay) {
+  burger.addEventListener("click", () => {
+    menuOverlay.classList.toggle("active");
+    document.body.style.overflow =
+      menuOverlay.classList.contains("active") ? "hidden" : "";
+  });
+}
+
+// ===============================
+// КНОПКА ВГОРУ
+// ===============================
+if (scrollTopBtn) {
+  window.addEventListener("scroll", () => {
+    scrollTopBtn.style.display = window.scrollY > 400 ? "block" : "none";
+  });
+
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+// ===============================
+// ЗАВАНТАЖЕННЯ ДАНИХ
+// ===============================
+async function loadData() {
+  try {
+    const url = "https://billowing-dust-b910.romic-argument.workers.dev/";
+    const response = await fetch(url);
+    const data = await response.json();
+
+    PRODUCTS = data.records.map(record => {
+      const f = record.fields;
+
+      const id = f.ID ?? f.Id ?? f.id ?? 0;
+
+      const rawAvailable = f.Available;
+      const available = typeof rawAvailable === "string"
+        ? rawAvailable.includes("Є")
+        : !!rawAvailable;
+
+      return {
+        id: Number(id) || 0,
+        name: f.Title || "",
+        category: f.Category || "",
+        available,
+        description: f.Description || "",
+        image: f.Images?.[0]?.url || "placeholder.png",
+        code: f.Code || ""
+      };
+    });
+
+    PRODUCTS.sort((a, b) => {
+      const aA = a.available ? 1 : 0;
+      const bA = b.available ? 1 : 0;
+
+      if (aA !== bA) return bA - aA;
+      return a.id - b.id;
+    });
+
+    loadCards(PRODUCTS);
+    buildSidebarCategories();
+    buildMobileMenuCategories();
+
+  } catch (err) {
+    console.error("Помилка завантаження даних:", err);
+  }
+}
+
+loadData();
