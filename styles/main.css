@@ -422,7 +422,7 @@ header,
 }
 
 /* ===========================
-   НОВА СТРУКТУРА HEADER
+  HEADER
    =========================== */
 
 .modal-header {
@@ -689,4 +689,15 @@ header,
 
 .burger span {
   background: #fff !important;
+}
+
+/*============================
+   12. СТОРІНКА ОБРАНЕ
+   =========================== */
+   
+   .favorites-title {
+  color: #fff;
+  font-size: 22px;
+  margin: 0;
+  padding-left: 4px;
 }
