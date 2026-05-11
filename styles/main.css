@@ -407,7 +407,7 @@ header,
 }
 
 /* ===========================
-   6. МОДАЛКА (ФІНАЛЬНА ВЕРСІЯ)
+   6. МОДАЛКА (ГОЛОВНА СТОРІНКА)
    =========================== */
 
 .overlay {
@@ -580,6 +580,172 @@ header,
     max-height: 100vh;
   }
 }
+
+/* ===========================
+   МОДАЛКА (ОБРАНЕ)
+   =========================== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45); /* світліше затемнення */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.overlay.active {
+  display: flex;
+}
+
+.modal {
+  width: 90%;
+  max-width: 420px;
+  max-height: 90vh;
+
+  background: rgba(20,20,20,0.85);
+  backdrop-filter: blur(6px);
+
+  border-radius: 14px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  padding: 0;
+}
+
+.modal-inner {
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Кнопка закриття */
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+  z-index: 10;
+}
+
+.modal .close:hover {
+  background: rgba(255,255,255,0.4);
+  transform: scale(1.1);
+}
+
+/* Фото */
+.modal-img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Заголовок */
+.modal-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 12px 0;
+  color: #fff;
+}
+
+/* Ряди */
+.modal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.modal-category,
+.modal-availability,
+.modal-code {
+  font-size: 15px;
+  font-weight: bold;
+  color: #eee;
+}
+
+.modal-availability.yes { color: #4caf50; }
+.modal-availability.no  { color: #ff4444; }
+
+/* Кнопка "Додати в обране" */
+.add-fav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.add-fav-btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.add-fav-btn.added {
+  background: rgba(0,255,0,0.25);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.add-fav-btn.added .fav-icon-small {
+  stroke: #0f0;
+}
+
+/* Опис */
+.modal-description {
+  text-align: justify;
+  line-height: 1.55;
+  font-size: 16px;
+  color: #eee;
+  text-indent: 12px;
+  margin-top: 12px;
+}
+
+/* Адаптивність */
+@media (max-height: 500px) {
+  .modal {
+    max-height: 100vh;
+  }
+  .modal-inner {
+    max-height: 100vh;
+  }
+}
+
 
 
 /* ===========================
