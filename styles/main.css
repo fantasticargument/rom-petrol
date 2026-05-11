@@ -133,11 +133,8 @@ header,
   align-items: flex-end;
   gap: 4px;
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 215, 0, 0.35);
   backdrop-filter: blur(2px);
   transition: 0.25s ease;
-
 }
 
 .burger span {
