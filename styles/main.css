@@ -170,20 +170,6 @@ header,
   color: #fff;
 }
 
-.back-home-btn {
-  color: white;
-  font-size: 16px;
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(4px);
-  transition: 0.25s ease;
-}
-
-.back-home-btn:hover {
-  background: rgba(255,255,255,0.22);
-}
 
 #searchInput {
   width: 100%;
