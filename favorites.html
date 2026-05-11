@@ -2,10 +2,10 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>Обрані товари</title>
+  <title>Обране — ROM-PETROL</title>
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="icon" href="favicon.svg">
 </head>
+
 <body>
 
 <header>
@@ -40,39 +40,109 @@
 </header>
 
 
-<div class="layout">
-  <main class="content-area">
-    <div class="cards" id="favoritesCards"></div>
-  </main>
+<!-- Контейнер карток -->
+<div class="cards" id="favCards"></div>
+
+
+<!-- Модалка (та сама, що на головній) -->
+<div class="overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="close" onclick="closeModal()">×</button>
+
+    <img id="modalImg" class="modal-img" src="" alt="">
+
+    <div class="modal-header">
+      <h2 id="modalTitle" class="modal-title"></h2>
+    </div>
+
+    <div class="modal-row">
+      <p id="modalCategory" class="modal-category"></p>
+      <p id="modalAvailability" class="modal-availability"></p>
+    </div>
+
+    <div class="modal-row">
+      <p id="modalCode" class="modal-code"></p>
+    </div>
+
+    <button id="addFavBtn" class="add-fav-btn">
+      <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+           stroke="white" stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"></path>
+      </svg>
+      Додати в обране
+    </button>
+
+    <p id="modalDescription" class="modal-description"></p>
+  </div>
 </div>
 
-<script>
-function loadFavorites() {
-  const favs = JSON.parse(localStorage.getItem("favorites")) || [];
-  const container = document.getElementById("favoritesCards");
 
-  if (favs.length === 0) {
-    container.innerHTML = "<p style='text-align:center;color:#555;'>Немає обраних товарів</p>";
-    return;
+<!-- Підключаємо main.js (модалка, логіка обраного, бургер) -->
+<script src="main.js"></script>
+
+
+<!-- Скрипт рендера обраного -->
+<script>
+  function safeGetFavorites() {
+    try {
+      const raw = localStorage.getItem("favorites");
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      console.error("Помилка парсу favorites:", e);
+      return [];
+    }
   }
 
-  container.innerHTML = favs.map(item => `
-    <div class="card" onclick='openModal(${JSON.stringify(item)})'>
-      <img src="${item.image || "images/placeholder.png"}">
-      <div class="card-body">
-        <p class="category">${item.category}</p>
-        <h3>${item.name}</h3>
-        <p class="availability ${item.available ? "yes" : "no"}">
-          ${item.available ? "Є в наявності" : "Немає"}
-        </p>
-      </div>
-    </div>
-  `).join("");
-}
+  function renderFavs() {
+    const favCards = document.getElementById("favCards");
+    if (!favCards) {
+      console.error("Не знайдено #favCards");
+      return;
+    }
 
-document.addEventListener("DOMContentLoaded", loadFavorites);
+    const favs = safeGetFavorites();
+    favCards.innerHTML = "";
+
+    if (!favs.length) {
+      favCards.innerHTML = `
+        <div class="empty-favs">
+          Немає обраних товарів. Поверніться на головну і додайте щось в обране.
+        </div>
+      `;
+      favCards.classList.add("loaded");
+      return;
+    }
+
+    favs.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const imgSrc = item.image || "images/placeholder.png";
+
+      card.innerHTML = `
+        <img src="${imgSrc}" alt="${item.name || ''}">
+        <div class="card-body">
+          <p class="category">${item.category || ''}</p>
+          <h3>${item.name || ''}</h3>
+          <p class="availability ${item.available ? 'yes' : 'no'}">
+            ${item.available ? 'Є в наявності' : 'Немає'}
+          </p>
+        </div>
+      `;
+
+      card.addEventListener("click", () => openModal(item));
+
+      favCards.appendChild(card);
+    });
+
+    favCards.classList.add("loaded");
+  }
+
+  document.addEventListener("DOMContentLoaded", renderFavs);
 </script>
-
 
 </body>
 </html>
