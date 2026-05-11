@@ -378,29 +378,28 @@ function addToFavorites(item) {
   let favs = JSON.parse(localStorage.getItem("favorites")) || [];
 
   const normalized = {
-    id: item.id,
+    code: item.code || "",
     name: item.name,
     category: item.category,
     available: item.available,
     description: item.description,
-    code: item.code || "",
     image: item.image || "images/placeholder.png"
   };
 
-  if (!favs.find(f => f.id === normalized.id)) {
+  // Перевіряємо по code (унікальний ключ)
+  if (!favs.find(f => f.code === normalized.code)) {
     favs.push(normalized);
     localStorage.setItem("favorites", JSON.stringify(favs));
   }
 }
 
 function removeFromFavorites(item) {
-  let favs = safeGetFavorites();
+  let favs = JSON.parse(localStorage.getItem("favorites")) || [];
+
   favs = favs.filter(f => f.code !== item.code);
+
   localStorage.setItem("favorites", JSON.stringify(favs));
 
-  closeModal();
-
-  // Якщо ми на сторінці Обране — перерендерити список
   if (typeof IS_FAVORITES_PAGE !== "undefined" && IS_FAVORITES_PAGE) {
     renderFavs();
   }
