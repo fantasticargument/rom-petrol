@@ -781,10 +781,9 @@ header,
 }
 
 /* ===========================
-   9. ДЕСКТОП (900px+)
+   ПЛАНШЕТ + ДЕСКТОП (600px+)
    =========================== */
-
-/*@media (min-width: 900px) {*/
+@media (min-width: 600px) {
 
   header {
     padding: 20px 40px;
@@ -847,6 +846,7 @@ header,
     font-size: 26px;
     white-space: nowrap;
   }
+}
 
 
 /* ===========================
