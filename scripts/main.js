@@ -227,59 +227,54 @@ function isInFavorites(item) {
 }
 
 function openModal(item) {
+  currentItem = item;
+
   // Заповнення модалки
-  document.getElementById('modalImage').src = item.image || "images/placeholder.png";
-  document.querySelector('.modal-title').textContent = item.name;
-  document.querySelector('.modal-category').textContent = item.category;
-  document.querySelector('.modal-availability').textContent =
-    item.available ? 'Є в наявності' : 'Немає';
-  document.querySelector('.modal-description').textContent = item.description;
-  document.querySelector('.modal-code').textContent = item.code || "";
+  document.getElementById("modalImage").src = item.image || "images/placeholder.png";
+  document.querySelector(".modal-title").textContent = item.name;
+  document.querySelector(".modal-category").textContent = item.category;
+  document.querySelector(".modal-availability").textContent =
+    item.available ? "Є в наявності" : "Немає";
+  document.querySelector(".modal-availability").className =
+    "modal-availability " + (item.available ? "yes" : "no");
+  document.querySelector(".modal-description").textContent = item.description || "";
+  document.querySelector(".modal-code").textContent = item.code || "";
 
-  modalOverlay.classList.add('active');
-
-  // Кнопка
-  let btn = document.querySelector('.add-fav-btn');
+  const btn = document.querySelector(".add-fav-btn");
 
   // Скидаємо кнопку
   btn.classList.remove("added");
-  btn.innerHTML = `
-    <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
-         stroke="currentColor" stroke-width="2" stroke-linecap="round"
-         stroke-linejoin="round">
-      <circle cx="9" cy="21" r="1"></circle>
-      <circle cx="20" cy="21" r="1"></circle>
-      <path d="M1 1h4l2.68 12.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-    </svg>
-    Додати в обране
-  `;
 
-  // Якщо товар уже в обраному → одразу показуємо "Додано"
-  if (isInFavorites(item)) {
-    btn.classList.add("added");
+  // Якщо ми на сторінці Обране → кнопка "Видалити"
+  if (typeof IS_FAVORITES_PAGE !== "undefined" && IS_FAVORITES_PAGE) {
     btn.innerHTML = `
       <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round"
            stroke-linejoin="round">
         <path d="M20 6L9 17l-5-5"></path>
       </svg>
-      Додано
+      Видалити з обраного
     `;
-  }
 
-  // Видаляємо старі слухачі
-  btn.replaceWith(btn.cloneNode(true));
-  btn = document.querySelector('.add-fav-btn');
-
-  // Додаємо новий слухач — toggle
-  btn.addEventListener("click", function () {
-
-    // Якщо товар уже в обраному → видаляємо
-    if (isInFavorites(item)) {
+    btn.onclick = () => {
       removeFromFavorites(item);
+      closeModal();
+      renderFavs(); // оновлюємо список
+    };
 
-      // Повертаємо кнопку у початковий стан
-      btn.classList.remove("added");
+  } else {
+    // Ми на головній → кнопка "Додати / Додано"
+    if (isInFavorites(item)) {
+      btn.classList.add("added");
+      btn.innerHTML = `
+        <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round">
+          <path d="M20 6L9 17l-5-5"></path>
+        </svg>
+        Додано
+      `;
+    } else {
       btn.innerHTML = `
         <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -290,23 +285,41 @@ function openModal(item) {
         </svg>
         Додати в обране
       `;
-      return;
     }
 
-    // Якщо товар НЕ в обраному → додаємо
-    addToFavorites(item);
+    btn.onclick = () => {
+      if (isInFavorites(item)) {
+        removeFromFavorites(item);
+        btn.classList.remove("added");
+        btn.innerHTML = `
+          <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 12.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          Додати в обране
+        `;
+      } else {
+        addToFavorites(item);
+        btn.classList.add("added");
+        btn.innerHTML = `
+          <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"></path>
+          </svg>
+          Додано
+        `;
+      }
+    };
+  }
 
-    btn.classList.add("added");
-    btn.innerHTML = `
-      <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2" stroke-linecap="round"
-           stroke-linejoin="round">
-        <path d="M20 6L9 17l-5-5"></path>
-      </svg>
-      Додано
-    `;
-  });
+  // Показуємо модалку
+  document.getElementById("modalOverlay").classList.add("active");
 }
+
 
 
 function removeFromFavorites(item) {
@@ -361,5 +374,18 @@ function addToFavorites(item) {
   if (!favs.find(f => f.id === normalized.id)) {
     favs.push(normalized);
     localStorage.setItem("favorites", JSON.stringify(favs));
+  }
+}
+
+function removeFromFavorites(item) {
+  let favs = safeGetFavorites();
+  favs = favs.filter(f => f.code !== item.code);
+  localStorage.setItem("favorites", JSON.stringify(favs));
+
+  closeModal();
+
+  // Якщо ми на сторінці Обране — перерендерити список
+  if (typeof IS_FAVORITES_PAGE !== "undefined" && IS_FAVORITES_PAGE) {
+    renderFavs();
   }
 }
