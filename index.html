@@ -76,47 +76,40 @@
 <!-- ===========================
      МОДАЛЬНЕ ВІКНО
      =========================== -->
-<div class="overlay">
+<div class="overlay" id="modalOverlay">
   <div class="modal" id="modal">
 
     <div class="modal-inner">
 
-      <button class="close">×</button>
+      <button class="close" onclick="closeModal()">×</button>
 
-      <img class="modal-img" id="modalImage">
-      <div class="modal-gallery" id="modalGallery"></div>
+      <img id="modalImage" class="modal-img" src="" alt="">
 
       <div class="modal-header">
-
-        <h2 class="modal-title"></h2>
-
-        <div class="modal-row">
-          <p class="modal-category"></p>
-          <p class="modal-availability"></p>
-        </div>
-
-        <div class="modal-row">
-          <p class="modal-code"></p>
-
-          <button class="add-fav-btn" id="addFavBtn">
-            <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 12.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-            Додати в обране
-          </button>
-        </div>
-
+        <h2 id="modalTitle" class="modal-title"></h2>
       </div>
 
-      <div class="modal-content">
-        <p id="modalDescription" class="modal-description"></p>
+      <div class="modal-row">
+        <p id="modalCategory" class="modal-category"></p>
+        <p id="modalAvailability" class="modal-availability"></p>
       </div>
 
-    </div> <!-- /modal-inner -->
+      <div class="modal-row">
+        <p id="modalCode" class="modal-code"></p>
+
+        <button id="addFavBtn" class="add-fav-btn">
+          <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+               stroke="white" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"></path>
+          </svg>
+          Додати в обране
+        </button>
+      </div>
+
+      <p id="modalDescription" class="modal-description"></p>
+
+    </div>
 
   </div>
 </div>
