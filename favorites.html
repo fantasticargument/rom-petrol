@@ -117,9 +117,23 @@
     if (!favs.length) {
       favCards.innerHTML = `
         <div class="empty-favs">
-          Немає обраних товарів. Поверніться на головну і додайте щось в обране.
+          <div class="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="3" width="12" height="18" rx="2" ry="2"></rect>
+              <path d="M14 3l2 2h-4"></path>
+              <path d="M9 11h6"></path>
+              <path d="M9 15h3"></path>
+            </svg>
+          </div>
+
+          <h3>У вас ще немає обраних товарів</h3>
+          <p>Перегляньте каталог і додайте потрібні позиції в обране.</p>
+
+          <a href="index.html" class="empty-btn">На головну</a>
         </div>
       `;
+
       favCards.classList.add("loaded");
       return;
     }
