@@ -711,3 +711,13 @@ header::before {
   margin: 0;
   padding-left: 4px;
 }
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .desktop-only {
+    display: block;
+  }
+}
