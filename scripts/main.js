@@ -198,7 +198,6 @@ const searchInput = document.getElementById("searchInput");
 const clearBtn = document.getElementById("clearSearch");
 
 if (searchInput && clearBtn) {
-
   searchInput.addEventListener("input", () => {
     clearBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
     searchProducts(searchInput.value);
@@ -209,7 +208,6 @@ if (searchInput && clearBtn) {
     clearBtn.style.display = "none";
     loadCards(PRODUCTS);
   });
-
 }
 
 
@@ -218,8 +216,23 @@ if (searchInput && clearBtn) {
 // МОДАЛКА
 // ===============================
 
-const modalOverlay = document.querySelector('.overlay');
-const modalClose = document.querySelector('.close');
+const modalOverlay = document.querySelector(".overlay");
+const modalClose = document.querySelector(".close");
+
+if (modalClose) {
+  modalClose.addEventListener("click", () => {
+    modalOverlay.classList.remove("active");
+  });
+}
+
+if (modalOverlay) {
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      modalOverlay.classList.remove("active");
+    }
+  });
+}
+
 
 function isInFavorites(item) {
   const favs = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -237,16 +250,19 @@ function openModal(item) {
     item.available ? "Є в наявності" : "Немає";
   document.querySelector(".modal-availability").className =
     "modal-availability " + (item.available ? "yes" : "no");
-  document.querySelector(".modal-description").textContent = item.description || "";
   document.querySelector(".modal-code").textContent = item.code || "";
+  document.getElementById("modalDescription").textContent = item.description || "";
 
-  const btn = document.querySelector(".add-fav-btn");
+  const btn = document.getElementById("addFavBtn");
 
   // Скидаємо кнопку
   btn.classList.remove("added");
 
-  // Якщо ми на сторінці Обране → кнопка "Видалити"
+  // ============================
+  // 1. МИ НА СТОРІНЦІ ОБРАНЕ
+  // ============================
   if (typeof IS_FAVORITES_PAGE !== "undefined" && IS_FAVORITES_PAGE) {
+
     btn.innerHTML = `
       <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -263,7 +279,11 @@ function openModal(item) {
     };
 
   } else {
-    // Ми на головній → кнопка "Додати / Додано"
+
+    // ============================
+    // 2. МИ НА ГОЛОВНІЙ СТОРІНЦІ
+    // ============================
+
     if (isInFavorites(item)) {
       btn.classList.add("added");
       btn.innerHTML = `
@@ -317,27 +337,23 @@ function openModal(item) {
   }
 
   // Показуємо модалку
-  document.getElementById("modalOverlay").classList.add("active");
+  document.querySelector(".overlay").classList.add("active");
 }
-
 
 
 function removeFromFavorites(item) {
   let favs = JSON.parse(localStorage.getItem("favorites")) || [];
-  favs = favs.filter(f => f.id !== item.id);
+
+  // Видаляємо товар за code (унікальний і стабільний)
+  favs = favs.filter(f => f.code !== item.code);
+
   localStorage.setItem("favorites", JSON.stringify(favs));
-}
 
-
-modalClose.addEventListener('click', () => {
-  modalOverlay.classList.remove('active');
-});
-
-modalOverlay.addEventListener('click', (e) => {
-  if (e.target === modalOverlay) {
-    modalOverlay.classList.remove('active');
+  // Якщо ми на сторінці Обране — оновлюємо список
+  if (typeof IS_FAVORITES_PAGE !== "undefined" && IS_FAVORITES_PAGE) {
+    renderFavs();
   }
-});
+}
 
 
 // ===============================
