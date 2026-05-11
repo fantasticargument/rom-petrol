@@ -407,4 +407,6 @@ async function loadData() {
   }
 }
 
-loadData();
+if (typeof IS_FAVORITES_PAGE === "undefined") {
+  loadData();
+}
