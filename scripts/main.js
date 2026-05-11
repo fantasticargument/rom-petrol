@@ -197,16 +197,21 @@ function searchProducts(value) {
 const searchInput = document.getElementById("searchInput");
 const clearBtn = document.getElementById("clearSearch");
 
-searchInput.addEventListener("input", () => {
-  clearBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
-  searchProducts(searchInput.value);
-});
+if (searchInput && clearBtn) {
 
-clearBtn.addEventListener("click", () => {
-  searchInput.value = "";
-  clearBtn.style.display = "none";
-  loadCards(PRODUCTS);
-});
+  searchInput.addEventListener("input", () => {
+    clearBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
+    searchProducts(searchInput.value);
+  });
+
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    clearBtn.style.display = "none";
+    loadCards(PRODUCTS);
+  });
+
+}
+
 
 
 // ===============================
