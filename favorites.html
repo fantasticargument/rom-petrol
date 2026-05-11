@@ -8,7 +8,7 @@
   <link rel="icon" href="favicon.svg">
 </head>
 
-<body>
+<body class="favorites-page">
 
 <header>
   <div class="header-bg"></div>
@@ -20,8 +20,33 @@
 </header>
 
 
-<!-- Контейнер карток -->
-<div class="cards" id="favCards"></div>
+<!-- ===========================
+     ПОВНОЕКРАННЕ МЕНЮ (можна залишити або видалити)
+     =========================== -->
+<div class="menu-overlay">
+  <div class="menu-content">
+    <ul id="mobileCategoryList"></ul>
+  </div>
+</div>
+
+<!-- ===========================
+     ОСНОВНА СІТКА
+     =========================== -->
+<div class="layout">
+
+  <!-- САЙДБАР (можна залишити або видалити) -->
+  <aside class="sidebar desktop-only">
+    <h3>Категорії</h3>
+    <ul id="categoryList"></ul>
+  </aside>
+
+  <!-- КОНТЕНТ -->
+  <main class="content-area">
+      <div class="cards" id="favCards"></div>
+  </main>
+
+</div>
+
 
 
 <!-- Модалка (та сама, що на головній) -->
