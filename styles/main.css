@@ -472,22 +472,30 @@ header,
 
 /* Модалка не повинна виходити за межі екрану */
 .modal {
+  max-height: 100vh;
+  overflow: hidden; /* важливо */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Внутрішній блок, який буде скролитись */
+.modal-inner {
   max-height: 90vh;
-  overflow: hidden;
-}
-
-.modal-content {
-  max-height: 45vh;
   overflow-y: auto;
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 420px;
 }
 
-@media screen and (max-height: 500px) {
-  .modal {
+/* Для горизонтального режиму */
+@media (max-height: 500px) {
+  .modal-inner {
     max-height: 100vh;
-  }
-
-  .modal-content {
-    max-height: 55vh;
+     padding-bottom: 40px;
   }
 }
 
