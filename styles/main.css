@@ -582,13 +582,13 @@ header,
 }
 
 /* ===========================
-   МОДАЛКА (ОБРАНЕ)
+   МОДАЛКА (УНІВЕРСАЛЬНА)
    =========================== */
 
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45); /* світліше затемнення */
+  background: rgba(0,0,0,0.45);
   display: none;
   justify-content: center;
   align-items: center;
@@ -600,6 +600,7 @@ header,
   display: flex;
 }
 
+/* Зовнішній контейнер */
 .modal {
   width: 90%;
   max-width: 420px;
@@ -619,6 +620,7 @@ header,
   padding: 0;
 }
 
+/* Внутрішній блок */
 .modal-inner {
   width: 100%;
   max-height: 90vh;
@@ -642,7 +644,7 @@ header,
   align-items: center;
 
   background: rgba(255,255,255,0.25);
-  color: #000000;
+  color: #fff;
 
   border: none;
   border-radius: 50%;
@@ -682,6 +684,7 @@ header,
   margin: 6px 0;
 }
 
+/* Текст */
 .modal-category,
 .modal-availability,
 .modal-code {
@@ -726,6 +729,13 @@ header,
   stroke: #0f0;
 }
 
+/* Іконка */
+.fav-icon-small {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+}
+
 /* Опис */
 .modal-description {
   text-align: justify;
@@ -745,8 +755,6 @@ header,
     max-height: 100vh;
   }
 }
-
-
 
 /* ===========================
    7. ФУТЕР
