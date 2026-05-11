@@ -764,7 +764,7 @@ header,
    8. ПЛАНШЕТ (600–899px)
    =========================== */
 
-@media (min-width: 600px) and (max-width: 899px) {
+@media (min-width: 600px) /*and (max-width: 899px)*/ {
   #searchInput {
     height: 44px;
     font-size: 17px;
@@ -784,7 +784,7 @@ header,
    9. ДЕСКТОП (900px+)
    =========================== */
 
-@media (min-width: 900px) {
+/*@media (min-width: 900px) {*/
 
   header {
     padding: 20px 40px;
