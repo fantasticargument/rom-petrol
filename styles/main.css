@@ -203,10 +203,6 @@ header::before {
    3. ПОВНОЕКРАННЕ МЕНЮ
    =========================== */
 
-   main.content-area {
-  padding-top: 100px;
-}
-
 .content-area {
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
   display: block;
