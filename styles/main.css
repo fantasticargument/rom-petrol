@@ -196,11 +196,11 @@ header::before {
    =========================== */
 
    main.content-area {
-  padding-top: 0px;
+  padding-top: 100px;
 }
 
 .content-area {
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 100px - 60px);
   display: block;
   padding-top: 100px; /* щоб картки не лізли під хедер */
 }
