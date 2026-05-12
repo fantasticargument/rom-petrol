@@ -196,7 +196,7 @@ header::before {
    =========================== */
 
    main.content-area {
-  padding-top: 100px;
+  padding-top: 0px;
 }
 
 .content-area {
