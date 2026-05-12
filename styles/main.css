@@ -285,7 +285,7 @@ header::before {
    =========================== */
 
 .cards {
-  margin-top: 100px;
+  margin-top: 0px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
