@@ -513,13 +513,13 @@ header::before {
   .site-title {
     font-size: 24px;
   }
-}
+
   .layout {
     padding: 20px;
     margin: 0 auto;
     max-width: 900px;
   }
-
+}
 
 /* ===========================
    9. ДЕСКТОП (900px+)
