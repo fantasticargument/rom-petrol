@@ -44,7 +44,7 @@ header {
   inset: 0;
   background: url("images/header-desktop.jpg") center/cover no-repeat;
   opacity: 0;
-  transform: translateX(40px) scale(1.05);
+  transform: translateX(0) scale(1.05);
   animation: headerAnim 1.4s ease-out forwards;
   z-index: 0;
 }
