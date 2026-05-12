@@ -358,7 +358,7 @@ header::before {
   width: 90%;
   max-width: 420px;
   max-height: 90vh;
-  background: rgba(20,20,20,0.85);
+  background: rgba(20, 20, 20, 0.445);
   backdrop-filter: blur(6px);
   border-radius: 14px;
   position: relative;
