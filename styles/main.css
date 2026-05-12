@@ -201,9 +201,8 @@ header::before {
 
 .content-area {
   min-height: calc(100vh - 120px);
-  display: flex;
-  flex-direction: column;
-  padding-top: 100px;
+  display: block;
+  padding-top: 100px; /* щоб картки не лізли під хедер */
 }
 
 .menu-overlay {
