@@ -205,9 +205,14 @@ header::before {
 }
 
 .content-area {
-  min-height: calc(100vh - 100px - 60px);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
   display: block;
-  padding-top: 100px; /* щоб картки не лізли під хедер */
+  padding-top: var(--header-height);
+}
+
+:root {
+  --header-height: 160px; /* тимчасово */
+  --footer-height: 60px;
 }
 
 .menu-overlay {
