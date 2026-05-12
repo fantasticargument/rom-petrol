@@ -200,7 +200,7 @@ header::before {
 }
 
 .content-area {
-  min-height: calc(100vh - 150px - 70px);
+  min-height: calc(100vh - 100px - 60px);
   display: block;
   padding-top: 100px; /* щоб картки не лізли під хедер */
 }
