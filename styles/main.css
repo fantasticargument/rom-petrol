@@ -378,7 +378,7 @@ header::before {
   right: 10px;
   width: 32px;
   height: 32px;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0);
   color: #fff;
   border: none;
   border-radius: 50%;
