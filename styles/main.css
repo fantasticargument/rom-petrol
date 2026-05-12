@@ -203,6 +203,7 @@ header::before {
   min-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
+  padding-top: 100px;
 }
 
 .menu-overlay {
