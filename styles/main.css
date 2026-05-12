@@ -276,6 +276,8 @@ header::before {
 
 .layout {
   padding: 16px;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
 .sidebar {
@@ -505,6 +507,14 @@ header::before {
   }
 }
 
+@media (min-width: 600px) and (max-width: 899px) {
+  .layout {
+    padding: 16px;
+    margin: 0 auto;
+    max-width: 800px;
+  }
+}
+
 /* ===========================
    9. ДЕСКТОП (900px+)
    =========================== */
@@ -547,6 +557,9 @@ header::before {
     grid-template-columns: 240px 1fr;
     padding: 20px 40px 0;
     column-gap: 24px;
+
+    margin: 0 auto;
+    max-width: 1400px;
   }
 
   .sidebar {
