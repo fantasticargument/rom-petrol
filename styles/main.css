@@ -200,7 +200,10 @@ header::before {
 }
 
 .content-area {
-  min-height: calc(100vh - 100px - 80px);
+  min-height: calc(100vh - 120px); /* висота хедера + футера */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .menu-overlay {
@@ -480,7 +483,7 @@ header::before {
   color: #fff;
   text-align: center;
   padding: 16px;
-  margin-top: 5px;
+  margin-top: 0;
 }
 
 /* ===========================
