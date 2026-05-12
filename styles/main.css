@@ -1,6 +1,14 @@
 /* ===========================
    1. БАЗА
    =========================== */
+   :root {
+  --header-height: 160px; /* тимчасово */
+  --footer-height: 60px;
+}
+
+html, body {
+  height: 100%;
+}
 
 body {
   margin: 0;
@@ -9,11 +17,6 @@ body {
   overflow-x: hidden;
   box-sizing: border-box;
 }
-
-html, body {
-  height: 100%;
-}
-
 
 *, *::before, *::after {
   box-sizing: inherit;
@@ -208,11 +211,6 @@ header::before {
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
   display: block;
   padding-top: var(--header-height);
-}
-
-:root {
-  --header-height: 160px; /* тимчасово */
-  --footer-height: 60px;
 }
 
 .menu-overlay {
