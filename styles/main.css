@@ -652,8 +652,8 @@ layout {
  layout {
     display: grid;
     grid-template-columns: 240px 1fr;
-    padding: 20px 40px 0; /* ← ось це ключове */
-    column-gap: 20px;      /* трохи повітря між сайдбаром і контентом */
+    padding: 0; /* ← ось це ключове */
+    column-gap: 24px;      /* трохи повітря між сайдбаром і контентом */
   }
 
   .sidebar {
@@ -669,7 +669,7 @@ layout {
 
   .cards {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    padding: 20px 40px;
+    padding: 0;
     gap: 20px;
   }
 
