@@ -470,6 +470,13 @@ header::before {
     font-size: 17px;
   }
 
+   .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    padding: 20px 40px 0;
+    column-gap: 24px;
+  }
+
   .search-wrapper {
     max-width: 360px;
     margin: 0 auto;
