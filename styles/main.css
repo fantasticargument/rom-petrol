@@ -437,6 +437,22 @@ header::before {
   width: 20px;
   height: 20px;
   stroke: white;
+
+  .empty-favs {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgb(56, 59, 55);
+  opacity: 0.9;
+
+  /* ДОДАНО ДЛЯ ІДЕАЛЬНОГО ЦЕНТРУВАННЯ */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: calc(100vh - 160px); /* висота екрану мінус хедер і футер */
+}
+
 }
 
 .empty-favs .empty-icon {
@@ -477,14 +493,7 @@ header::before {
     font-size: 17px;
   }
 
-   .layout {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    padding: 20px 40px 0;
-    column-gap: 24px;
-  }
-
-  .search-wrapper {
+     .search-wrapper {
     max-width: 360px;
     margin: 0 auto;
   }
