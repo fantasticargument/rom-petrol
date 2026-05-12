@@ -1,10 +1,9 @@
 /* ===========================
-   1. ГЛОБАЛЬНІ ЗМІННІ
+   1. БАЗА
    =========================== */
-:root {
-  --header-height: 160px;
+   :root {
+  --header-height: 160px; /* тимчасово */
   --footer-height: 60px;
-  --card-min: 220px;
 }
 
 html, body {
@@ -24,7 +23,7 @@ body {
 }
 
 /* ===========================
-   2. HEADER
+   2. HEADER (Mobile First)
    =========================== */
 
 header {
@@ -39,6 +38,7 @@ header {
   z-index: 1000;
 }
 
+/* Фоновий анімований шар */
 .header-bg {
   position: absolute;
   inset: 0;
@@ -49,6 +49,7 @@ header {
   z-index: 0;
 }
 
+/* Легке затемнення */
 header::before {
   content: "";
   position: absolute;
@@ -60,17 +61,20 @@ header::before {
   z-index: 1;
 }
 
+/* Анімація фону */
 @keyframes headerAnim {
   0% { opacity: 0; transform: translateX(40px) scale(1.05); }
   60% { opacity: 1; transform: translateX(0) scale(1.02); }
   100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
+/* Анімація затемнення */
 @keyframes fadeOverlay {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
+/* Контент поверх */
 .header-inner {
   position: relative;
   z-index: 2;
@@ -80,6 +84,7 @@ header::before {
   width: 100%;
 }
 
+/* Верхній рядок */
 .header-top {
   display: flex;
   justify-content: space-between;
@@ -106,6 +111,7 @@ header::before {
   transform: scale(1.1);
 }
 
+/* Логотип */
 .site-title {
   margin: 0;
   font-size: 22px;
@@ -114,6 +120,7 @@ header::before {
   text-overflow: ellipsis;
 }
 
+/* Бургер */
 .burger {
   display: flex;
   flex-direction: column;
@@ -134,10 +141,7 @@ header::before {
   box-shadow: 0 0 2px rgba(0,0,0,0.8);
 }
 
-/* ===========================
-   3. ПОШУК
-   =========================== */
-
+/* Пошук */
 .search-wrapper {
   position: relative;
   width: 100%;
@@ -157,6 +161,10 @@ header::before {
   z-index: 3;
 }
 
+.clear-btn:hover {
+  color: #fff;
+}
+
 #searchInput {
   width: 100%;
   height: 40px;
@@ -172,14 +180,107 @@ header::before {
   color: rgba(255,255,255,0.7);
 }
 
+/* Кнопка "Вгору" */
+#scrollTopBtn {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  z-index: 900;
+}
+
+@media (max-width: 899px) {
+  #scrollTopBtn { display: none !important; }
+}
+
 /* ===========================
-   4. MAIN + LAYOUT
+   3. ПОВНОЕКРАННЕ МЕНЮ
    =========================== */
 
-.content-area {
-  padding-top: var(--header-height);
-  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+   main.content-area {
+  padding-top: 100px;
 }
+
+.content-area {
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  display: block;
+  padding-top: var(--header-height);
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 40px 20px;
+}
+
+.menu-overlay.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.menu-content {
+  width: 90%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+#mobileCategoryList {
+  margin: 20px auto;
+  padding: 10px 16px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.menu-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-content li {
+  font-size: 26px;
+  color: #fff;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#mobileCategoryList li {
+  padding: 8px 0;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#mobileCategoryList li:last-child {
+  border-bottom: none;
+}
+
+.menu-content li:hover {
+  color: #ffd700;
+}
+
+/* ===========================
+   4. LAYOUT (Mobile First)
+   =========================== */
 
 .layout {
   padding: 16px;
@@ -192,12 +293,13 @@ header::before {
 }
 
 /* ===========================
-   5. КАРТКИ (АВТО-СІТКА)
+   5. КАРТКИ
    =========================== */
 
 .cards {
+  margin-top: 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--card-min), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -232,7 +334,7 @@ header::before {
 .availability.no  { color: red; }
 
 /* ===========================
-   6. МОДАЛКА
+   6. МОДАЛКА (ВАРІАНТ B)
    =========================== */
 
 .overlay {
@@ -254,7 +356,7 @@ header::before {
   width: 90%;
   max-width: 420px;
   max-height: 90vh;
-  background: rgba(20,20,20,0.85);
+  background: rgba(20, 20, 20, 0.651);
   backdrop-filter: blur(6px);
   border-radius: 14px;
   position: relative;
@@ -274,13 +376,18 @@ header::before {
   right: 10px;
   width: 32px;
   height: 32px;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0);
   color: #fff;
   border: none;
   border-radius: 50%;
   font-size: 22px;
   cursor: pointer;
   transition: 0.2s ease;
+}
+
+.modal .close:hover {
+  background: rgba(255,255,255,0.4);
+  transform: scale(1.1);
 }
 
 .modal-img {
@@ -311,6 +418,71 @@ header::before {
   color: #eee;
 }
 
+.modal-availability.yes { color: #4caf50; }
+.modal-availability.no  { color: #ff4444; }
+
+.add-fav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.add-fav-btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.add-fav-btn.added {
+  background: rgba(0,255,0,0.25);
+  transform: scale(1.02);
+}
+
+.fav-icon-small {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+  }
+
+  .empty-favs {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgb(56, 59, 55);
+  opacity: 0.9;
+
+  /* ДОДАНО ДЛЯ ІДЕАЛЬНОГО ЦЕНТРУВАННЯ */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: calc(100vh - 160px); /* хедер + футер */
+  padding: 20px;
+}
+
+.empty-favs .empty-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.modal-description {
+  text-align: justify;
+  line-height: 1.55;
+  font-size: 16px;
+  color: #eee;
+  text-indent: 12px;
+  margin-top: 12px;
+}
+
 /* ===========================
    7. ФУТЕР
    =========================== */
@@ -320,6 +492,7 @@ header::before {
   color: #fff;
   text-align: center;
   padding: 16px;
+  margin-top: 0;
 }
 
 /* ===========================
@@ -327,19 +500,24 @@ header::before {
    =========================== */
 
 @media (min-width: 600px) and (max-width: 899px) {
-
-  .layout {
-    max-width: 900px;
-    padding: 20px;
-  }
-
   #searchInput {
     height: 44px;
     font-size: 17px;
   }
 
+     .search-wrapper {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
   .site-title {
     font-size: 24px;
+  }
+
+  .layout {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 900px;
   }
 }
 
@@ -361,6 +539,10 @@ header::before {
     gap: 0;
   }
 
+  .header-top {
+    display: contents;
+  }
+
   .burger {
     display: none;
   }
@@ -370,11 +552,19 @@ header::before {
     margin-left: auto;
   }
 
+  #searchInput {
+    height: 44px;
+    font-size: 18px;
+  }
+
+  /* ГОЛОВНЕ ВИПРАВЛЕННЯ */
   .layout {
     display: grid;
     grid-template-columns: 240px 1fr;
     padding: 20px 40px 0;
     column-gap: 24px;
+
+    margin: 0 auto;
     max-width: 1400px;
   }
 
@@ -390,7 +580,17 @@ header::before {
   }
 
   .cards {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    padding: 0;
+    gap: 20px;
+  }
+
+  .card img {
+    height: 200px;
+  }
+
+  .site-title {
+    font-size: 26px;
   }
 }
 
@@ -406,8 +606,34 @@ header::before {
   }
 }
 
+/* ===========================
+   11. ДУЖЕ ШИРОКИЙ ЕКРАН
+   =========================== */
+
 @media (min-width: 1600px) {
   .cards {
     padding: 0 120px;
+  }
+}
+
+/* ===========================
+   12. СТОРІНКА ОБРАНЕ
+   =========================== */
+
+.favorites-title {
+  color: #fff;
+  font-size: 22px;
+  margin: 0;
+  padding-left: 4px;
+}
+
+/* Sidebar only desktop */
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .desktop-only {
+    display: block;
   }
 }
