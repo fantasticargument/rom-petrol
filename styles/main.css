@@ -538,7 +538,7 @@ header::before {
   }
 
   .header-inner {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: auto 1fr auto;
     grid-template-areas:
       "logo search icons";
