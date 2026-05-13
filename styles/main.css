@@ -526,12 +526,13 @@ header::before {
   /* ХЕДЕР */
   header {
     height: 100px;
-    padding: 20px 40px;
+    padding: 0 40px;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
   }
 
+  /* Розчиняємо header-top */
   .header-top {
     display: contents;
   }
@@ -542,13 +543,27 @@ header::before {
     grid-template-areas: "logo search icons";
     align-items: center;
     width: 100%;
-    gap: 20px;
   }
 
-  .site-title { grid-area: logo; }
-  .search-wrapper { grid-area: search; }
-  .header-icons { grid-area: icons; }
-  .burger { display: none; }
+  .site-title {
+    grid-area: logo;
+    justify-self: start;
+  }
+
+  .search-wrapper {
+    grid-area: search;
+    justify-self: center;
+    width: 360px;
+  }
+
+  .header-icons {
+    grid-area: icons;
+    justify-self: end;
+  }
+
+  .burger {
+    display: none;
+  }
 
   /* КОНТЕНТ — відступ під хедер */
   .content-area {
@@ -565,7 +580,7 @@ header::before {
     margin: 0 auto;
   }
 
-  /* САЙДБАР — sticky, не fixed */
+  /* САЙДБАР — sticky, НЕ fixed */
   .sidebar {
     position: sticky;
     top: 100px; /* висота хедера */
@@ -575,7 +590,6 @@ header::before {
     background: rgba(0,0,0,0.75);
     color: #fff;
     padding: 20px;
-    border-radius: 0;
   }
 
   /* КАРТКИ */
