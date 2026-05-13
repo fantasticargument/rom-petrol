@@ -427,3 +427,40 @@ async function loadData() {
 if (typeof IS_FAVORITES_PAGE === "undefined") {
   loadData();
 }
+
+function buildCategoryList() {
+  const list = document.getElementById("categoryList");
+  if (!list) return;
+
+  // Унікальні категорії
+  let categories = [...new Set(PRODUCTS.map(p => p.category))];
+
+  // Алфавітне сортування (українська локаль)
+  categories.sort((a, b) => a.localeCompare(b, "uk"));
+
+  // Формуємо HTML
+  list.innerHTML = `
+    <li class="cat-item active" data-cat="all">Всі категорії</li>
+    ${categories
+      .map(cat => `<li class="cat-item" data-cat="${cat}">${cat}</li>`)
+      .join("")}
+  `;
+
+  // Обробники кліку
+  list.querySelectorAll(".cat-item").forEach(item => {
+    item.addEventListener("click", () => {
+      // Активний елемент
+      list.querySelectorAll(".cat-item").forEach(el => el.classList.remove("active"));
+      item.classList.add("active");
+
+      const cat = item.dataset.cat;
+
+      if (cat === "all") {
+        renderCards(PRODUCTS);
+      } else {
+        const filtered = PRODUCTS.filter(p => p.category === cat);
+        renderCards(filtered);
+      }
+    });
+  });
+}
