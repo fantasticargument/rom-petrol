@@ -530,7 +530,7 @@ header::before {
     align-items: center;
   }
 
-    .header-inner {
+  .header-inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-areas: 
@@ -541,29 +541,29 @@ header::before {
 
   .site-title {
     grid-area: logo;
+    justify-self: start;
   }
 
-   .search-wrapper {
+  .search-wrapper {
     grid-area: search;
     justify-self: center;
     width: 320px;
   }
-  
-  .header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
   .header-icons {
     grid-area: icons;
     justify-self: end;
   }
 
+  /* ВАЖЛИВО: повертаємо нормальну поведінку */
+  .header-top {
+    display: block;
+  }
+
   .burger {
     display: none;
   }
-
+}
   #searchInput {
     height: 44px;
     font-size: 18px;
