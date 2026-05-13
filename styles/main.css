@@ -581,7 +581,7 @@ header::before {
   .layout {
     display: grid;
     grid-template-columns: 240px 1fr;
-    padding: 20px 40px 0;
+    padding: 20px 40px 0 0;
     column-gap: 24px;
     margin: 0 auto;
     max-width: 1400px;
@@ -593,10 +593,13 @@ header::before {
     background: rgba(0,0,0,0.75);
     color: #fff;
     padding: 20px;
+    
     height: calc(100vh - 90px);
     position: sticky;
     top: 90px;
+
     overflow-y: auto;
+    border-radius: 0; 
   }
 
   /* КАРТКИ */
