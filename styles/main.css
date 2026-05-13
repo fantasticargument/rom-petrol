@@ -2,7 +2,7 @@
    1. БАЗА
    =========================== */
    :root {
-  --header-height: 160px; /* тимчасово */
+  --header-height: 100px; /* тимчасово */
   --footer-height: 60px;
 }
 
