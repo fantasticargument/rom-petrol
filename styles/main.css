@@ -533,21 +533,28 @@ header::before {
     .header-inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
+    grid-template-areas: 
+      "logo search icons";
     align-items: center;
     width: 100%;
-    gap: 20px;
   }
 
-  .search-wrapper {
-    width: 320px;
+  .site-title {
+    grid-area: logo;
+  }
+
+   .search-wrapper {
+    grid-area: search;
     justify-self: center;
+    width: 320px;
   }
-
+  
   .header-top {
     display: contents;
   }
 
   .header-icons {
+    grid-area: icons;
     justify-self: end;
   }
 
