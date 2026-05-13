@@ -525,6 +525,7 @@ header::before {
 
   /* ХЕДЕР */
   header {
+    height: 100px;
     padding: 20px 40px;
     display: grid;
     /* grid-template-columns: auto 1fr auto; */
