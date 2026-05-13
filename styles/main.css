@@ -549,9 +549,11 @@ header::before {
     width: 320px;
   }
   
-  /*.header-top {
-    display: block;
-  }*/
+  .header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
   .header-icons {
     grid-area: icons;
