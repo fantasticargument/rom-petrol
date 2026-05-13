@@ -528,91 +528,60 @@ header::before {
     height: 100px;
     padding: 20px 40px;
     display: grid;
-    grid-template-columns: auto 1fr auto; 
+    grid-template-columns: auto 1fr auto;
     align-items: center;
   }
 
-  /* Розчиняємо header-top, щоб logo і icons стали на один рівень */
   .header-top {
     display: contents;
   }
 
   .header-inner {
-    /* display: grid; */
+    display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-areas:
-      "logo search icons";
+    grid-template-areas: "logo search icons";
     align-items: center;
     width: 100%;
     gap: 20px;
   }
 
-  /* ЛОГОТИП ЗЛІВА */
-  .site-title {
-    grid-area: logo;
-    justify-self: start;
-    font-size: 26px;
-  }
+  .site-title { grid-area: logo; }
+  .search-wrapper { grid-area: search; }
+  .header-icons { grid-area: icons; }
+  .burger { display: none; }
 
-  /* ПОШУК ПО ЦЕНТРУ */
-  .search-wrapper {
-    grid-area: search;
-    justify-self: center;
-    width: 320px;
-  }
-
-  #searchInput {
-    height: 44px;
-    font-size: 18px;
-  }
-
-  /* ІКОНКИ СПРАВА */
-  .header-icons {
-    grid-area: icons;
-    justify-self: end;
-  }
-
-  /* Бургер ховаємо */
-  .burger {
-    display: none;
-  }
-
-  /* LAYOUT */
-  .layout {
-    /* display: grid; */
-    grid-template-columns: 240px 1fr;
-    padding: 20px 40px 0;
-    column-gap: 24px;
-    margin: 0 auto;
-    max-width: calc(1400px - 240px);
-    margin-left: 240px;
-  }
-
+  /* КОНТЕНТ — відступ під хедер */
   .content-area {
-    padding-top: 0 !important;
+    padding-top: 100px !important; /* висота хедера */
   }
 
-  /* SIDEBAR */
-  .sidebar {
-    position: fixed;
-    top: 100px; /* висота хедера */
-    left: 0;
-    width: 240px;
+  /* LAYOUT — без лівого відступу */
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    column-gap: 24px;
+    padding: 20px 40px 0 0; /* лівий padding = 0 */
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-    height: calc(100vh - 100px); /* від хедера до низу */
+  /* САЙДБАР — sticky, не fixed */
+  .sidebar {
+    position: sticky;
+    top: 100px; /* висота хедера */
+    height: calc(100vh - 100px);
     overflow-y: auto;
 
     background: rgba(0,0,0,0.75);
     color: #fff;
     padding: 20px;
+    border-radius: 0;
   }
 
   /* КАРТКИ */
   .cards {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    padding: 0;
     gap: 20px;
-    grid-column: 2;
   }
 
   .card img {
