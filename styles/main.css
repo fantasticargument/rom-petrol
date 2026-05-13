@@ -584,22 +584,27 @@ header::before {
     padding: 20px 40px 0 0;
     column-gap: 24px;
     margin: 0 auto;
-    max-width: 1400px;
+    max-width: calc(1400px - 240px);
+    margin-left: 240px;
+  }
+
+  .content-area {
+    padding-top: 0 !important;
   }
 
   /* SIDEBAR */
   .sidebar {
-    display: block;
+    position: fixed;
+    top: 100px; /* висота хедера */
+    left: 0;
+    width: 240px;
+
+    height: calc(100vh - 100px); /* від хедера до низу */
+    overflow-y: auto;
+
     background: rgba(0,0,0,0.75);
     color: #fff;
     padding: 20px;
-    
-    height: calc(100vh - 90px);
-    position: sticky;
-    top: 90px;
-
-    overflow-y: auto;
-    border-radius: 0; 
   }
 
   /* КАРТКИ */
@@ -611,10 +616,6 @@ header::before {
 
   .card img {
     height: 200px;
-  }
-
-   .content-area {
-    padding-top: 0 !important;
   }
 }
 
