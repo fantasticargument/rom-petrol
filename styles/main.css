@@ -577,10 +577,6 @@ header::before {
     display: none;
   }
 
-   .content-area {
-    padding-top: 0 !important;
-  }
-
   /* LAYOUT */
   .layout {
     display: grid;
@@ -590,6 +586,10 @@ header::before {
     margin: 0 auto;
     max-width: calc(1400px - 240px);
     margin-left: 240px;
+  }
+
+  .content-area {
+    padding-top: 0 !important;
   }
 
   /* SIDEBAR */
