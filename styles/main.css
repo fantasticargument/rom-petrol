@@ -528,7 +528,7 @@ header::before {
     height: 100px;
     padding: 0 40px;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    /* grid-template-columns: auto 1fr auto; */
     align-items: center;
   }
 
