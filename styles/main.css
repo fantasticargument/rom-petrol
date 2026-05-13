@@ -528,7 +528,7 @@ header::before {
     height: 100px;
     padding: 0 40px;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    /* grid-template-columns: auto 1fr auto; */
     align-items: center;
     position: fixed;
     top: 0;
@@ -572,6 +572,55 @@ header::before {
     color: #fff;
     padding: 20px;
   }
+
+  /* Список */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Елемент */
+.cat-item {
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+/* Плавне підкреслення */
+.cat-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: #fff;
+  transition: width 0.25s ease;
+}
+
+/* Hover */
+.cat-item:hover {
+  color: #fff;
+}
+
+.cat-item:hover::after {
+  width: 100%;
+}
+
+/* Активна категорія */
+.cat-item.active {
+  color: #fff;
+  font-weight: 600;
+}
+
+.cat-item.active::after {
+  width: 100%;
+}
+
 
   /* LAYOUT — зсуваємо контент вправо */
   .layout {
