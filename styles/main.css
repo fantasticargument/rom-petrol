@@ -528,7 +528,7 @@ header::before {
     height: 100px;
     padding: 20px 40px;
     display: grid;
-    /* grid-template-columns: auto 1fr auto; */
+    grid-template-columns: auto 1fr auto;
     align-items: center;
   }
 
@@ -540,21 +540,18 @@ header::before {
   .header-inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-areas:
-      "logo search icons";
+    grid-template-areas: "logo search icons";
     align-items: center;
     width: 100%;
     gap: 20px;
   }
 
-  /* ЛОГОТИП ЗЛІВА */
   .site-title {
     grid-area: logo;
     justify-self: start;
     font-size: 26px;
   }
 
-  /* ПОШУК ПО ЦЕНТРУ */
   .search-wrapper {
     grid-area: search;
     justify-self: center;
@@ -566,23 +563,21 @@ header::before {
     font-size: 18px;
   }
 
-  /* ІКОНКИ СПРАВА */
   .header-icons {
     grid-area: icons;
     justify-self: end;
   }
 
-  /* Бургер ховаємо */
   .burger {
     display: none;
   }
 
-   /* Прибираємо зайвий відступ зверху */
+  /* Прибираємо відступ, який штовхає все вниз */
   .content-area {
     padding-top: 0 !important;
   }
 
-  /* LAYOUT — повертаємо нормальну двоколонкову сітку */
+  /* LAYOUT — нормальна двоколонкова сітка */
   .layout {
     display: grid;
     grid-template-columns: 240px 1fr;
@@ -592,7 +587,7 @@ header::before {
     margin: 0 auto;
   }
 
-  /* Сайдбар — НЕ fixed, а sticky */
+  /* САЙДБАР — sticky, НЕ fixed */
   .sidebar {
     position: sticky;
     top: 100px; /* висота хедера */
@@ -602,21 +597,19 @@ header::before {
     background: rgba(0,0,0,0.75);
     color: #fff;
     padding: 20px;
+    border-radius: 0;
   }
-  
+
   /* КАРТКИ */
   .cards {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    padding: 0;
     gap: 20px;
-    grid-column: 2;
   }
 
   .card img {
     height: 200px;
   }
 }
-
 /* ===========================
    10. ВЕЛИКИЙ ДЕСКТОП
    =========================== */
