@@ -528,7 +528,7 @@ header::before {
     height: 100px;
     padding: 20px 40px;
     display: grid;
-    /* grid-template-columns: auto 1fr auto; */
+    grid-template-columns: auto 1fr auto; 
     align-items: center;
   }
 
@@ -579,7 +579,7 @@ header::before {
 
   /* LAYOUT */
   .layout {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 240px 1fr;
     padding: 20px 40px 0;
     column-gap: 24px;
