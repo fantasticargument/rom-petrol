@@ -581,7 +581,7 @@ header::before {
   .layout {
     display: grid;
     grid-template-columns: 240px 1fr;
-    padding: 20px 40px 0 0;
+    padding: 20px 40px 0;
     column-gap: 24px;
     margin: 0 auto;
     max-width: calc(1400px - 240px);
@@ -612,6 +612,7 @@ header::before {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     padding: 0;
     gap: 20px;
+    grid-column: 2;
   }
 
   .card img {
