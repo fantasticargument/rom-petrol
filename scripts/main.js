@@ -464,3 +464,5 @@ function buildCategoryList() {
     });
   });
 }
+
+buildCategoryList();
