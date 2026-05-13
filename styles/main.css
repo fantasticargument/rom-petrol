@@ -531,6 +531,11 @@ header::before {
     align-items: center;
   }
 
+  /* Розчиняємо header-top, щоб logo і icons стали на один рівень */
+  .header-top {
+    display: contents;
+  }
+
   .header-inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -564,11 +569,6 @@ header::before {
   .header-icons {
     grid-area: icons;
     justify-self: end;
-  }
-
-  /* header-top не повинен ламати grid */
-  .header-top {
-    display: block;
   }
 
   /* Бургер ховаємо */
@@ -609,7 +609,6 @@ header::before {
     height: 200px;
   }
 }
-
 
 /* ===========================
    10. ВЕЛИКИЙ ДЕСКТОП
