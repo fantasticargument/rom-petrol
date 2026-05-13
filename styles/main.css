@@ -550,7 +550,7 @@ header::before {
   }
   
   .header-top {
-    display: contents;
+    display: block;
   }
 
   .header-icons {
