@@ -525,8 +525,8 @@ header::before {
 
   header {
    /*padding: 20px 40px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;*/
+    display: grid;*/
+    grid-template-columns: auto 1fr auto;
     align-items: center;
   }
 
