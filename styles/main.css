@@ -530,13 +530,25 @@ header::before {
     align-items: center;
   }
 
-  .header-inner {
-    flex-direction: row;
-    gap: 0;
+    .header-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .search-wrapper {
+    width: 320px;
+    justify-self: center;
   }
 
   .header-top {
     display: contents;
+  }
+
+  .header-icons {
+    justify-self: end;
   }
 
   .burger {
