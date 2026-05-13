@@ -523,25 +523,28 @@ header::before {
 
 @media (min-width: 900px) {
 
-  header {
+  /*header {
     padding: 20px 40px;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-  }
+  }*/
 
     .header-inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
+    grid-template-areas: 
+      "logo search icons";
     align-items: center;
     width: 100%;
   }
 
   .site-title {
-     justify-self: start;
+    grid-area: logo;
   }
 
    .search-wrapper {
+    grid-area: search;
     justify-self: center;
     width: 320px;
   }
@@ -551,6 +554,7 @@ header::before {
   }
 
   .header-icons {
+    grid-area: icons;
     justify-self: end;
   }
 
