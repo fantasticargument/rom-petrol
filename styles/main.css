@@ -563,12 +563,12 @@ header::before {
   .burger {
     display: none;
   }
-}
+
   #searchInput {
     height: 44px;
     font-size: 18px;
   }
-
+}
   /* ГОЛОВНЕ ВИПРАВЛЕННЯ */
   .layout {
     display: grid;
