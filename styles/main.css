@@ -528,11 +528,15 @@ header::before {
     height: 100px;
     padding: 0 40px;
     display: grid;
-    /* grid-template-columns: auto 1fr auto; */
+    grid-template-columns: auto 1fr auto;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
   }
 
-  /* Розчиняємо header-top */
   .header-top {
     display: contents;
   }
@@ -545,48 +549,23 @@ header::before {
     width: 100%;
   }
 
-  .site-title {
-    grid-area: logo;
-    justify-self: start;
-  }
+  .site-title { grid-area: logo; }
+  .search-wrapper { grid-area: search; justify-self: center; width: 360px; }
+  .header-icons { grid-area: icons; justify-self: end; }
+  .burger { display: none; }
 
-  .search-wrapper {
-    grid-area: search;
-    justify-self: center;
-    width: 360px;
-  }
-
-  .header-icons {
-    grid-area: icons;
-    justify-self: end;
-  }
-
-  .burger {
-    display: none;
-  }
-
-  /* КОНТЕНТ — відступ під хедер */
+  /* КОНТЕНТ — відступ під fixed-хедер */
   .content-area {
-    padding-top: 100px !important; /* висота хедера */
+    padding-top: 100px !important;
   }
 
-  /* LAYOUT — без лівого відступу */
-  .layout {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    column-gap: 24px;
-    padding: 20px 40px 0 0; /* лівий padding = 0 */
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  /* САЙДБАР — sticky, НЕ fixed */
+  /* САЙДБАР — fixed, від хедера до футера */
   .sidebar {
     position: fixed;
     top: 100px; /* висота хедера */
     left: 0;
     width: 240px;
-    height: calc(100vh - 100px); /* від хедера до низу */
+    height: calc(100vh - 100px);
     overflow-y: auto;
 
     background: rgba(0,0,0,0.75);
@@ -594,8 +573,16 @@ header::before {
     padding: 20px;
   }
 
+  /* LAYOUT — зсуваємо контент вправо */
+  .layout {
+    margin-left: 240px; /* ширина сайдбару */
+    padding: 20px 40px 0;
+    max-width: calc(1400px - 240px);
+  }
+
   /* КАРТКИ */
   .cards {
+    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
@@ -604,6 +591,7 @@ header::before {
     height: 200px;
   }
 }
+
 
 /* ===========================
    10. ВЕЛИКИЙ ДЕСКТОП
