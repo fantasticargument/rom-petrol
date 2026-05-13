@@ -528,7 +528,7 @@ header::before {
     height: 100px;
     padding: 20px 40px;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    /* grid-template-columns: auto 1fr auto; */
     align-items: center;
   }
 
@@ -540,18 +540,21 @@ header::before {
   .header-inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-areas: "logo search icons";
+    grid-template-areas:
+      "logo search icons";
     align-items: center;
     width: 100%;
     gap: 20px;
   }
 
+  /* ЛОГОТИП ЗЛІВА */
   .site-title {
     grid-area: logo;
     justify-self: start;
     font-size: 26px;
   }
 
+  /* ПОШУК ПО ЦЕНТРУ */
   .search-wrapper {
     grid-area: search;
     justify-self: center;
@@ -563,53 +566,60 @@ header::before {
     font-size: 18px;
   }
 
+  /* ІКОНКИ СПРАВА */
   .header-icons {
     grid-area: icons;
     justify-self: end;
   }
 
+  /* Бургер ховаємо */
   .burger {
     display: none;
   }
 
-  /* Прибираємо відступ, який штовхає все вниз */
-  .content-area {
+   .content-area {
     padding-top: 0 !important;
   }
 
-  /* LAYOUT — нормальна двоколонкова сітка */
+  /* LAYOUT */
   .layout {
     display: grid;
     grid-template-columns: 240px 1fr;
+    padding: 20px 40px 0;
     column-gap: 24px;
-    padding: 20px 40px 0 0;
-    max-width: 1400px;
     margin: 0 auto;
+    max-width: calc(1400px - 240px);
+    margin-left: 240px;
   }
 
-  /* САЙДБАР — sticky, НЕ fixed */
+  /* SIDEBAR */
   .sidebar {
-    position: sticky;
+    position: fixed;
     top: 100px; /* висота хедера */
-    height: calc(100vh - 100px);
+    left: 0;
+    width: 240px;
+
+    height: calc(100vh - 100px); /* від хедера до низу */
     overflow-y: auto;
 
     background: rgba(0,0,0,0.75);
     color: #fff;
     padding: 20px;
-    border-radius: 0;
   }
 
   /* КАРТКИ */
   .cards {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    padding: 0;
     gap: 20px;
+    grid-column: 2;
   }
 
   .card img {
     height: 200px;
   }
 }
+
 /* ===========================
    10. ВЕЛИКИЙ ДЕСКТОП
    =========================== */
