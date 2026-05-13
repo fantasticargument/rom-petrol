@@ -582,9 +582,11 @@ header::before {
 
   /* САЙДБАР — sticky, НЕ fixed */
   .sidebar {
-    position: sticky;
+    position: fixed;
     top: 100px; /* висота хедера */
-    height: calc(100vh - 100px);
+    left: 0;
+    width: 240px;
+    height: calc(100vh - 100px); /* від хедера до низу */
     overflow-y: auto;
 
     background: rgba(0,0,0,0.75);
