@@ -549,9 +549,9 @@ header::before {
     width: 320px;
   }
   
-  .header-top {
+  /*.header-top {
     display: block;
-  }
+  }*/
 
   .header-icons {
     grid-area: icons;
