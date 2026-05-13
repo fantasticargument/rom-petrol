@@ -532,6 +532,7 @@ header::before {
     align-items: center;
   }
 
+  /* Розчиняємо header-top, щоб logo і icons стали на один рівень */
   .header-top {
     display: contents;
   }
@@ -545,27 +546,48 @@ header::before {
     gap: 20px;
   }
 
-  .site-title { grid-area: logo; }
-  .search-wrapper { grid-area: search; }
-  .header-icons { grid-area: icons; }
-  .burger { display: none; }
-
-  /* КОНТЕНТ — відступ під хедер */
-  .content-area {
-    padding-top: 100px !important; /* висота хедера */
+  .site-title {
+    grid-area: logo;
+    justify-self: start;
+    font-size: 26px;
   }
 
-  /* LAYOUT — без лівого відступу */
+  .search-wrapper {
+    grid-area: search;
+    justify-self: center;
+    width: 320px;
+  }
+
+  #searchInput {
+    height: 44px;
+    font-size: 18px;
+  }
+
+  .header-icons {
+    grid-area: icons;
+    justify-self: end;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  /* Прибираємо відступ, який штовхає все вниз */
+  .content-area {
+    padding-top: 0 !important;
+  }
+
+  /* LAYOUT — нормальна двоколонкова сітка */
   .layout {
     display: grid;
     grid-template-columns: 240px 1fr;
     column-gap: 24px;
-    padding: 20px 40px 0 0; /* лівий padding = 0 */
+    padding: 20px 40px 0 0;
     max-width: 1400px;
     margin: 0 auto;
   }
 
-  /* САЙДБАР — sticky, не fixed */
+  /* САЙДБАР — sticky, НЕ fixed */
   .sidebar {
     position: sticky;
     top: 100px; /* висота хедера */
@@ -588,7 +610,6 @@ header::before {
     height: 200px;
   }
 }
-
 /* ===========================
    10. ВЕЛИКИЙ ДЕСКТОП
    =========================== */
