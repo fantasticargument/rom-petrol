@@ -562,11 +562,6 @@ header::before {
     display: none;
   }
 
-  .search-wrapper {
-    width: 320px;
-    margin-left: auto;
-  }
-
   #searchInput {
     height: 44px;
     font-size: 18px;
