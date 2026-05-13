@@ -612,6 +612,10 @@ header::before {
   .card img {
     height: 200px;
   }
+
+   .content-area {
+    padding-top: 0 !important;
+  }
 }
 
 /* ===========================
