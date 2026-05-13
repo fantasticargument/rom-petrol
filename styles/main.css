@@ -523,6 +523,7 @@ header::before {
 
 @media (min-width: 900px) {
 
+  /* ХЕДЕР */
   header {
     padding: 20px 40px;
     display: grid;
@@ -533,53 +534,58 @@ header::before {
   .header-inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-areas: 
+    grid-template-areas:
       "logo search icons";
     align-items: center;
     width: 100%;
   }
 
+  /* ЛОГОТИП ЗЛІВА */
   .site-title {
     grid-area: logo;
     justify-self: start;
+    font-size: 26px;
   }
 
+  /* ПОШУК ПО ЦЕНТРУ */
   .search-wrapper {
     grid-area: search;
     justify-self: center;
     width: 320px;
   }
 
+  #searchInput {
+    height: 44px;
+    font-size: 18px;
+  }
+
+  /* ІКОНКИ СПРАВА */
   .header-icons {
     grid-area: icons;
     justify-self: end;
   }
 
-  /* ВАЖЛИВО: повертаємо нормальну поведінку */
+  /* header-top не повинен ламати grid */
   .header-top {
     display: block;
   }
 
+  /* Бургер ховаємо */
   .burger {
     display: none;
   }
 
-  #searchInput {
-    height: 44px;
-    font-size: 18px;
-  }
-}
-  /* ГОЛОВНЕ ВИПРАВЛЕННЯ */
+  /* LAYOUT */
   .layout {
     display: grid;
     grid-template-columns: 240px 1fr;
     padding: 20px 40px 0;
     column-gap: 24px;
-
     margin: 0 auto;
     max-width: 1400px;
   }
 
+  /* SIDEBAR */
   .sidebar {
     display: block;
     background: rgba(0,0,0,0.75);
@@ -591,6 +597,7 @@ header::before {
     overflow-y: auto;
   }
 
+  /* КАРТКИ */
   .cards {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     padding: 0;
@@ -599,10 +606,6 @@ header::before {
 
   .card img {
     height: 200px;
-  }
-
-  .site-title {
-    font-size: 26px;
   }
 }
 
