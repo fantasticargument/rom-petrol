@@ -538,6 +538,7 @@ header::before {
       "logo search icons";
     align-items: center;
     width: 100%;
+    gap: 20px;
   }
 
   /* ЛОГОТИП ЗЛІВА */
@@ -608,6 +609,7 @@ header::before {
     height: 200px;
   }
 }
+
 
 /* ===========================
    10. ВЕЛИКИЙ ДЕСКТОП
