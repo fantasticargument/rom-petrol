@@ -13,46 +13,38 @@
 <header>
   <div class="header-bg"></div>
 
-    <div class="header-inner">
-      <h1 class="site-title">ROM-PETROL</h1>
-      <h2 class="favorites-title">Обране</h2>
-    </div>
+  <div class="header-inner">
+    <h1 class="site-title">ROM-PETROL</h1>
+    <h2 class="favorites-title">Обране</h2>
+  </div>
 </header>
 
-
-<!-- ===========================
-     ПОВНОЕКРАННЕ МЕНЮ (можна залишити або видалити)
-     =========================== -->
+<!-- Мобільне меню -->
 <div class="menu-overlay">
   <div class="menu-content">
     <ul id="mobileCategoryList"></ul>
   </div>
 </div>
 
-<!-- ===========================
-     ОСНОВНА СІТКА
-     =========================== -->
+<!-- Основна сітка -->
 <div class="layout">
 
-  <!-- САЙДБАР (можна залишити або видалити) -->
+  <!-- Сайдбар -->
   <aside class="sidebar desktop-only">
     <h3>Категорії</h3>
     <ul id="categoryList"></ul>
   </aside>
 
-  <!-- КОНТЕНТ -->
+  <!-- Контент -->
   <main class="content-area">
-      <div class="cards" id="favCards"></div>
+    <div class="cards" id="favCards"></div>
   </main>
 
 </div>
 
-
-
-<!-- Модалка  -->
+<!-- Модалка -->
 <div class="overlay" id="modalOverlay">
   <div class="modal" id="modal">
-
     <div class="modal-inner">
 
       <button class="close" onclick="closeModal()">×</button>
@@ -69,116 +61,46 @@
       </div>
 
       <div class="modal-row">
-  <p id="modalCode" class="modal-code"></p>
+        <p id="modalCode" class="modal-code"></p>
 
-  <button id="addFavBtn" class="add-fav-btn">
-    <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
-         stroke="white" stroke-width="2" stroke-linecap="round"
-         stroke-linejoin="round">
-      <path d="M20 6L9 17l-5-5"></path>
-    </svg>
-    Видалити з обраного
-  </button>
-</div>
+        <button id="addFavBtn" class="add-fav-btn">
+          <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
+               stroke="white" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"></path>
+          </svg>
+          Видалити з обраного
+        </button>
+      </div>
 
       <p id="modalDescription" class="modal-description"></p>
 
-    </div> <!-- /modal-inner -->
-
+    </div>
   </div>
 </div>
 
-
+<!-- ПОЗНАЧАЄМО, ЩО МИ НА СТОРІНЦІ ОБРАНОГО -->
 <script>
   const IS_FAVORITES_PAGE = true;
 </script>
 
-<!-- Підключаємо main.js (модалка, логіка обраного, бургер) -->
+<!-- Підключаємо main.js -->
 <script src="scripts/main.js"></script>
 
-
-<!-- Скрипт рендера обраного -->
+<!-- Запускаємо рендер обраного -->
 <script>
-  function safeGetFavorites() {
-    try {
-      const raw = localStorage.getItem("favorites");
-      if (!raw) return [];
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (e) {
-      console.error("Помилка парсу favorites:", e);
-      return [];
-    }
-  }
-
-    function renderFavs() {
-    const favCards = document.getElementById("favCards");
-    if (!favCards) {
-      console.error("Не знайдено #favCards");
-      return;
-      }
-
-    const favs = safeGetFavorites();
-    favCards.innerHTML = "";
-
-    if (!favs.length) {
-      favCards.innerHTML = `
-        <div class="empty-favs">
-          <div class="empty-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="6" y="3" width="12" height="18" rx="2" ry="2"></rect>
-              <path d="M14 3l2 2h-4"></path>
-              <path d="M9 11h6"></path>
-              <path d="M9 15h3"></path>
-            </svg>
-          </div>
-
-          <h3>У вас ще немає обраного</h3>
-          <p>Перегляньте каталог і додайте потрібні Вам позиції.</p>
-
-          <a href="index.html" class="empty-btn">На головну</a>
-        </div>
-      `;
-
-      favCards.classList.add("loaded");
-      return;
-    }
-
-    favs.forEach(item => {
-      const card = document.createElement("div");
-      card.className = "card";
-
-      const imgSrc = item.image || "images/placeholder.png";
-
-      card.innerHTML = `
-        <img src="${imgSrc}" alt="${item.name || ''}">
-        <div class="card-body">
-          <p class="category">${item.category || ''}</p>
-          <h3>${item.name || ''}</h3>
-          <p class="availability ${item.available ? 'yes' : 'no'}">
-            ${item.available ? 'Є в наявності' : 'Немає'}
-          </p>
-        </div>
-      `;
-
-      card.addEventListener("click", () => openModal(item));
-
-      favCards.appendChild(card);
-    });
-
-    favCards.classList.add("loaded");
-  }
-
-  document.addEventListener("DOMContentLoaded", renderFavs);
+  document.addEventListener("DOMContentLoaded", () => {
+    renderFavs();          // рендер карток
+    buildCategoryList();   // рендер категорій
+    buildMobileMenuCategories(); // мобільне меню
+  });
 </script>
 
-  <!-- КНОПКА ВГОРУ -->
-  <button id="scrollTopBtn">▲</button>
+<button id="scrollTopBtn">▲</button>
 
-  <footer class="site-footer">
-    СЛАВА УКРАЇНІ | 2026 ©
-  </footer>
+<footer class="site-footer">
+  СЛАВА УКРАЇНІ | 2026 ©
+</footer>
 
 </body>
 </html>
