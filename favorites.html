@@ -111,7 +111,66 @@
     }
   }
 
+    function renderFavs() {
+    const favCards = document.getElementById("favCards");
+    if (!favCards) {
+      console.error("Не знайдено #favCards");
+      return;
+      }
 
+    const favs = safeGetFavorites();
+    favCards.innerHTML = "";
+
+    if (!favs.length) {
+      favCards.innerHTML = `
+        <div class="empty-favs">
+          <div class="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="3" width="12" height="18" rx="2" ry="2"></rect>
+              <path d="M14 3l2 2h-4"></path>
+              <path d="M9 11h6"></path>
+              <path d="M9 15h3"></path>
+            </svg>
+          </div>
+
+          <h3>У вас ще немає обраного</h3>
+          <p>Перегляньте каталог і додайте потрібні Вам позиції.</p>
+
+          <a href="index.html" class="empty-btn">На головну</a>
+        </div>
+      `;
+
+      favCards.classList.add("loaded");
+      return;
+    }
+
+    favs.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const imgSrc = item.image || "images/placeholder.png";
+
+      card.innerHTML = `
+        <img src="${imgSrc}" alt="${item.name || ''}">
+        <div class="card-body">
+          <p class="category">${item.category || ''}</p>
+          <h3>${item.name || ''}</h3>
+          <p class="availability ${item.available ? 'yes' : 'no'}">
+            ${item.available ? 'Є в наявності' : 'Немає'}
+          </p>
+        </div>
+      `;
+
+      card.addEventListener("click", () => openModal(item));
+
+      favCards.appendChild(card);
+    });
+
+    favCards.classList.add("loaded");
+  }
+
+  document.addEventListener("DOMContentLoaded", renderFavs);
 </script>
 
   <!-- КНОПКА ВГОРУ -->
