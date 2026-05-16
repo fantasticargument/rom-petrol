@@ -418,6 +418,7 @@ async function loadData() {
     loadCards(PRODUCTS);
     buildSidebarCategories();
     buildMobileMenuCategories();
+    buildCategoryList();
 
   } catch (err) {
     console.error("Помилка завантаження даних:", err);
