@@ -19,38 +19,29 @@
   </div>
 </header>
 
-<!-- Мобільне меню -->
 <div class="menu-overlay">
   <div class="menu-content">
     <ul id="mobileCategoryList"></ul>
   </div>
 </div>
 
-<!-- Основна сітка -->
 <div class="layout">
-
-  <!-- Сайдбар -->
   <aside class="sidebar desktop-only">
     <h3>Категорії</h3>
     <ul id="categoryList"></ul>
   </aside>
 
-  <!-- Контент -->
   <main class="content-area">
     <div class="cards" id="favCards"></div>
   </main>
-
 </div>
 
-<!-- Модалка -->
 <div class="overlay" id="modalOverlay">
   <div class="modal" id="modal">
     <div class="modal-inner">
-
       <button class="close" onclick="closeModal()">×</button>
 
       <img id="modalImage" class="modal-img" src="" alt="">
-
       <div class="modal-header">
         <h2 id="modalTitle" class="modal-title"></h2>
       </div>
@@ -62,7 +53,6 @@
 
       <div class="modal-row">
         <p id="modalCode" class="modal-code"></p>
-
         <button id="addFavBtn" class="add-fav-btn">
           <svg class="fav-icon-small" viewBox="0 0 24 24" fill="none"
                stroke="white" stroke-width="2" stroke-linecap="round"
@@ -74,26 +64,59 @@
       </div>
 
       <p id="modalDescription" class="modal-description"></p>
-
     </div>
   </div>
 </div>
 
-<!-- ПОЗНАЧАЄМО, ЩО МИ НА СТОРІНЦІ ОБРАНОГО -->
 <script>
   const IS_FAVORITES_PAGE = true;
 </script>
 
-<!-- Підключаємо main.js -->
 <script src="scripts/main.js"></script>
 
-<!-- Запускаємо рендер обраного -->
 <script>
-  window.addEventListener("load", () => {
-    renderFavs();
+  // тут ми НЕ дублюємо safeGetFavorites — беремо її з main.js
+
+  function renderFavoritesPage() {
+    const favCards = document.getElementById("favCards");
+    if (!favCards) return;
+
+    const favs = safeGetFavorites();
+
+    if (!favs.length) {
+      favCards.innerHTML = `
+        <div class="empty-favs">
+          <div class="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="3" width="12" height="18" rx="2" ry="2"></rect>
+              <path d="M14 3l2 2h-4"></path>
+              <path d="M9 11h6"></path>
+              <path d="M9 15h3"></path>
+            </svg>
+          </div>
+
+          <h3>У вас ще немає обраного</h3>
+          <p>Перегляньте каталог і додайте потрібні Вам позиції.</p>
+
+          <a href="index.html" class="empty-btn">На головну</a>
+        </div>
+      `;
+    } else {
+      // використовуємо ту ж функцію, що й на головній
+      loadCards(favs);
+    }
+
+    // будуємо категорії з обраного (buildCategoryList вже в main.js)
     buildCategoryList();
-    buildMobileMenuCategories();
-  });
+
+    // мобільне меню
+    if (typeof buildMobileMenuCategories === "function") {
+      buildMobileMenuCategories();
+    }
+  }
+
+  window.addEventListener("load", renderFavoritesPage);
 </script>
 
 <button id="scrollTopBtn">▲</button>
