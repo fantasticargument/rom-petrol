@@ -116,6 +116,7 @@
     if (!favCards) {
       console.error("Не знайдено #favCards");
       return;
+      buildCategoryList();
     }
 
     const favs = safeGetFavorites();
