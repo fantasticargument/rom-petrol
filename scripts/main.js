@@ -367,6 +367,7 @@ function renderFavs() {
     card.addEventListener("click", () => openModal(item));
     favCards.appendChild(card);
   });
+  buildCategoryList();
 }
 
 // ===============================
