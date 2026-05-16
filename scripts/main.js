@@ -117,31 +117,36 @@ function filterByCategory(category) {
 // ===============================
 // САЙДБАР КАТЕГОРІЙ
 // ===============================
-function buildSidebarCategories() {
-  const sidebarList = document.getElementById('categoryList');
-  if (!sidebarList) return;
+//function buildSidebarCategories() {
+ // const sidebarList = document.getElementById('categoryList');
+ // if (!sidebarList) return;
 
-  const categories = [...new Set(PRODUCTS.map(p => p.category))];
+ //  const categories = [...new Set(PRODUCTS.map(p => p.category))];
 
-  sidebarList.innerHTML = categories
-    .map(cat => `<li data-category="${cat}">${cat}</li>`)
-    .join("");
+ // sidebarList.innerHTML = categories
+ //   .map(cat => `<li data-category="${cat}">${cat}</li>`)
+ //   .join("");
 
-  sidebarList.addEventListener('click', (e) => {
-    if (e.target.tagName === 'LI') {
-      filterByCategory(e.target.dataset.category);
-    }
-  });
-}
+ // sidebarList.addEventListener('click', (e) => {
+ //   if (e.target.tagName === 'LI') {
+ //    filterByCategory(e.target.dataset.category);
+ //   }
+ // });
+ //}
 
 function buildCategoryList() {
   const list = document.getElementById("categoryList");
   if (!list) return;
 
-  // Унікальні категорії
-  let categories = [...new Set(PRODUCTS.map(p => p.category))];
+  // Визначаємо джерело даних
+  const source = (typeof IS_FAVORITES_PAGE !== "undefined")
+    ? safeGetFavorites()
+    : PRODUCTS;
 
-  // Алфавітне сортування (українська локаль)
+  // Унікальні категорії
+  let categories = [...new Set(source.map(p => p.category))];
+
+  // Алфавітне сортування
   categories.sort((a, b) => a.localeCompare(b, "uk"));
 
   // Формуємо HTML
@@ -155,16 +160,17 @@ function buildCategoryList() {
   // Обробники кліку
   list.querySelectorAll(".cat-item").forEach(item => {
     item.addEventListener("click", () => {
-      // Активний елемент
       list.querySelectorAll(".cat-item").forEach(el => el.classList.remove("active"));
       item.classList.add("active");
 
       const cat = item.dataset.cat;
 
-      if (cat === "all") {
-        loadCards(PRODUCTS);
+      if (typeof IS_FAVORITES_PAGE !== "undefined") {
+        const favs = safeGetFavorites();
+        const filtered = cat === "all" ? favs : favs.filter(p => p.category === cat);
+        loadCards(filtered);
       } else {
-        const filtered = PRODUCTS.filter(p => p.category === cat);
+        const filtered = cat === "all" ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
         loadCards(filtered);
       }
     });
