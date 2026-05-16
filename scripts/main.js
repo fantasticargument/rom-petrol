@@ -80,7 +80,11 @@ function loadCards(data) {
     card.className = 'card';
 
     card.innerHTML = `
-      <img src="${item.image || 'images/placeholder.png'}" alt="${item.name}">
+      <img 
+        src="${item.image || 'images/placeholder.png'}" 
+        alt="${item.name}"
+        onerror="this.src='images/placeholder.png'"
+      >
       <div class="card-body">
         <p class="category">${item.category}</p>
         <h3>${item.name}</h3>
