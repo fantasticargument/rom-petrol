@@ -416,8 +416,8 @@ async function loadData() {
     });
 
     loadCards(PRODUCTS);
-    buildSidebarCategories();
-    buildMobileMenuCategories();
+    //buildSidebarCategories();
+    //buildMobileMenuCategories();
     buildCategoryList();
 
   } catch (err) {
