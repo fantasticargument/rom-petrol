@@ -105,6 +105,7 @@ function loadCards(data) {
 function filterByCategory(category) {
   if (category === "all") {
     loadCards(PRODUCTS);
+    buildCategoryList();
   } else {
     loadCards(PRODUCTS.filter(p => p.category === category));
   }
@@ -418,7 +419,6 @@ async function loadData() {
     loadCards(PRODUCTS);
     buildSidebarCategories();
     buildMobileMenuCategories();
-    buildCategoryList();
 
   } catch (err) {
     console.error("Помилка завантаження даних:", err);
