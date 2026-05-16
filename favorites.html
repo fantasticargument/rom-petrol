@@ -89,10 +89,10 @@
 
 <!-- Запускаємо рендер обраного -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    renderFavs();          // рендер карток
-    buildCategoryList();   // рендер категорій
-    buildMobileMenuCategories(); // мобільне меню
+  window.addEventListener("load", () => {
+    renderFavs();
+    buildCategoryList();
+    buildMobileMenuCategories();
   });
 </script>
 
