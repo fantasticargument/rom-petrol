@@ -571,6 +571,8 @@ header::before {
     background: rgba(0,0,0,0.75);
     color: #fff;
     padding: 20px;
+
+     text-align: center;
   }
 
   /* Список */
@@ -578,7 +580,6 @@ header::before {
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: center;
 }
 
 /* Елемент */
