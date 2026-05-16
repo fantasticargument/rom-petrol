@@ -573,15 +573,12 @@ header::before {
     padding: 20px;
   }
 
-  .categoryList {
-    text-align: center;
-  }
-
   /* Список */
 .sidebar ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  text-align: center;
 }
 
 /* Елемент */
