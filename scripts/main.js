@@ -158,10 +158,10 @@ function buildCategoryList() {
       const cat = item.dataset.cat;
 
       if (cat === "all") {
-        renderCards(PRODUCTS);
+        loadCards(PRODUCTS);
       } else {
         const filtered = PRODUCTS.filter(p => p.category === cat);
-        renderCards(filtered);
+        loadCards(filtered);
       }
     });
   });
