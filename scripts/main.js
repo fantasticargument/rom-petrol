@@ -416,9 +416,9 @@ async function loadData() {
     });
 
     loadCards(PRODUCTS);
-    //buildSidebarCategories();
-    //buildMobileMenuCategories();
     buildCategoryList();
+    //buildSidebarCategories();
+    buildMobileMenuCategories();
 
   } catch (err) {
     console.error("Помилка завантаження даних:", err);
