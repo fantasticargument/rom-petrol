@@ -75,13 +75,12 @@
 <script src="scripts/main.js"></script>
 
 <script>
-  function renderFavoritesPage() {
+  function renderFavs() {
     const favCards = document.getElementById("favCards");
     if (!favCards) return;
 
     const favs = safeGetFavorites();
 
-    // Якщо обраних немає — показуємо заглушку
     if (!favs.length) {
       favCards.innerHTML = `
         <div class="empty-favs">
@@ -102,25 +101,19 @@
         </div>
       `;
 
-      // Категорії теж треба оновити (порожні)
       buildCategoryList();
       buildMobileMenuCategories();
       return;
     }
 
-    // 🔥 Рендеримо картки так само, як на головній
     loadCards(favs);
-
-    // 🔥 Рендеримо категорії з обраного
     buildCategoryList();
-
-    // 🔥 Рендеримо мобільне меню
     buildMobileMenuCategories();
   }
 
-  // Гарантовано викликаємо після завантаження main.js
-  window.addEventListener("load", renderFavoritesPage);
+  window.addEventListener("load", renderFavs);
 </script>
+
 
 <button id="scrollTopBtn">▲</button>
 
