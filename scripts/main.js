@@ -336,6 +336,7 @@ function renderFavs() {
   favCards.innerHTML = "";
 
   if (!favs.length) {
+    favCards.classList.add("empty");   // ← ДОДАЛИ
     favCards.innerHTML = `
       <div class="empty-favs">
         <div class="empty-icon">
@@ -353,19 +354,17 @@ function renderFavs() {
         <a href="index.html" class="empty-btn">На головну</a>
       </div>
     `;
-
-    favCards.classList.add("loaded");
-    buildCategoryList();
-    buildMobileMenuCategories();
     return;
   }
 
-  loadCards(favs);
-  favCards.classList.add("loaded");
+  // Якщо є картки — прибираємо empty‑режим
+  favCards.classList.remove("empty");
 
+  loadCards(favs);
   buildCategoryList();
   buildMobileMenuCategories();
 }
+
 
 
 // ===============================
