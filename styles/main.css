@@ -682,21 +682,50 @@ header::before {
   display: none;
 }
 
+/* Коли є картки — працює грід */
 .favorites-page #favCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Коли картки завантажені */
+.favorites-page #favCards.loaded {
+  opacity: 1;
+}
+
+/* Коли список порожній — центруємо empty-state */
+.favorites-page #favCards.empty {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh; /* або 70vh, якщо хочеш нижче */
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
+/* Сам блок порожнього стану */
 .favorites-page .empty-favs {
   text-align: center;
   max-width: 420px;
+  padding: 20px;
+  opacity: 0.95;
 }
 
+.favorites-page .empty-favs .empty-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
 
 @media (min-width: 900px) {
   .desktop-only {
     display: block;
+  }
+
+  /* На десктопі грід трохи інший */
+  .favorites-page #favCards {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
