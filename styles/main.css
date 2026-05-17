@@ -628,7 +628,7 @@ header::before {
   .layout {
     margin-left: 240px; /* ширина сайдбару */
     padding: 20px 40px 0;
-    max-width: calc(1400px - 240px);
+    max-width: 1400px;
   }
 
   /* КАРТКИ */
