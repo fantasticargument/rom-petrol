@@ -75,14 +75,13 @@
 <script src="scripts/main.js"></script>
 
 <script>
-  // тут ми НЕ дублюємо safeGetFavorites — беремо її з main.js
-
   function renderFavoritesPage() {
     const favCards = document.getElementById("favCards");
     if (!favCards) return;
 
     const favs = safeGetFavorites();
 
+    // Якщо обраних немає — показуємо заглушку
     if (!favs.length) {
       favCards.innerHTML = `
         <div class="empty-favs">
@@ -102,20 +101,24 @@
           <a href="index.html" class="empty-btn">На головну</a>
         </div>
       `;
-    } else {
-      // використовуємо ту ж функцію, що й на головній
-      loadCards(favs);
+
+      // Категорії теж треба оновити (порожні)
+      buildCategoryList();
+      buildMobileMenuCategories();
+      return;
     }
 
-    // будуємо категорії з обраного (buildCategoryList вже в main.js)
+    // 🔥 Рендеримо картки так само, як на головній
+    loadCards(favs);
+
+    // 🔥 Рендеримо категорії з обраного
     buildCategoryList();
 
-    // мобільне меню
-    if (typeof buildMobileMenuCategories === "function") {
-      buildMobileMenuCategories();
-    }
+    // 🔥 Рендеримо мобільне меню
+    buildMobileMenuCategories();
   }
 
+  // Гарантовано викликаємо після завантаження main.js
   window.addEventListener("load", renderFavoritesPage);
 </script>
 
