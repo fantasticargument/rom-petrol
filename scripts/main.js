@@ -86,11 +86,11 @@ function loadCards(data) {
         onerror="this.src='images/placeholder.png'"
       >
       <div class="card-body">
-        <p class="category">${item.category}</p>
-        <h3>${item.name}</h3>
         <p class="availability ${item.available ? 'yes' : 'no'}">
           ${item.available ? 'Є в наявності' : 'Немає'}
         </p>
+        <p class="category">${item.category}</p>
+        <h3>${item.name}</h3>
       </div>
     `;
 
