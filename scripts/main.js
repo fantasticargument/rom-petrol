@@ -359,6 +359,7 @@ function renderFavs() {
 
   // Якщо є картки — прибираємо empty‑режим
   favCards.classList.remove("empty");
+  favCards.classList.add("loaded");
 
   loadCards(favs);
   buildCategoryList();
