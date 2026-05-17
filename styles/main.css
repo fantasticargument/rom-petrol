@@ -649,7 +649,6 @@ header::before {
 @media (min-width: 1200px) {
   .cards {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    justify-content: center;
     gap: 24px;
   }
 }
