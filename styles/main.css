@@ -295,7 +295,7 @@ header::before {
 .cards {
   margin-top: 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -310,9 +310,6 @@ header::before {
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width: 260px;       /* фіксована ширина */
-  max-width: 100%;    /* щоб не ламалось на мобільному */
-  margin: 0 auto;     /* центрування */
 }
 
 .card img {
@@ -631,7 +628,7 @@ header::before {
   .layout {
     margin-left: 240px; /* ширина сайдбару */
     padding: 20px 40px 0;
-    max-width: 1400px;
+    max-width: calc(1400px - 240px);
   }
 
   /* КАРТКИ */
