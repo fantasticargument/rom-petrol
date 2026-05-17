@@ -117,22 +117,6 @@ function filterByCategory(category) {
 // ===============================
 // САЙДБАР КАТЕГОРІЙ
 // ===============================
-//function buildSidebarCategories() {
- // const sidebarList = document.getElementById('categoryList');
- // if (!sidebarList) return;
-
- //  const categories = [...new Set(PRODUCTS.map(p => p.category))];
-
- // sidebarList.innerHTML = categories
- //   .map(cat => `<li data-category="${cat}">${cat}</li>`)
- //   .join("");
-
- // sidebarList.addEventListener('click', (e) => {
- //   if (e.target.tagName === 'LI') {
- //    filterByCategory(e.target.dataset.category);
- //   }
- // });
- //}
 
 function buildCategoryList() {
   const list = document.getElementById("categoryList");
