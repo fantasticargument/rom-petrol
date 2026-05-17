@@ -138,7 +138,7 @@ function buildCategoryList() {
   const list = document.getElementById("categoryList");
   if (!list) return;
 
-  // Визначаємо джерело даних
+  // Джерело категорій
   const source = (typeof IS_FAVORITES_PAGE !== "undefined")
     ? safeGetFavorites()
     : PRODUCTS;
@@ -167,12 +167,33 @@ function buildCategoryList() {
 
       if (typeof IS_FAVORITES_PAGE !== "undefined") {
         const favs = safeGetFavorites();
-        const filtered = cat === "all" ? favs : favs.filter(p => p.category === cat);
+
+        // 🔥 Якщо обране порожнє — завжди показуємо порожній стан
+        if (!favs.length) {
+          renderFavs();
+          return;
+        }
+
+        const filtered = (cat === "all")
+          ? favs
+          : favs.filter(p => p.category === cat);
+
+        // 🔥 Якщо після фільтрації пусто — теж показуємо порожній стан
+        if (!filtered.length) {
+          renderFavs();
+          return;
+        }
+
+        // 🔥 Інакше рендеримо картки
         loadCards(filtered);
-      } else {
-        const filtered = cat === "all" ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
-        loadCards(filtered);
+        return;
       }
+
+      const filtered = (cat === "all")
+        ? PRODUCTS
+        : PRODUCTS.filter(p => p.category === cat);
+
+      loadCards(filtered);
     });
   });
 }
