@@ -74,7 +74,9 @@
 </script>
 
 <script src="scripts/main.js"></script>
-
+<!-- ===========================
+     СКРИПТ ДЛЯ СТОРІНКИ ОБРАНЕ
+    
 <script>
   function renderFavs() {
     const favCards = document.getElementById("favCards");
@@ -114,7 +116,12 @@
 
   window.addEventListener("load", renderFavs);
 </script>
-
+ =========================== -->
+ <script>
+  window.addEventListener("load", () => {
+    renderFavs();
+  });
+</script>
 
 <button id="scrollTopBtn">▲</button>
 
