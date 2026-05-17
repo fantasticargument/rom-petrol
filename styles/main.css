@@ -681,6 +681,9 @@ header::before {
   padding-left: 4px;
 }
 
+.favorites-title a {
+  margin: 0;
+}
 /* Sidebar only desktop */
 .desktop-only {
   display: none;
