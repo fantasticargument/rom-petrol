@@ -681,7 +681,7 @@ header::before {
 }
 
 /* Коли є картки — працює грід */
-.favorites-page #favCards {
+/*.favorites-page #favCards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
@@ -690,7 +690,7 @@ header::before {
 }
 
 /* Коли картки завантажені */
-.favorites-page #favCards.loaded {
+/*.favorites-page #favCards.loaded {
   opacity: 1;
 }
 
@@ -722,9 +722,9 @@ header::before {
   .desktop-only {
     display: block;
   }
-
+}
   /* На десктопі грід трохи інший */
-  .favorites-page #favCards {
+ /* .favorites-page #favCards {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
