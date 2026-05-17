@@ -123,6 +123,7 @@ header::before {
 .site-title a {
   color: #fff;
   text-decoration: none;
+  margin: 0;
 }
 
 /* Бургер */
