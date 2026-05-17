@@ -464,7 +464,10 @@ async function loadData() {
       return a.id - b.id;
     });
 
-    loadCards(PRODUCTS);
+    if (!window.DISABLE_AUTORENDER) {
+      loadCards(PRODUCTS);
+    }
+
     buildCategoryList();
     //buildSidebarCategories();
     buildMobileMenuCategories();
