@@ -632,14 +632,14 @@ header::before {
   }
 
   /* КАРТКИ */
-  .cards {
+  /*.cards {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
   .card img {
     height: 200px;
   }
-}
+}*/
 
 
 /* ===========================
@@ -691,7 +691,7 @@ header::before {
 
 /* Коли картки завантажені */
 /*.favorites-page #favCards.loaded {
-  opacity: 1;
+  opacity: 1;*/
 }
 
 /* Коли список порожній — центруємо empty-state */
