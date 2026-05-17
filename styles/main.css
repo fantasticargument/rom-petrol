@@ -295,7 +295,7 @@ header::before {
 .cards {
   margin-top: 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   opacity: 0;
   transition: opacity 0.3s ease;
