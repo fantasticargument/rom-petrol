@@ -74,49 +74,7 @@
 </script>
 
 <script src="scripts/main.js"></script>
-<!-- ===========================
-     СКРИПТ ДЛЯ СТОРІНКИ ОБРАНЕ
-    
-<script>
-  function renderFavs() {
-    const favCards = document.getElementById("favCards");
-    if (!favCards) return;
 
-    const favs = safeGetFavorites();
-
-    if (!favs.length) {
-      favCards.innerHTML = `
-        <div class="empty-favs">
-          <div class="empty-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="6" y="3" width="12" height="18" rx="2" ry="2"></rect>
-              <path d="M14 3l2 2h-4"></path>
-              <path d="M9 11h6"></path>
-              <path d="M9 15h3"></path>
-            </svg>
-          </div>
-
-          <h3>У вас ще немає обраного</h3>
-          <p>Перегляньте каталог і додайте потрібні Вам позиції.</p>
-
-          <a href="index.html" class="empty-btn">На головну</a>
-        </div>
-      `;
-
-      buildCategoryList();
-      buildMobileMenuCategories();
-      return;
-    }
-
-    loadCards(favs);
-    buildCategoryList();
-    buildMobileMenuCategories();
-  }
-
-  window.addEventListener("load", renderFavs);
-</script>
- =========================== -->
  <script>
   window.addEventListener("load", () => {
     renderFavs();
