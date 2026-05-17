@@ -112,14 +112,17 @@ header::before {
 }
 
 /* Логотип */
-.site-title a {
+.site-title {
   margin: 0;
   font-size: 22px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; 
+}
+
+.site-title a {
   color: #fff;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 /* Бургер */
