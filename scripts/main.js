@@ -122,12 +122,11 @@ function buildCategoryList() {
   const list = document.getElementById("categoryList");
   if (!list) return;
 
-  const source = (typeof IS_FAVORITES_PAGE !== "undefined")
-    ? safeGetFavorites()
-    : PRODUCTS;
+  const isFavPage = typeof IS_FAVORITES_PAGE !== "undefined";
+  const source = isFavPage ? safeGetFavorites() : PRODUCTS;
 
-  // Якщо обране порожнє — sidebar показує тільки "Всі категорії"
-  if (typeof IS_FAVORITES_PAGE !== "undefined" && source.length === 0) {
+  // Якщо обране порожнє → sidebar показує тільки "Всі категорії"
+  if (isFavPage && source.length === 0) {
     list.innerHTML = `
       <li class="cat-item active" data-cat="all">Всі категорії</li>
     `;
@@ -138,9 +137,12 @@ function buildCategoryList() {
   let categories = [...new Set(source.map(p => p.category))];
   categories.sort((a, b) => a.localeCompare(b, "uk"));
 
+  // Формуємо HTML
   list.innerHTML = `
     <li class="cat-item active" data-cat="all">Всі категорії</li>
-    ${categories.map(cat => `<li class="cat-item" data-cat="${cat}">${cat}</li>`).join("")}
+    ${categories
+      .map(cat => `<li class="cat-item" data-cat="${cat}">${cat}</li>`)
+      .join("")}
   `;
 
   // Обробники кліку
@@ -151,16 +153,24 @@ function buildCategoryList() {
 
       const cat = item.dataset.cat;
 
-      if (typeof IS_FAVORITES_PAGE !== "undefined") {
+      // ============================
+      //   ЛОГІКА ДЛЯ ОБРАНОГО
+      // ============================
+      if (isFavPage) {
         const favs = safeGetFavorites();
 
+        // Якщо обране порожнє → показуємо empty-state
         if (!favs.length) {
           renderFavs();
           return;
         }
 
-        const filtered = cat === "all" ? favs : favs.filter(p => p.category === cat);
+        const filtered =
+          cat === "all"
+            ? favs
+            : favs.filter(p => p.category === cat);
 
+        // Якщо після фільтрації пусто → теж empty-state
         if (!filtered.length) {
           renderFavs();
           return;
@@ -170,7 +180,14 @@ function buildCategoryList() {
         return;
       }
 
-      const filtered = cat === "all" ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
+      // ============================
+      //   ЛОГІКА ДЛЯ ГОЛОВНОЇ
+      // ============================
+      const filtered =
+        cat === "all"
+          ? PRODUCTS
+          : PRODUCTS.filter(p => p.category === cat);
+
       loadCards(filtered);
     });
   });
