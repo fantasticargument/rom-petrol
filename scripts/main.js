@@ -327,55 +327,41 @@ function renderFavs() {
   if (!favCards) return;
 
   const favs = safeGetFavorites();
-  favCards.innerHTML = `
-  <div class="empty-favs">
-    <div class="empty-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="9" cy="21" r="1"></circle>
-        <circle cx="20" cy="21" r="1"></circle>
-        <path d="M1 1h4l2.7 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"></path>
-      </svg>
-    </div>
 
-    <h3>У вас ще немає обраних товарів</h3>
-    <p>Перегляньте каталог і додайте потрібні позиції в обране.</p>
-
-    <a href="index.html" class="empty-btn">На головну</a>
-  </div>
-`;
-
+  favCards.innerHTML = "";
 
   if (!favs.length) {
     favCards.innerHTML = `
       <div class="empty-favs">
-        Немає обраних товарів. Поверніться на головну і додайте щось в обране.
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.7 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"></path>
+          </svg>
+        </div>
+
+        <h3>У вас ще немає обраного</h3>
+        <p>Перегляньте каталог і додайте потрібні позиції в обране.</p>
+
+        <a href="index.html" class="empty-btn">На головну</a>
       </div>
     `;
+
+    favCards.classList.add("loaded");
+    buildCategoryList();
+    buildMobileMenuCategories();
     return;
   }
 
-  favs.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-      <img src="${item.image}" alt="${item.name}">
-      <div class="card-body">
-        <p class="category">${item.category}</p>
-        <h3>${item.name}</h3>
-        <p class="availability ${item.available ? "yes" : "no"}">
-          ${item.available ? "Є в наявності" : "Немає"}
-        </p>
-      </div>
-    `;
-
-    card.addEventListener("click", () => openModal(item));
-    favCards.appendChild(card);
-  });
+  loadCards(favs);
+  favCards.classList.add("loaded");
 
   buildCategoryList();
+  buildMobileMenuCategories();
 }
+
 
 // ===============================
 // ПОШУК
@@ -464,10 +450,7 @@ async function loadData() {
       return a.id - b.id;
     });
 
-    if (!window.DISABLE_AUTORENDER) {
-      loadCards(PRODUCTS);
-    }
-
+    loadCards(PRODUCTS);
     buildCategoryList();
     //buildSidebarCategories();
     buildMobileMenuCategories();
