@@ -125,11 +125,9 @@ function buildCategoryList() {
   const isFavPage = typeof IS_FAVORITES_PAGE !== "undefined";
   const source = isFavPage ? safeGetFavorites() : PRODUCTS;
 
-  // Якщо обране порожнє → sidebar показує тільки "Всі категорії"
+  // 🔥 Якщо обране порожнє — sidebar має бути ПОВНІСТЮ порожній
   if (isFavPage && source.length === 0) {
-    list.innerHTML = `
-      <li class="cat-item active" data-cat="all">Всі категорії</li>
-    `;
+    list.innerHTML = "";
     return;
   }
 
@@ -159,7 +157,6 @@ function buildCategoryList() {
       if (isFavPage) {
         const favs = safeGetFavorites();
 
-        // Якщо обране порожнє → показуємо empty-state
         if (!favs.length) {
           renderFavs();
           return;
@@ -170,7 +167,6 @@ function buildCategoryList() {
             ? favs
             : favs.filter(p => p.category === cat);
 
-        // Якщо після фільтрації пусто → теж empty-state
         if (!filtered.length) {
           renderFavs();
           return;
@@ -192,7 +188,6 @@ function buildCategoryList() {
     });
   });
 }
-
 
 // ===============================
 // МОБІЛЬНЕ МЕНЮ КАТЕГОРІЙ
