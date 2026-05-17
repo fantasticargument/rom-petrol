@@ -122,23 +122,25 @@ function buildCategoryList() {
   const list = document.getElementById("categoryList");
   if (!list) return;
 
-  // Джерело категорій
   const source = (typeof IS_FAVORITES_PAGE !== "undefined")
     ? safeGetFavorites()
     : PRODUCTS;
 
+  // Якщо обране порожнє — sidebar показує тільки "Всі категорії"
+  if (typeof IS_FAVORITES_PAGE !== "undefined" && source.length === 0) {
+    list.innerHTML = `
+      <li class="cat-item active" data-cat="all">Всі категорії</li>
+    `;
+    return;
+  }
+
   // Унікальні категорії
   let categories = [...new Set(source.map(p => p.category))];
-
-  // Алфавітне сортування
   categories.sort((a, b) => a.localeCompare(b, "uk"));
 
-  // Формуємо HTML
   list.innerHTML = `
     <li class="cat-item active" data-cat="all">Всі категорії</li>
-    ${categories
-      .map(cat => `<li class="cat-item" data-cat="${cat}">${cat}</li>`)
-      .join("")}
+    ${categories.map(cat => `<li class="cat-item" data-cat="${cat}">${cat}</li>`).join("")}
   `;
 
   // Обробники кліку
@@ -152,35 +154,28 @@ function buildCategoryList() {
       if (typeof IS_FAVORITES_PAGE !== "undefined") {
         const favs = safeGetFavorites();
 
-        // 🔥 Якщо обране порожнє — завжди показуємо порожній стан
         if (!favs.length) {
           renderFavs();
           return;
         }
 
-        const filtered = (cat === "all")
-          ? favs
-          : favs.filter(p => p.category === cat);
+        const filtered = cat === "all" ? favs : favs.filter(p => p.category === cat);
 
-        // 🔥 Якщо після фільтрації пусто — теж показуємо порожній стан
         if (!filtered.length) {
           renderFavs();
           return;
         }
 
-        // 🔥 Інакше рендеримо картки
         loadCards(filtered);
         return;
       }
 
-      const filtered = (cat === "all")
-        ? PRODUCTS
-        : PRODUCTS.filter(p => p.category === cat);
-
+      const filtered = cat === "all" ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
       loadCards(filtered);
     });
   });
 }
+
 
 // ===============================
 // МОБІЛЬНЕ МЕНЮ КАТЕГОРІЙ
@@ -354,6 +349,9 @@ function renderFavs() {
         <a href="index.html" class="empty-btn">На головну</a>
       </div>
     `;
+
+    buildCategoryList();          // ← ДОДАНО
+    buildMobileMenuCategories();  // ← ДОДАНО
     return;
   }
 
